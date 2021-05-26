@@ -1,0 +1,63 @@
+<app-header></app-header>
+   
+    <h1 id="registro-title">Registrar Usuario</h1>
+
+    <div class="registro-component">
+        <form class="clr-form clr-form-horizontal" [formGroup]="signupForm" (ngSubmit)="enviar(signupForm.value)">
+            <div class="clr-form-control">
+            <label for="username" class="clr-control-label">Usuario: </label>
+            <div class="clr-control-container">
+                <div class="clr-input-wrapper">
+                <input formControlName="username" type="text" id="username" placeholder="usuario" class="clr-input" />
+                </div>
+                <!-- <div *ngIf="signupForm.get('username').hasError('required') && signupForm.get('username').touched">Es necesario introducir un nombre de usuario</div> -->
+            </div>
+            </div>
+            <!-- <div class="clr-form-control">
+                <label for="role" class="clr-control-label">Rol: </label>
+                <div class="clr-control-container">
+                <div class="clr-select-wrapper">
+                    <select placeholder="Select Option" id="role">
+                    <option>Admin</option>
+                    <option>Docente</option>
+                    </select>
+                </div>
+                </div>
+            </div> -->
+
+            <div class="clr-form-control">
+                <label for="email" class="clr-control-label">Correo electrónico: </label>
+                <div class="clr-control-container">
+                <div class="clr-input-wrapper">
+                    <input formControlName="email" type="email" id="email" placeholder="correo electronico" class="clr-input" />
+                </div>
+                <div *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Es necesario introducir un email válido</div>
+                </div>
+            </div>
+            <div class="clr-form-control">
+                <label for="password" class="clr-control-label">Contraseña: </label>
+                <div class="clr-control-container">
+                <div class="clr-input-wrapper">
+                    <input formControlName="password" type="password" id="password" placeholder="contraseña" class="clr-input" />
+                </div>
+                </div>
+            </div>
+            <!-- <div class="clr-form-control">
+                <label for="confirmpassword" class="clr-control-label">Confirmar contraseña: </label>
+                <div class="clr-control-container">
+                <div class="clr-input-wrapper">
+                    <input type="password" name="confirmpassword" placeholder="confirmar contraseña" class="clr-input"/>
+                </div>
+                </div>
+            </div> -->
+            <div id="registro-buttons">
+                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-success" [disabled]="signupForm.invalid" type="submit" >Aceptar</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="logo-utec">
+        <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+    </div>
+    

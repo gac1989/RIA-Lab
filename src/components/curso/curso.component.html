@@ -1,0 +1,59 @@
+    <app-header></app-header>
+
+    <h1 >  Lista de Cursos  </h1>
+
+    <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+    <ng2-smart-table [settings]="settings" [source]="source" ></ng2-smart-table>
+    <!-- <div class="btn-group btn-primary" id="curso_button">
+        <button class="btn btn-success">Agregar</button>
+        <button class="btn btn-danger">Borrar</button>
+        <button class="btn">Editar</button>
+    </div> -->
+    <!-- <caption id="curso_caption">
+
+        <clr-button-group class="btn-primary" id="curso_button">
+          <clr-button>Agregar</clr-button>
+          <clr-button>Borrar</clr-button>
+          <clr-button >Editar</clr-button>
+        </clr-button-group>
+          </caption>
+    <table class="table" id="cursoTable">
+        <thead>
+        <tr>
+            <th class="left">ID</th>
+            <th>Curso</th>
+            <th>Docente</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="left">1</td>
+            <td>Matematicas</td>
+            <td>Charles Xavier</td>
+
+        </tr>
+        <tr>
+            <td class="left">2</td>
+            <td>Biologia</td>
+            <td>Profesora Spoon</td>
+
+        </tr>
+        <tr>
+            <td class="left">3</td>
+            <td>Historia</td>
+            <td>Osvaldo Historia</td>
+        </tr>
+        <tr>
+            <td class="left">4</td>
+            <td>Geografia</td>
+            <td>Profesor Oak</td>
+        </tr>
+        </tbody>
+    </table>-->
+
+
+    <div id="curso-buttons-footer">
+        <button class="btn btn-success btn-block">Confirmar</button>
+        <button class="btn btn-danger btn-block">Cancelar</button>
+    </div>
+

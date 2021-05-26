@@ -1,0 +1,3 @@
+npm i ng2-smart-table --save
+
+npm i ng2-completer --save

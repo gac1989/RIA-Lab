@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<div class="login-wrapper">
+    <form class="login" [formGroup]="signinForm" (ngSubmit)="login(signinForm.value)">
+      <section class="title">
+        <h5 class="hint">Use sus credenciales para iniciar sesión</h5>
+      </section>
+      <div class="login-group">
+        <clr-select-container>
+          <label class="clr-sr-only">User Role</label>
+          <select clrSelect name="type" >
+            <option value="local">Docente</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </clr-select-container>
+        <clr-input-container>
+          <label class="clr-sr-only">Username</label>
+          <input type="text" id="username" formControlName="username" clrInput placeholder="username" />
+        </clr-input-container>
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input type="password" id="password" formControlName="password" clrPassword placeholder="password" />
+        </clr-password-container>
+        <!-- <clr-checkbox-wrapper>
+          <label>Recordarme</label>
+          <input type="checkbox" name="rememberMe" clrCheckbox/>
+        </clr-checkbox-wrapper> -->
+        <div class="error active" hidden="true">
+          Usuario o password incorrectos
+        </div>
+        <!-- <button type="submit" class="btn btn-primary" (click)="login()">SIGUIENTE</button> -->
+        <button type="submit" class="btn btn-primary" [disabled]="signinForm.invalid">SIGUIENTE</button>
+        <!-- <a href="javascript://" class="signup">Sign up for a Company ID</a> -->
+      </div>
+    </form>
+  </div>
