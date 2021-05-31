@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
+import { AuthService } from 'src/services/auth.service';
+
 
 @Component({
   selector: 'app-curso',
@@ -55,7 +57,7 @@ export class CursoComponent  {
   
   source: LocalDataSource;
   
-  constructor() {
+  constructor(private authService: AuthService) {
     this.source = new LocalDataSource(this.data);
   }
 
@@ -79,4 +81,17 @@ export class CursoComponent  {
     // (meaning all columns should contain search query or at least one)
     // 'AND' by default, so changing to 'OR' by setting false here
   }
+
+  auth(): void{
+      this.authService.getUsers().subscribe(
+        data => {
+          console.log(data);
+
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  
 }

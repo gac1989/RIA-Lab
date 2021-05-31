@@ -1,5 +1,62 @@
-<router-outlet></router-outlet>
+<div id="app">
+    <header class="header-6">
+        <div class="branding">
+          <a href="/" class="nav-link">
+    
+            <span class="title">Libreta Digital</span>
+          </a>
+        </div>
+        <div class="header-nav">
+            <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
+            <clr-dropdown *ngIf="showAdminBoard">
+              <a clrDropdownToggle>
+                <span class="nav-link nav-text">Admin Board</span>
+              </a>
+              <div class="dropdown-menu">
+                <a href="/roles" clrDropdownItem >Asignar roles</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item " href="#"> ABM Cursos</a>
+              </div>
+            </clr-dropdown>
+            <a href="/cursos" class="nav-link nav-text">Cursos</a>
+            <a href="/estudiantes" class="nav-link nav-text">Estudiantes</a>
+            <a href="/clases" class="nav-link nav-text">Clases</a>
+       
+          <clr-dropdown>
+            <a clrDropdownToggle>
+              <span class="nav-link nav-text">Evaluaciones</span>
+            </a>
+            <div class="dropdown-menu">
+              <a clrDropdownItem >Evaluaciones</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item " href="#">Asignacion de Evaluaciones</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item " href="#">Resumen Final Curso</a>
+            </div>
+          </clr-dropdown>
+        </div>
+        <div class="header-actions">
+            <div class="navbar-nav ml-auto" *ngIf="!isLoggedIn"> 
+                <a href="/registro" class="nav-link nav-icon-text">
+                <span class="nav-text">Registrarse</span>
+                </a>
+                <a href="/login" class="nav-link nav-icon-text">
+                <span class="nav-text">Iniciar Sesión</span>
+                </a>
+            </div>
+        
+            <div class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+                <!-- <a href="/perfil" class="nav-link nav-text">Perfil</a> -->
+                <a href class="nav-link nav-icon-text" (click)="logout()">LogOut</a>
+            </div>
+        </div>
 
+    </header>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>
  
 
 

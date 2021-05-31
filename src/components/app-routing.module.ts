@@ -2,25 +2,30 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClaseComponent } from './clase/clase.component';
 import { CursoComponent } from './curso/curso.component';
-import { ErrorComponent } from './error/error.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { EvaluacionComponent } from './evaluacion/evaluacion.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PerfilComponent } from './perfil/perfil.component';
 import { RegistroComponent } from './registro/registro.component';
+import { RoleComponent } from './role/role.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: 'home',
     component: HomeComponent
-  },
-  {
-    path:'error',
-    component: ErrorComponent
   },
   {
     path:'cursos',
     component: CursoComponent
+  },
+  {
+    path:'roles',
+    component: RoleComponent
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent
   },
   {
     path:'evaluaciones',
@@ -41,6 +46,11 @@ const routes: Routes = [
   {
     path:'estudiantes',
     component: EstudianteComponent
+  },
+  {
+    path:'',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 

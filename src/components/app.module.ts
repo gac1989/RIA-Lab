@@ -9,7 +9,6 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './header/header.component';
 import { CursoComponent } from './curso/curso.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { ClaseComponent } from './clase/clase.component';
@@ -17,22 +16,27 @@ import { EvaluacionComponent } from './evaluacion/evaluacion.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { CookieService } from 'ngx-cookie-service';
-import { ErrorComponent } from './error/error.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
+import { authInterceptorProviders } from '../_helpers/auth.interceptor';
+import { RoleComponent } from './role/role.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input'
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent,
     CursoComponent,
     EstudianteComponent,
     ClaseComponent,
     EvaluacionComponent,
     HomeComponent,
     RegistroComponent,
-    ErrorComponent
+    PerfilComponent,
+    RoleComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +46,11 @@ import { ErrorComponent } from './error/error.component';
     Ng2SmartTableModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatSelectModule,
+    MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [CookieService],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

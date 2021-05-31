@@ -1,43 +1,63 @@
-import { Component } from '@angular/core';
-import { UsersService } from 'src/services/users.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AuthService } from 'src/services/auth.service';
+import { TokenStorageService } from 'src/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
 
-  // username: string;
-  // password: string;
-  
-  signinForm: FormGroup;
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
   constructor(
-    public userService: UsersService, 
-    public router: Router,
-    private _builder: FormBuilder
-    ) { 
-      this.signinForm = this._builder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
-      })
+    private authService: AuthService, private tokenStorage: TokenStorageService, public router: Router) {}
 
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    //  this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
-  login(values) {
-    this.userService.login(values).subscribe(
+  goHome(): void{
+    this.router.navigateByUrl('/');
+  }
+
+  onSubmit(): void {
+    const { username, password } = this.form;
+    this.authService.login(username, password).subscribe(
       data => {
-        this.userService.setToken(data.token);
-        this.router.navigateByUrl('/');
+        this.tokenStorage.saveToken(data);
+        this.tokenStorage.saveUser(data);
+        this.tokenStorage.saveUserName(username);
+        
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+
+   //     this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+        this.goHome();
       },
-      error => {
-        this.router.navigateByUrl('/error');
-      });
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
   }
 
+  reloadPage(): void {
+    window.location.reload();
+  }
 
 
 }

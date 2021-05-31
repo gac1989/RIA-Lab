@@ -1,63 +1,102 @@
-<app-header></app-header>
+
    
     <h1 id="registro-title">Registrar Usuario</h1>
 
     <div class="registro-component">
-        <form class="clr-form clr-form-horizontal" [formGroup]="signupForm" (ngSubmit)="enviar(signupForm.value)">
+        <form
+            *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate
+          > 
             <div class="clr-form-control">
             <label for="username" class="clr-control-label">Usuario: </label>
             <div class="clr-control-container">
                 <div class="clr-input-wrapper">
-                <input formControlName="username" type="text" id="username" placeholder="usuario" class="clr-input" />
+                    <input
+                    type="text"
+                    class="form-control clr-input"
+                    name="username"
+                    [(ngModel)]="form.username"
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    #username="ngModel"
+                  />
                 </div>
-                <!-- <div *ngIf="signupForm.get('username').hasError('required') && signupForm.get('username').touched">Es necesario introducir un nombre de usuario</div> -->
             </div>
+            <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                <div *ngIf="username.errors.required">Usuario es requerido</div>
+                <div *ngIf="username.errors.minlength">
+                   debe tener al menos 3 caracteres
+                </div>
+                <div *ngIf="username.errors.maxlength">
+                   debe tener 20 caracteres máximo
+                </div>
+              </div>
             </div>
-            <!-- <div class="clr-form-control">
-                <label for="role" class="clr-control-label">Rol: </label>
-                <div class="clr-control-container">
-                <div class="clr-select-wrapper">
-                    <select placeholder="Select Option" id="role">
-                    <option>Admin</option>
-                    <option>Docente</option>
-                    </select>
-                </div>
-                </div>
-            </div> -->
 
             <div class="clr-form-control">
                 <label for="email" class="clr-control-label">Correo electrónico: </label>
                 <div class="clr-control-container">
                 <div class="clr-input-wrapper">
-                    <input formControlName="email" type="email" id="email" placeholder="correo electronico" class="clr-input" />
+                    <input
+                    type="email"
+                    class="form-control clr-input"
+                    name="email"
+                    [(ngModel)]="form.email"
+                    required
+                    email
+                    #email="ngModel"
+                  />
                 </div>
-                <div *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Es necesario introducir un email válido</div>
+                <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors.required">Email es requerido</div>
+                    <div *ngIf="email.errors.email">
+                      Introduzca un email válido
+                    </div>
+                  </div>
                 </div>
+
             </div>
             <div class="clr-form-control">
                 <label for="password" class="clr-control-label">Contraseña: </label>
                 <div class="clr-control-container">
                 <div class="clr-input-wrapper">
-                    <input formControlName="password" type="password" id="password" placeholder="contraseña" class="clr-input" />
+                    <input
+                    type="password"
+                    class="form-control clr-input"
+                    name="password"
+                    [(ngModel)]="form.password"
+                    required
+                    minlength="6"
+                    #password="ngModel"
+                  />
                 </div>
                 </div>
+                <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors.required">Contraseña requerida</div>
+                    <div *ngIf="password.errors.minlength">
+                        debe tener al menos seis caracteres
+                    </div>
+                  </div>
             </div>
-            <!-- <div class="clr-form-control">
-                <label for="confirmpassword" class="clr-control-label">Confirmar contraseña: </label>
-                <div class="clr-control-container">
-                <div class="clr-input-wrapper">
-                    <input type="password" name="confirmpassword" placeholder="confirmar contraseña" class="clr-input"/>
-                </div>
-                </div>
-            </div> -->
             <div id="registro-buttons">
                 <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
-                <button class="btn btn-success" [disabled]="signupForm.invalid" type="submit" >Aceptar</button>
+                <button class="btn btn-success" >Aceptar</button>
             </div>
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                El registro falló<br />{{ errorMessage }}
+              </div>
         </form>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            REGISTRO EXITOSO ! 
+          </div>
     </div>
 
     <div id="logo-utec">
         <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
     </div>
-    
+
+  

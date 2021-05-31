@@ -1,0 +1,54 @@
+
+   
+
+    <div class="registro-component">
+    <form id="form-role"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate>
+        <h1 >Asignar Rol</h1>
+        <div>
+            <h4>Seleccione el Usuario:</h4>
+            <mat-form-field appearance="fill">
+            <mat-label>Usuario</mat-label>
+            <mat-select [(ngModel)]="form.selectedUser" name="user" required>
+                <mat-option *ngFor="let user of users" [value]="user.userName" >
+                {{user.userName}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <p> Usted seleccionó: {{form.selectedUser}} </p>
+        </div>
+        <br><br>
+        <div>
+            <h4>Seleccione Rol a asignar:</h4>
+            <mat-form-field appearance="fill">
+            <mat-label>Rol</mat-label>
+            <select matNativeControl [(ngModel)]="form.selectedRol" name="rol" required>
+                <option value="" selected></option>
+                <option *ngFor="let rol of roles" [value]="rol">
+                {{rol}}
+                </option>
+            </select>
+            </mat-form-field>
+            <p> Rol seleccionado: {{form.selectedRol}} </p>
+        </div>
+        <br><br>
+        <div id="registro-buttons">
+            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+            <button class="btn btn-success" >Aceptar</button>
+        </div>
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            El registro falló<br />{{ errorMessage }}
+        </div>
+      </form>
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        ROL ASIGNADO CORRECTAMENTE 
+        <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+      </div>
+    </div>
+      <div id="logo-utec">
+        <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+    </div>
