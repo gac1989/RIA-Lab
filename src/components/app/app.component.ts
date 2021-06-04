@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import { TokenStorageService } from 'src/services/token-storage.service';
+import { CheckRoleGuard } from 'src/guards/check-role.guard';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 
 @Component({
@@ -15,27 +17,17 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   role?: string;
   username?: string;
+  route: ActivatedRouteSnapshot
+  
 
-  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) { }
+  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService, private checkRoleGuard : CheckRoleGuard) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = this.tokenStorageService.getUserName();
-      this.authService.getRole(this.username).subscribe(
-        data => {
-          this.role = data;
-          console.log(this.role[0]);
-          if(this.role[0] == "ADMIN"){
-            this.showAdminBoard = true;
-          }
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    }
+    this.checkRoleGuard.checkRoleUser(this.route).then((value) => this.showAdminBoard = value );
+    console.log(this.showAdminBoard)
+          // this.showAdminBoard = true;
+      
   }
 
   logout(): void {

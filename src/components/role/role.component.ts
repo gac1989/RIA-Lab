@@ -26,7 +26,6 @@ export class RoleComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUsers().subscribe(
       data => {
-        console.log(data);
         this.users = data;
       },
       err => {
@@ -36,7 +35,6 @@ export class RoleComponent implements OnInit {
 
     this.authService.getRoles().subscribe(
       data => {
-        console.log(data);
         this.roles = data;
 
       },

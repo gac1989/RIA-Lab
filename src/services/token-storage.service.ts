@@ -24,7 +24,7 @@ export class TokenStorageService {
 
   }
 
-  public saveUser(user: any): void {
+  public saveUser(user: any): void { //saveTokenJSON
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
@@ -46,6 +46,5 @@ export class TokenStorageService {
   public getUserName(): string | null {
     return window.sessionStorage.getItem(USER_NAME);
   }
-
 
 }
