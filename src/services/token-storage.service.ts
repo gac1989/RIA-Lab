@@ -24,19 +24,19 @@ export class TokenStorageService {
 
   }
 
-  public saveUser(user: any): void { //saveTokenJSON
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
+  // public saveTokenJSON(user: any): void { //saveTokenJSON
+  //   window.sessionStorage.removeItem(USER_KEY);
+  //   window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  // }
 
-  public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
+  // public getTokenJSON(): any {
+  //   const user = window.sessionStorage.getItem(USER_KEY);
+  //   if (user) {
+  //     return JSON.parse(user);
+  //   }
 
-    return {};
-  }
+  //   return {};
+  // }
 
   public saveUserName(username: string): void {
     window.sessionStorage.removeItem(USER_NAME);

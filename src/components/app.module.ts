@@ -15,13 +15,25 @@ import { ClaseComponent } from './clase/clase.component';
 import { EvaluacionComponent } from './evaluacion/evaluacion.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { authInterceptorProviders } from '../_helpers/auth.interceptor';
 import { RoleComponent } from './role/role.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input'
+import { CursoABMComponent } from './curso-abm/curso-abm.component';
+import { IssueComponent } from './issue/issue.component';
+import { AddDialogComponent } from 'src/dialogs/add/add.dialog.component';
+import { EditDialogComponent } from 'src/dialogs/edit/edit.dialog.component';
+import { DeleteDialogComponent } from 'src/dialogs/delete/delete.dialog.component';
+import { DataService } from 'src/services/data.service';
+import { CursoEditComponent } from './curso-edit/curso-edit.component';
+
 
 
 
@@ -36,21 +48,37 @@ import {MatInputModule} from '@angular/material/input'
     HomeComponent,
     RegistroComponent,
     PerfilComponent,
-    RoleComponent
+    RoleComponent,
+    CursoABMComponent,
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent,
+    IssueComponent,
+    CursoEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ClarityModule,
     FormsModule,
-    Ng2SmartTableModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    MatSelectModule,
+    MatDialogModule,
+    MatButtonModule,
     MatInputModule,
+    MatIconModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatPaginatorModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [authInterceptorProviders],
+  entryComponents: [
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
+  ],
+  providers: [authInterceptorProviders, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

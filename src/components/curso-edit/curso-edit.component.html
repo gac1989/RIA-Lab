@@ -1,0 +1,84 @@
+
+    <div class="registro-component">
+        <form id="form-role"
+              *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+            <h1> Editar Curso: </h1>
+            <br><br>
+            <div>
+                <h4>Nombre Curso:</h4>
+                <!-- <label for="curso" class="clr-control-label">Nombre Curso:</label> -->
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="nombre"
+                [(ngModel)]="form.nombre"
+                required
+                #nombre="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="nombre.errors && f.submitted">
+                Nombre curso es requerido
+                </div>
+
+                <h4>Descripción:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="descripcion"
+                [(ngModel)]="form.descripcion"
+                required
+                #descripcion="ngModel"
+                />
+                <h4>Nombre de programa:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="programa"
+                [(ngModel)]="form.programa"
+                required
+                #programa="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="programa.errors && f.submitted">
+                Nombre programa es requerido
+                </div>
+
+                <h4>Seleccione el docente asignar:</h4>
+                <mat-form-field appearance="fill">
+                <mat-label>{{Docente}}</mat-label>
+                <select matNativeControl [(ngModel)]="form.docenteId" selected="form.docenteId" name="docenteId" required>
+                    <option *ngFor="let docente of docentes" [value]="docente.id">
+                    {{docente.userName}}
+                    </option>
+                </select>
+                </mat-form-field>
+            </div>
+            <br><br>
+            <div id="registro-buttons">
+                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-success" >Aceptar</button>
+            </div>
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Falló la carga del curso.<br />{{ errorMessage }}
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            CURSO AGREGADO CORRECTAMENTE 
+            <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+          </div>
+        </div>
+          <div id="logo-utec">
+            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+        </div>
+    

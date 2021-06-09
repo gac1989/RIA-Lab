@@ -1,59 +1,41 @@
-
-
-    <h1 >  Lista de Cursos  </h1>
-
-    <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-    <ng2-smart-table [settings]="settings" [source]="source" ></ng2-smart-table>
-    <!-- <div class="btn-group btn-primary" id="curso_button">
-        <button class="btn btn-success">Agregar</button>
-        <button class="btn btn-danger">Borrar</button>
-        <button class="btn">Editar</button>
-    </div> -->
-    <!-- <caption id="curso_caption">
-
-        <clr-button-group class="btn-primary" id="curso_button">
-          <clr-button>Agregar</clr-button>
-          <clr-button>Borrar</clr-button>
-          <clr-button >Editar</clr-button>
-        </clr-button-group>
+<clr-main-container>
+    <div class="content-container">
+      <div class="content-area">
+        <table class="table table-compact">
+          <caption>
+            Lista de Cursos
           </caption>
-    <table class="table" id="cursoTable">
-        <thead>
-        <tr>
-            <th class="left">ID</th>
-            <th>Curso</th>
-            <th>Docente</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="left">1</td>
-            <td>Matematicas</td>
-            <td>Charles Xavier</td>
-
-        </tr>
-        <tr>
-            <td class="left">2</td>
-            <td>Biologia</td>
-            <td>Profesora Spoon</td>
-
-        </tr>
-        <tr>
-            <td class="left">3</td>
-            <td>Historia</td>
-            <td>Osvaldo Historia</td>
-        </tr>
-        <tr>
-            <td class="left">4</td>
-            <td>Geografia</td>
-            <td>Profesor Oak</td>
-        </tr>
-        </tbody>
-    </table>-->
-
-<button type="button" (click)="auth()">AUTH</button>
-    <div id="curso-buttons-footer">
-        <button class="btn btn-success btn-block">Confirmar</button>
-        <button class="btn btn-danger btn-block">Cancelar</button>
+          <thead>
+            <tr>
+              <th class="left">ID</th>
+              <th>Curso</th>
+              <th>Descripcion</th>
+              <th>Programa</th>
+              <th>Docente</th>
+              <th></th>
+              <th class="left"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let curso of cursos">
+              <td class="left">{{curso.id}}</td>
+              <td>{{curso.nombre}}</td>
+              <td>{{curso.descripcion}}</td>
+              <td>{{curso.programa}}</td>
+              <td id="idDocente" value="curso.docenteId">{{curso.docenteId}}</td>
+              <td> <button class="btn btn-primary btn-sm" 
+                          (click)="editar(curso.id)"
+                          routerLinkActive="active">Editar</button></td>
+              <td class="left"> 
+                <button class="btn btn-danger btn-sm" (click)="borrar(curso.id)">Borrar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+</clr-main-container>
+
+
+      
 

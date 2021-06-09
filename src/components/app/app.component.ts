@@ -24,9 +24,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-    this.checkRoleGuard.checkRoleUser(this.route).then((value) => this.showAdminBoard = value );
-    console.log(this.showAdminBoard)
-          // this.showAdminBoard = true;
+    if(this.checkRoleGuard.checkRoleUser(this.route)){
+      this.showAdminBoard = true;
+    }
       
   }
 

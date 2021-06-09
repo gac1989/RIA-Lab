@@ -2,27 +2,35 @@
     <header class="header-6">
         <div class="branding">
           <a href="/" class="nav-link">
-    
+            <!-- <clr-icon shape="home" size="24"></clr-icon> -->
             <span class="title">Libreta Digital</span>
           </a>
         </div>
         <div class="header-nav">
             <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
-            <clr-dropdown *ngIf="showAdminBoard">
-              <a clrDropdownToggle>
-                <span class="nav-link nav-text">Admin Board</span>
+            <clr-dropdown >
+              <a clrDropdownToggle *ngIf="isLoggedIn">
+                <span class="nav-link nav-text">Cursos</span>
               </a>
               <div class="dropdown-menu">
-                <a href="/roles" clrDropdownItem >Asignar roles</a>
+                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarcurso"> Agregar Curso</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item " href="#"> ABM Cursos</a>
+                  <a href="/cursos" class="dropdown-item">Ver Cursos</a>
               </div>
             </clr-dropdown>
-            <a href="/cursos" class="nav-link nav-text">Cursos</a>
-            <a href="/estudiantes" class="nav-link nav-text">Estudiantes</a>
-            <a href="/clases" class="nav-link nav-text">Clases</a>
-       
-          <clr-dropdown>
+            <clr-dropdown >
+              <a clrDropdownToggle *ngIf="isLoggedIn">
+                <span class="nav-link nav-text">Cursos</span>
+              </a>
+              <div class="dropdown-menu">
+                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarcurso"> Agregar Curso</a>
+                <div class="dropdown-divider"></div>
+                  <a href="/cursos" class="dropdown-item">Ver Cursos</a>
+              </div>
+            </clr-dropdown>
+            <a *ngIf="showAdminBoard && isLoggedIn" href="/roles" class="nav-link nav-text" >Roles</a>
+            <a *ngIf="isLoggedIn && !showAdminBoard" href="/clases" class="nav-link nav-text">Clases</a>
+          <clr-dropdown *ngIf="isLoggedIn && !showAdminBoard">
             <a clrDropdownToggle>
               <span class="nav-link nav-text">Evaluaciones</span>
             </a>
