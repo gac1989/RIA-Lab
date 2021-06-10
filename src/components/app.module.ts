@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 
 
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 import { ClarityModule } from '@clr/angular';
@@ -33,6 +34,8 @@ import { EditDialogComponent } from 'src/dialogs/edit/edit.dialog.component';
 import { DeleteDialogComponent } from 'src/dialogs/delete/delete.dialog.component';
 import { DataService } from 'src/services/data.service';
 import { CursoEditComponent } from './curso-edit/curso-edit.component';
+import { EstudianteAbmComponent } from './estudiante-abm/estudiante-abm.component';
+import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.component';
 
 
 
@@ -54,7 +57,9 @@ import { CursoEditComponent } from './curso-edit/curso-edit.component';
     EditDialogComponent,
     DeleteDialogComponent,
     IssueComponent,
-    CursoEditComponent
+    CursoEditComponent,
+    EstudianteAbmComponent,
+    EstudianteEditComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,7 @@ import { CursoEditComponent } from './curso-edit/curso-edit.component';
     MatIconModule,
     MatSortModule,
     MatTableModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatPaginatorModule,
     ReactiveFormsModule,

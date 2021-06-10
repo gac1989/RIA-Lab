@@ -20,12 +20,12 @@
             </clr-dropdown>
             <clr-dropdown >
               <a clrDropdownToggle *ngIf="isLoggedIn">
-                <span class="nav-link nav-text">Cursos</span>
+                <span class="nav-link nav-text">Estudiantes</span>
               </a>
               <div class="dropdown-menu">
-                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarcurso"> Agregar Curso</a>
+                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarestudiante"> Agregar Estudiante</a>
                 <div class="dropdown-divider"></div>
-                  <a href="/cursos" class="dropdown-item">Ver Cursos</a>
+                  <a href="/estudiantes" class="dropdown-item">Ver Estudiantes</a>
               </div>
             </clr-dropdown>
             <a *ngIf="showAdminBoard && isLoggedIn" href="/roles" class="nav-link nav-text" >Roles</a>

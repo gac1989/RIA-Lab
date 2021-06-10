@@ -1,0 +1,125 @@
+
+    <div class="registro-component">
+        <form id="form-role"
+              *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+            <h1 >Crear Estudiante</h1>
+            <br><br>
+            <div>
+                <h4>Documento:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="documento"
+                [(ngModel)]="form.documento"
+                required
+                #documento="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="documento.errors && f.submitted">
+                Documento es requerido
+                </div>
+
+                <h4>Primer Apellido:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="primerApellido"
+                [(ngModel)]="form.primerApellido"
+                required
+                #primerApellido="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="primerApellido.errors && f.submitted">
+                Primer apellido es requerido
+                </div>
+
+                <h4>Segundo Apellido:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="segundoApellido"
+                [(ngModel)]="form.segundoApellido"
+                required
+                #segundoApellido="ngModel"
+                />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="primerApellido.errors && f.submitted">
+                Segundo apellido es requerido
+                </div>
+
+                <h4>Primer Nombre:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="primerNombre"
+                [(ngModel)]="form.primerNombre"
+                required
+                #primerNombre="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="primerNombre.errors && f.submitted">
+                Primer nombre es requerido
+                </div>
+
+                <h4>Segundo Nombre:</h4>
+                <input
+                matNativeControl
+                type="text"
+                class="form-control clr-input"
+                name="segundoNombre"
+                [(ngModel)]="form.segundoNombre"
+                #segundoNombre="ngModel"
+                />
+                <clr-date-container>
+                    <label><h4>Fecha de Nacimiento</h4></label>
+                    <input 
+                    type="date" 
+                    clrDate 
+                    matNativeControl
+                    class="form-control clr-input"
+                    name="fechaNacimiento"
+                    [(ngModel)]="form.fechaNacimiento"
+                    required
+                    #fechaNacimiento="ngModel"/>
+                  </clr-date-container>
+                  <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="fechaNacimiento.errors && f.submitted">
+                    Fecha Nacimiento  es requerido
+                  </div>
+            </div>
+            <br><br>
+            <div id="registro-buttons">
+                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-success" >Aceptar</button>
+            </div>
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Error al crear el estudiante.<br />{{ errorMessage }}
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            ESTUDIANTE CREADO CORRECTAMENTE 
+            <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+          </div>
+        </div>
+          <div id="logo-utec">
+            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+        </div>
+    
