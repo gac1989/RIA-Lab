@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
+  rol = ""
 
   constructor(
     private authService: AuthService, private tokenStorage: TokenStorageService, public router: Router) {}
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
   }
 
   goHome(): void{
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/home');
   }
 
   onSubmit(): void {
@@ -38,13 +38,15 @@ export class LoginComponent implements OnInit{
     this.authService.login(username, password).subscribe(
       data => { 
         this.tokenStorage.saveToken(data.token);
-        // this.tokenStorage.saveTokenJSON(data.token);
         this.tokenStorage.saveUserName(username);
-        
+        this.chequearSiEsAdministrador(username).then(()=>{
+          this.tokenStorage.saveRoleName("ADMIN");
+        }) 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();
         this.goHome();
+
       },
       err => {
         this.errorMessage = err.error.message;
@@ -56,6 +58,16 @@ export class LoginComponent implements OnInit{
   reloadPage(): void {
     window.location.reload();
   }
+
+  async chequearSiEsAdministrador(username): Promise<boolean> {
+      try{
+        this.rol = await this.authService.getRole(username).toPromise();
+        if(this.rol[0] == "ADMIN" || this.rol[1] == "ADMIN") return true;
+      }catch(e){
+        return false;
+      }
+      console.log("chequeando")
+    }
 
 
 }

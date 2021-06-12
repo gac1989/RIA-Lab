@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, KeyValueDiffers, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import { TokenStorageService } from 'src/services/token-storage.service';
 import { CheckRoleGuard } from 'src/guards/check-role.guard';
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
-  showRoleAssigned = false;
+  showIsLoggin = false;
   showModeratorBoard = false;
   role?: string;
   username?: string;
@@ -27,8 +27,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-    this.checkRoleGuard.checkRoleUser(this.route).then((value) => this.showAdminBoard = value );
-    this.checkLogginGuard.checkRoleLoggin(this.route).then((value) => this.showRoleAssigned = value );
+    if(this.isLoggedIn){
+      this.showIsLoggin = true;
+    }
+   // this.checkRoleGuard.chequearSiEsAdministrador(this.route).then((value) => {this.showAdminBoard = value; console.log(value)} );
+   // this.checkLogginGuard.estaLogueado(this.route).then((value) => {this.showIsLoggin = value; console.log(value)} );
+    if(this.tokenStorageService.getRoleName() == "ADMIN"){
+      this.showAdminBoard = true;
+    }
+
   }
 
   logout(): void {

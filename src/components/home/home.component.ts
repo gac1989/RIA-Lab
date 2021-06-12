@@ -11,7 +11,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this.isLoggedIn = !!this.tokenStorageService.getToken();
+    // this.checkRoleGuard.checkRoleUser(this.route).then((value) => this.showAdminBoard = value );
+
   }
+
 
 
 }

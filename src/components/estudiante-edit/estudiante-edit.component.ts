@@ -40,8 +40,9 @@ export class EstudianteEditComponent implements OnInit {
         this.form.segundoApellido = data.segundoApellido
         this.form.primerNombre = data.primerNombre
         this.form.segundoNombre = data.segundoNombre
-        let s = data.fechaNacimiento.split("T")[0];
-        this.form.fechaNacimiento = s.toString();
+        let s = new Date(data.fechaNacimiento)
+        this.form.fechaNacimiento = s.getMonth() + "/" + s.getDay() + "/" + s.getFullYear(); //06/15/2021
+
       }
     )
 

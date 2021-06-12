@@ -29,13 +29,13 @@
               </div>
             </clr-dropdown>
             <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
-            <a *ngIf="showRoleAssigned && !showAdminBoard" href="/clases" class="nav-link nav-text">Clases</a>
-          <clr-dropdown *ngIf="showRoleAssigned && !showAdminBoard">
+            <a *ngIf="showIsLoggin && !showAdminBoard" href="/clases" class="nav-link nav-text">Clases</a>
+          <clr-dropdown *ngIf="showIsLoggin && !showAdminBoard">
             <a clrDropdownToggle>
               <span class="nav-link nav-text">Evaluaciones</span>
             </a>
             <div class="dropdown-menu">
-              <a clrDropdownItem >Evaluaciones</a>
+              <a clrDropdownItem href="/evaluaciones" >Evaluaciones</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item " href="#">Asignacion de Evaluaciones</a>
               <div class="dropdown-divider"></div>
