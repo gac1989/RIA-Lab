@@ -24,6 +24,7 @@ export class CheckRoleGuard implements CanActivate {
         return false;
       }
     }
+    return false;
 
   }
 

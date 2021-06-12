@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 const TOKEN_KEY = 'auth-token';
 const ROLE_NAME = 'role';
@@ -8,7 +9,7 @@ const USER_NAME = '';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -40,6 +41,19 @@ export class TokenStorageService {
 
   public getUserName(): string | null {
     return window.sessionStorage.getItem(USER_NAME);
+  }
+
+  
+  public async chequearSiEsAdministrador(): Promise<any> {
+   
+    return this.authService.getRole(this.getUserName()).toPromise().then((rol) => {
+      if(rol[0] == "ADMIN" || rol[1] == "ADMIN") 
+      this.saveRoleName("ADMIN");
+    })
+    .catch(e => {
+      this.saveRoleName("");
+    })
+
   }
 
 }

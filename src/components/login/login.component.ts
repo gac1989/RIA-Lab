@@ -39,14 +39,16 @@ export class LoginComponent implements OnInit{
       data => { 
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUserName(username);
-        this.chequearSiEsAdministrador(username).then(()=>{
-          this.tokenStorage.saveRoleName("ADMIN");
-        }) 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.reloadPage();
-        this.goHome();
-
+        this.tokenStorage.chequearSiEsAdministrador().then(() => {
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.reloadPage();
+          this.goHome();
+        })
+        .catch(err => {
+          this.errorMessage = err.error.message;
+          this.isLoginFailed = true;
+        })
       },
       err => {
         this.errorMessage = err.error.message;
@@ -58,16 +60,6 @@ export class LoginComponent implements OnInit{
   reloadPage(): void {
     window.location.reload();
   }
-
-  async chequearSiEsAdministrador(username): Promise<boolean> {
-      try{
-        this.rol = await this.authService.getRole(username).toPromise();
-        if(this.rol[0] == "ADMIN" || this.rol[1] == "ADMIN") return true;
-      }catch(e){
-        return false;
-      }
-      console.log("chequeando")
-    }
 
 
 }
