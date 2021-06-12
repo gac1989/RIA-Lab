@@ -9,7 +9,7 @@
         <div class="header-nav">
             <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
             <clr-dropdown >
-              <a clrDropdownToggle *ngIf="isLoggedIn">
+              <a clrDropdownToggle *ngIf="showAdminBoard">
                 <span class="nav-link nav-text">Cursos</span>
               </a>
               <div class="dropdown-menu">
@@ -19,7 +19,7 @@
               </div>
             </clr-dropdown>
             <clr-dropdown >
-              <a clrDropdownToggle *ngIf="isLoggedIn">
+              <a clrDropdownToggle *ngIf="showAdminBoard">
                 <span class="nav-link nav-text">Estudiantes</span>
               </a>
               <div class="dropdown-menu">
@@ -28,9 +28,9 @@
                   <a href="/estudiantes" class="dropdown-item">Ver Estudiantes</a>
               </div>
             </clr-dropdown>
-            <a *ngIf="showAdminBoard && isLoggedIn" href="/roles" class="nav-link nav-text" >Roles</a>
-            <a *ngIf="isLoggedIn && !showAdminBoard" href="/clases" class="nav-link nav-text">Clases</a>
-          <clr-dropdown *ngIf="isLoggedIn && !showAdminBoard">
+            <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
+            <a *ngIf="showRoleAssigned && !showAdminBoard" href="/clases" class="nav-link nav-text">Clases</a>
+          <clr-dropdown *ngIf="showRoleAssigned && !showAdminBoard">
             <a clrDropdownToggle>
               <span class="nav-link nav-text">Evaluaciones</span>
             </a>

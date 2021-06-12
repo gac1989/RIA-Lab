@@ -26,22 +26,22 @@ const routes: Routes = [
   {
     path:'cursos',
     component: CursoComponent,
-    canActivate: [CheckLogginGuard]
+    // canActivate: [CheckLogginGuard]
   },
   {
     path:'agregarcurso',
     component: CursoABMComponent,
-    canActivate: [CheckLogginGuard, CheckRoleGuard]
+    // canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
     path:'editarcurso',
     component: CursoEditComponent,
-    canActivate: [CheckLogginGuard, CheckRoleGuard]
+    // canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
     path:'roles',
     component: RoleComponent,
-    canActivate: [CheckRoleGuard, CheckLogginGuard]
+    // canActivate: [CheckRoleGuard, CheckLogginGuard]
   },
   {
     path: 'perfil',
@@ -54,7 +54,7 @@ const routes: Routes = [
   {
     path:'clases',
     component: ClaseComponent,
-    canActivate: [CheckLogginGuard]
+    // canActivate: [CheckLogginGuard]
   },
   {
     path:'issues',
@@ -71,17 +71,17 @@ const routes: Routes = [
   {
     path:'estudiantes',
     component: EstudianteComponent,
-    canActivate: [CheckLogginGuard]
+    // canActivate: [CheckLogginGuard]
   },
   {
     path:'agregarestudiante',
     component: EstudianteAbmComponent,
-    canActivate: [CheckLogginGuard, CheckRoleGuard]
+    // canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
     path:'editarestudiante',
     component: EstudianteEditComponent,
-    canActivate: [CheckLogginGuard, CheckRoleGuard]
+    // canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
     path:'',

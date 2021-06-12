@@ -17,7 +17,7 @@ export class CheckRoleGuard implements CanActivate {
     let promise = new Promise((resolve) => {
     const isLoggedIn = !!this.tokenStorageService.getToken();
       if (isLoggedIn) {
-        // const user = this.tokenStorageService.();
+      //  const user = this.tokenStorageService.getUser();
         const username = this.tokenStorageService.getUserName();
         this.authService.getRole(username).subscribe(
           data => {
