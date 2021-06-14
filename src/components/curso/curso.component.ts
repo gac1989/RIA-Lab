@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { CursosService } from 'src/services/cursos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-curso',
@@ -27,17 +28,35 @@ export class CursoComponent  {
       this.router.navigate(['/editarcurso'], { queryParams: { id } });
   }
 
-  borrar(id){
-    var borrarCurso = confirm("¿Está seguro que desea borrar el curso?")
-    if(borrarCurso){
-      this.cursosService.borrarCurso(id).subscribe(
-        data=>{
-          console.log("eliminado!");
-          this.reloadPage();
-        }
-      )
-    }
+  borrar(id) {
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'El curso se borrará permanentemente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, borrarlo!',
+      cancelButtonText: 'No, espera',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        this.cursosService.borrarCurso(id).subscribe(
+          data=>{
+            console.log("eliminado!");
+            this.reloadPage();
+          }
+        )
+
+      } else if (result.isDismissed) {
+
+        console.log('Clicked No, el curso no se borró.');
+
+      }
+    })
+
   }
+
 
   reloadPage(): void {
     window.location.reload();

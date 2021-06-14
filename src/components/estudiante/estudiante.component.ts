@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EstudianteService } from 'src/services/estudiante.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-estudiante',
@@ -16,7 +17,6 @@ export class EstudianteComponent implements OnInit {
   constructor(private estudianteService: EstudianteService, public router: Router) {
     this.estudianteService.getEstudiantes().subscribe(
       data => {
-
         this.estudiantes = data;
       }
     );
@@ -29,16 +29,34 @@ export class EstudianteComponent implements OnInit {
   }
 
   borrar(id) {
-    var borrarCurso = confirm("¿Está seguro que desea borrar el estudiante?")
-    if (borrarCurso) {
-      this.estudianteService.borrarEstudiante(id).subscribe(
-        data => {
-          console.log("eliminado!");
-          this.reloadPage();
-        }
-      )
-    }
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'El estudiante se borrará permanentemente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, borrarlo!',
+      cancelButtonText: 'No, espera',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        this.estudianteService.borrarEstudiante(id).subscribe(
+          data => {
+            console.log("eliminado!");
+            this.reloadPage();
+          }
+        )
+
+      } else if (result.isDismissed) {
+
+        console.log('Clicked No, el ESTUDIANTE no se borró.');
+
+      }
+    })
+
   }
+
 
   reloadPage(): void {
     window.location.reload();

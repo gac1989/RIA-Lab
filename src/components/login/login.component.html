@@ -5,14 +5,16 @@
   (ngSubmit)="f.form.valid && onSubmit()"
   #f="ngForm"
   novalidate
+  class="login"
   >
       <section class="title">
         <h5 class="hint">Use sus credenciales para iniciar sesión</h5>
       </section>
       <div class="login-group">
-        <!-- <clr-input-container> -->
+        <clr-input-container>
           <label for="username" class="clr-control-label">Username</label>
           <input
+          clrInput 
           type="text"
           class="form-control clr-input"
           name="username"
@@ -23,33 +25,29 @@
         <div
         class="alert alert-danger"
         role="alert"
-        *ngIf="username.errors && f.submitted"
-      >
-        Usuario es requerido
-      </div>
-        <!-- </clr-input-container> -->
-        <!-- <clr-password-container> -->
+        *ngIf="username.errors && f.submitted">
+          Usuario es requerido
+        </div>
+    </clr-input-container>
+        <clr-password-container>
           <label for="password" class="clr-control-label">Contraseña</label>
           <input
+          clrPassword 
           type="password"
           class="form-control clr-input"
           name="password"
           [(ngModel)]="form.password"
           required
           minlength="4"
-          #password="ngModel"
-        />
+          #password="ngModel"/>
         <div
         class="alert alert-danger"
         role="alert"
-        *ngIf="password.errors && f.submitted"
-      >
-        <div *ngIf="password.errors.required">Contraseña es requerida</div>
-        <div *ngIf="password.errors.minlength">
-          debe tener al menos cuatro caracteres
+        *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors.required">Contraseña es requerida</div>
+          <div *ngIf="password.errors.minlength">debe tener al menos cuatro caracteres</div>
         </div>
-      </div>
-      <!-- </clr-password-container> -->
+      </clr-password-container>
       <div class="form-group">
       <button class="btn btn-primary">SIGUIENTE</button>
       </div>
@@ -64,7 +62,4 @@
         </div>
       </div>
     </form>
-    <!-- <div class="alert alert-success" *ngIf="isLoggedIn">
-      Sesión iniciada correctamente.
-    </div> -->
   </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import Swal from 'sweetalert2';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { CursosService } from 'src/services/cursos.service';
@@ -74,19 +73,29 @@ export class CursoEditComponent implements OnInit {
 
     this.cursosService.editarCurso(id, nombre, programa, descripcion, docenteId).subscribe(
       data => {
-        console.log(this.form);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.showSuccessAlert();
+        this.VerCursos();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+        this.showErrorAlert();
       }
     );
   }
 
-  goHome(){
-    this.router.navigateByUrl('/');
+  VerCursos(){
+    this.router.navigateByUrl('/cursos');
+  }
+
+  showSuccessAlert() {
+    Swal.fire('OK', 'Curso editado!', 'success')
+  }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
   }
 
 }

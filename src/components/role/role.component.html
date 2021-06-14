@@ -10,30 +10,23 @@
           novalidate>
         <h1 >Asignar Rol</h1>
         <div>
-            <h4>Seleccione el Usuario:</h4>
-            <!-- <mat-form-field appearance="fill"> -->
-            <label>Usuario</label>
-            <select [(ngModel)]="form.selectedUser" name="user" required>
+          <label for="usuario" class="clr-control-label">Seleccione el usuario:</label>
+            <select clrSelect [(ngModel)]="form.selectedUser" name="user" required>
                 <option *ngFor="let user of users" [value]="user.userName" >
                 {{user.userName}}
                 </option>
             </select>
-            <!-- </mat-form-field> -->
-            <p> Usted seleccionó: {{form.selectedUser}} </p>
         </div>
         <br><br>
         <div>
-            <h4>Seleccione Rol a asignar:</h4>
-            <!-- <mat-form-field appearance="fill"> -->
-            <label>Rol</label>
-            <select matNativeControl [(ngModel)]="form.selectedRol" name="rol" required>
+          <label for="rol" class="clr-control-label">Seleccione el rol a asignar:</label>
+
+            <select clrSelect [(ngModel)]="form.selectedRol" name="rol" required>
                 <option value="" selected></option>
                 <option *ngFor="let rol of roles" [value]="rol">
                 {{rol}}
                 </option>
             </select>
-            <!-- </mat-form-field> -->
-            <p> Rol seleccionado: {{form.selectedRol}} </p>
         </div>
         <br><br>
         <div id="registro-buttons">
@@ -44,10 +37,10 @@
             Ya tiene el rol asignado.<br />{{ errorMessage }}
         </div>
       </form>
-      <div class="alert alert-success" *ngIf="isSuccessful">
+      <!-- <div class="alert alert-success" *ngIf="isSuccessful">
         ROL ASIGNADO CORRECTAMENTE 
         <button class="btn btn-success" (click)="goHome()">VOLVER</button>
-      </div>
+      </div> -->
     </div>
       <div id="logo-utec">
         <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>

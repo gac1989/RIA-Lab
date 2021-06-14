@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -30,16 +31,27 @@ export class RegistroComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.showSuccessAlert(); 
+        this.goLogin();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+        this.showErrorAlert();
       }
     );
   }
 
-  goHome(){
-    this.router.navigateByUrl('/');
+  showSuccessAlert() {
+    Swal.fire('OK', 'Usuario registrado con éxito!', 'success')
+  }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
+  }
+
+  goLogin(){
+    this.router.navigateByUrl('/login');
   }
 
 

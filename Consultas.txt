@@ -1,0 +1,3 @@
+* Como consultar que un docente sea docente.
+* Por que nuevos admin que no sean admin/admin no los toma como administradores y si aparecen en la bbdd como administradores.
+* getCursos no devuelve el elemento Docente

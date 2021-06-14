@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EstudianteService } from 'src/services/estudiante.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-estudiante-abm',
@@ -44,25 +44,33 @@ export class EstudianteAbmComponent implements OnInit {
       segundoNombre = ""
     }
 
-    console.log(fechaNacimiento)
     let fechaNacimiento2 = new Date(fechaNacimiento).toJSON() ;
-
-    console.log(fechaNacimiento2)
 
     this.estudianteService.crearEstudiante(documento, primerApellido, segundoApellido, primerNombre, segundoNombre, fechaNacimiento2 ).subscribe(
       data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.showSuccessAlert();
+        this.VerEstudiantes();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+        this.showErrorAlert();
       }
     );
   }
 
-  goHome(){
-    this.router.navigateByUrl('/');
+  VerEstudiantes(){
+    this.router.navigateByUrl('/estudiantes');
+  }
+
+  showSuccessAlert() {
+    Swal.fire('OK', 'Usuario registrado con éxito!', 'success')
+  }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
   }
 
 }

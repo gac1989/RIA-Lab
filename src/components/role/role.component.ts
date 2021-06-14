@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { timeout } from 'rxjs/operators';
 import { AuthService } from 'src/services/auth.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -53,10 +55,13 @@ export class RoleComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.showSuccessAlert();
+        window.location.reload();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+        this.showErrorAlert();
       }
     );
   }
@@ -65,4 +70,11 @@ export class RoleComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
+  showSuccessAlert() {
+    Swal.fire('OK', 'Rol asignado!', 'success')
+  }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import Swal from 'sweetalert2';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EstudianteService } from 'src/services/estudiante.service';
 
@@ -70,16 +70,27 @@ export class EstudianteEditComponent implements OnInit {
         console.log(this.form);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.showSuccessAlert();
+        this.VerEstudiantes();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+        this.showErrorAlert();
       }
     );
   }
 
-  goHome(){
-    this.router.navigateByUrl('/');
+  VerEstudiantes(){
+    this.router.navigateByUrl('/estudiantes');
+  }
+
+  showSuccessAlert() {
+    Swal.fire('OK', 'Usuario registrado con éxito!', 'success')
+  }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
   }
 
 }

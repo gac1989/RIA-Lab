@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { CursosService } from 'src/services/cursos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-curso-abm',
@@ -54,16 +55,27 @@ export class CursoABMComponent implements OnInit {
       data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.showSuccessAlert();
+        this.VerCursos();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
+        this.showErrorAlert();
       }
     );
   }
 
-  goHome(){
-    this.router.navigateByUrl('/');
+  VerCursos(){
+    this.router.navigateByUrl('/cursos');
+  }
+
+  showSuccessAlert() {
+    Swal.fire('OK', 'Curso registrado con éxito!', 'success')
+  }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
   }
 
 }

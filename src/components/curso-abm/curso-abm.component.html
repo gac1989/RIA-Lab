@@ -9,10 +9,10 @@
             <h1 >Crear Curso</h1>
             <br><br>
             <div>
-                <h4>Nombre de curso:</h4>
-                <!-- <label for="curso" class="clr-control-label">Nombre Curso:</label> -->
+                <!-- <h4>Nombre de curso:</h4> -->
+                <label for="curso" class="clr-control-label">Nombre Curso:</label>
                 <input
-                matNativeControl
+                clrInput
                 type="text"
                 class="form-control clr-input"
                 name="nombre"
@@ -27,9 +27,9 @@
                 Nombre curso es requerido
                 </div>
 
-                <h4>Descripción:</h4>
+                <label for="descripcion" class="clr-control-label">Descripción:</label>
                 <input
-                matNativeControl
+                clrInput
                 type="text"
                 class="form-control clr-input"
                 name="descripcion"
@@ -37,9 +37,10 @@
                 required
                 #descripcion="ngModel"
                 />
-                <h4>Nombre de programa:</h4>
+                <!-- <h4>Nombre de programa:</h4> -->
+                <label for="programa" class="clr-control-label">Nombre de programa:</label>
                 <input
-                matNativeControl
+                clrInput
                 type="text"
                 class="form-control clr-input"
                 name="programa"
@@ -54,15 +55,15 @@
                 Nombre programa es requerido
                 </div>
 
-                <h4>Seleccione el docente asignar:</h4>
-                <mat-form-field appearance="fill">
-                <mat-label>Docente</mat-label>
-                <select matNativeControl [(ngModel)]="form.docenteId"  name="docenteId" required>
+              <clr-select-container>
+                <label for="docente" class="clr-control-label">Seleccione el docente asignar:</label>
+                <select clrSelect  [(ngModel)]="form.docenteId"  name="docenteId" required>
                     <option *ngFor="let docente of docentes" [value]="docente.id">
                     {{docente.userName}}
                     </option>
                 </select>
-                </mat-form-field>
+                <!-- <clr-control-error>El campo es requerido!</clr-control-error> -->
+              </clr-select-container>
             </div>
             <br><br>
             <div id="registro-buttons">
