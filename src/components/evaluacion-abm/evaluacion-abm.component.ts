@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
-import { CalificacionesService } from 'src/services/calificaciones.service';
+import { EvaluacionesService } from 'src/services/evaluaciones.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-evaluacion-abm',
@@ -20,7 +20,7 @@ export class EvaluacionAbmComponent implements OnInit {
   errorMessage = '';
   curso?;
 
-  constructor(private authService: AuthService,private califService: CalificacionesService, private route: ActivatedRoute, public router: Router) { 
+  constructor(private authService: AuthService,private califService: EvaluacionesService, private route: ActivatedRoute, public router: Router) { 
     this.route.queryParams.subscribe(params => {
       console.log("EL CURSO EN EL ABM ES: " + params['curso'] )
       this.curso=params['curso'];
@@ -31,7 +31,7 @@ export class EvaluacionAbmComponent implements OnInit {
   onSubmit(): void {
 
     const { titulo, ponderacion} = this.form;
-    this.califService.postCalificaciones(titulo, ponderacion, this.curso).subscribe(
+    this.califService.postEvaluaciones(titulo, ponderacion, this.curso).subscribe(
       data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;

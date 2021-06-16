@@ -24,12 +24,16 @@
               <td id="idDocente" value="curso.docenteId">{{curso.docente.userName}}</td>
               <td>
                 <button class="btn btn-icon btn-primary" 
-                    (click)="mostrarClases(curso.id)"
+                    (click)="mostrarClases(curso.id, curso.nombre)"
                     routerLinkActive="active">Clases
                 </button>
                 <button class="btn btn-icon btn-primary" 
-                    (click)="mostrarEvaluaciones(curso.id)"
+                    (click)="mostrarEvaluaciones(curso.id, curso.nombre)"
                     routerLinkActive="active">Evaluaciones
+                </button>
+                <button class="btn btn-icon btn-primary" 
+                    (click)="mostrarEstudiantes(curso.id, curso.nombre)"
+                    routerLinkActive="active">Estudiantes
                 </button>
               </td>
             </tr>

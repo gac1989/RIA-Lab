@@ -1,0 +1,43 @@
+<clr-main-container>
+    <div class="content-container">
+      <div class="content-area">
+        <form  [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+            <table class="table table-compact">
+            <caption>
+                <h1>Estudiantes del curso {{nombreEvaluacion}}</h1>
+            </caption>
+            <thead>
+                <tr>
+                <th>Documento</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <td>Nota</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estudiante of estudiantes">
+                <td>{{estudiante.estudiante.documento}}</td>
+                <td>{{estudiante.estudiante.primerApellido}}</td>
+                <td>{{estudiante.estudiante.segundoApellido}}</td>
+                <td><input type="text" ></td>
+                <input
+                    clrInput
+                    type="text"
+                    class="form-control clr-input"
+                    required
+                    value="50"
+                    formControlName="notas"
+                    />
+                </tr>
+            </tbody>
+            </table>
+            <button class="btn btn-success" >Aceptar</button>
+        </form>
+      </div>
+    </div>
+  </clr-main-container>
+  
+  
+      
+  
+  

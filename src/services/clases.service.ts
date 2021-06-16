@@ -40,5 +40,8 @@ export class ClasesService {
     }, httpOptions);
   }
 
+  deleteClases(id: number){
+    return this.http.delete(AUTH_API + id,  httpOptions);
+  }
 
 }

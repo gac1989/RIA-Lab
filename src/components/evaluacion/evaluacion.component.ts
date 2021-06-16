@@ -1,5 +1,5 @@
 import { CursosService } from 'src/services/cursos.service';
-import { CalificacionesService } from 'src/services/calificaciones.service';
+import { EvaluacionesService } from 'src/services/evaluaciones.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 
@@ -11,19 +11,20 @@ import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 export class EvaluacionComponent implements OnInit {
 
 
-  service? = CalificacionesService;
+  service? = EvaluacionesService;
   misCursos? = [] ;
   evaluaciones? = [];
   curso?:number;
   @ViewChild('myDiv') myDiv: ElementRef;
 
+  nombreCurso?;
 
 
-
-  constructor(private cursosService: CursosService, private cursosCalif: CalificacionesService,public route: ActivatedRoute, public router: Router ) {
+  constructor(private cursosService: CursosService, private cursosCalif: EvaluacionesService,public route: ActivatedRoute, public router: Router ) {
     this.route.queryParams.subscribe(params => {
       this.curso=params['id'];
-      this.cursosCalif.getCalificaciones(params['id']).subscribe(
+      this.nombreCurso=params['curso'];
+      this.cursosCalif.getEvaluaciones(params['id']).subscribe(
         data=>{
           this.evaluaciones = data;
           console.log(this.evaluaciones);
@@ -34,7 +35,7 @@ export class EvaluacionComponent implements OnInit {
 
   callType(value) {
     console.log(value);
-    this.cursosCalif.getCalificaciones(value).subscribe(
+    this.cursosCalif.getEvaluaciones(value).subscribe(
       data=>{
         this.evaluaciones = data;
         console.log(this.evaluaciones);
@@ -48,6 +49,31 @@ export class EvaluacionComponent implements OnInit {
     this.router.navigate(['/evaluaciones-abm'], { queryParams: { curso } });
   }
 
+  asignarNotas(id, titulo, ponderacion, curso){
+    // this.router.navigateByUrl('/editar/' + id);
+    this.router.navigate(['/calificaciones'], { queryParams: { id, titulo, ponderacion, curso } });
+  }
+
+  editar(id, titulo, ponderacion){
+    // this.router.navigateByUrl('/editar/' + id);
+    let cursoId = this.curso;
+    this.router.navigate(['/editarevaluacion'], { queryParams: { id,  titulo, ponderacion, cursoId } });
+  }
+
+  borrar(id){
+    // this.router.navigateByUrl('/editar/' + id);
+    this.cursosCalif.deleteCalif(id).subscribe(
+      data=>{
+        console.log(data);
+        this.reloadPage();
+      });
+     
+  }
+
+   
+  reloadPage(): void {
+    window.location.reload();
+  }
 
   ngOnInit(): void {
     

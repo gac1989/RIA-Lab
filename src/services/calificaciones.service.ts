@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const AUTH_API = '/api/Calificaciones/';
+const AUTH_API = '/api/CalificacionEstudiantes/';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,15 +16,35 @@ export class CalificacionesService {
 
   constructor(private http: HttpClient) { }
 
-  getCalificaciones(curso :string): Observable<any> {
-    return this.http.get(AUTH_API + 'Cursos/' + curso , httpOptions);
+  // getEstudiantes(): Observable<any> {
+  //   return this.http.get(AUTH_API , httpOptions);
+  // }
+
+
+
+  getCalificaciones(id: number): Observable<any>{
+    return this.http.get(AUTH_API + 'Calificacion/' + id, httpOptions);
   }
 
-  postCalificaciones(titulo :string, ponderacion: number, cursosId): Observable<any> {
-    return this.http.post(AUTH_API, {
-      titulo,
-      ponderacion,
-      cursosId
-    }, httpOptions);
-  }
+  // editarEstudiante(id: string, documento: string, primerApellido: string, segundoApellido: string,
+  //   primerNombre: string, segundoNombre: string, fechaNacimiento: string): Observable<any> {
+  //   return this.http.put(AUTH_API + id, {
+  //     id,
+  //     documento,
+  //     primerApellido,
+  //     segundoApellido,
+  //     primerNombre,
+  //     segundoNombre,
+  //     fechaNacimiento
+  //   }, httpOptions);
+  // }
+
+  // borrarEstudiante(id: number): Observable<any>{
+  //   return this.http.delete(AUTH_API + id, httpOptions);
+  // }
+
+  // getEstudiante(id:number): Observable<any>{
+  //   return this.http.get(AUTH_API + id, httpOptions);
+  // }
+
 }

@@ -5,18 +5,11 @@
     <button class="btn">Editar</button>
 </div> -->
 <caption id="curso_caption">
-    <h1 >  Lista de Clases  </h1>
+    <h1 >  Clases del curso {{nombreCurso}}  </h1>
     <clr-button-group class="btn-primary" id="curso_button">
       <clr-button (click)="agregarClase(curso)">Agregar</clr-button>
-      <clr-button>Borrar</clr-button>
-      <clr-button >Editar</clr-button>
     </clr-button-group>
 </caption>
-<select clrSelect required #t (change)="callType(t.value)">
-    <option *ngFor="let curso of misCursos" [value]="curso.id" >
-    {{curso.nombre}}
-    </option>
-</select>
 
 <table class="table" id="cursoTable">
     <caption>
@@ -42,14 +35,12 @@
                     (click)="editar(clase.id, clase.fecha, clase.titulo, clase.descripcion)"
                     routerLinkActive="active"><i class="fas fa-edit"></i>
                 </button>
+                <button class="btn btn-icon btn-danger" 
+                    (click)="borrar(clase.id)"
+                    routerLinkActive="active"><i class="fas fa-trash-alt"></i>
+                </button>
             </td>
         </tr>
       </tbody>
 </table>
-
-
-<div id="curso-buttons-footer">
-    <button class="btn btn-success btn-block">Confirmar</button>
-    <button class="btn btn-danger btn-block">Cancelar</button>
-</div>
 

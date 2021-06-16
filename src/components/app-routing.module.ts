@@ -6,6 +6,7 @@ import { ClaseComponent } from './clase/clase.component';
 import { ClaseEditComponent } from './clase-edit/clase-edit.component';
 import { ClaseAbmComponent } from './clase-abm/clase-abm.component';
 import { EvaluacionAbmComponent } from './evaluacion-abm/evaluacion-abm.component';
+import { EvaluacionEditComponent } from './evaluacion-edit/evaluacion-edit.component';
 import { CursoEstudianteABMComponent } from './curso-estudiante-abm/curso-estudiante-abm.component';
 import { CursoABMComponent } from './curso-abm/curso-abm.component';
 import { CursoEditComponent } from './curso-edit/curso-edit.component';
@@ -14,8 +15,10 @@ import { CursosDocenteComponent } from './cursos-docente/cursos-docente.componen
 import { EstudianteAbmComponent } from './estudiante-abm/estudiante-abm.component';
 import { EstudianteCursoABMComponent } from './estudiante-curso-abm/estudiante-curso-abm.component';
 import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.component';
+import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { EvaluacionComponent } from './evaluacion/evaluacion.component';
+import { CalificacionComponent } from './calificacion/calificacion.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -73,6 +76,16 @@ const routes: Routes = [
     canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
+    path:'calificaciones',
+    component: CalificacionComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
+  },
+  {
+    path:'editarevaluacion',
+    component: EvaluacionEditComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
+  },
+  {
     path:'agregarcursoestudiante',
     component: CursoEstudianteABMComponent,
     canActivate: [CheckLogginGuard, CheckRoleGuard]
@@ -103,6 +116,11 @@ const routes: Routes = [
   {
     path:'estudiantes',
     component: EstudianteComponent,
+    canActivate: [CheckLogginGuard]
+  },
+  {
+    path:'estudiantescurso',
+    component: EstudianteCursoComponent,
     canActivate: [CheckLogginGuard]
   },
   {

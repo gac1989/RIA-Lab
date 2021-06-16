@@ -17,16 +17,20 @@ export class CursosDocenteComponent implements OnInit {
         this.misCursos = data;
       }
     );
-
    }
 
-   mostrarClases(id){
+   mostrarClases(id, curso){
     // this.router.navigateByUrl('/editar/' + id);
-    this.router.navigate(['/clases'], { queryParams: { id } });
+    this.router.navigate(['/clases'], { queryParams: { id, curso } });
   }
-  mostrarEvaluaciones(id){
+  mostrarEvaluaciones(id, curso){
     // this.router.navigateByUrl('/editar/' + id);
-    this.router.navigate(['/evaluaciones'], { queryParams: { id } });
+    this.router.navigate(['/evaluaciones'], { queryParams: { id, curso } });
+  }
+
+  mostrarEstudiantes(id, curso){
+    // this.router.navigateByUrl('/editar/' + id);
+    this.router.navigate(['/estudiantescurso'], { queryParams: { id, curso } });
   }
 
   ngOnInit(): void {

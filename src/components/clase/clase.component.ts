@@ -13,10 +13,11 @@ export class ClaseComponent implements OnInit {
   misCursos? = [];
   clases? = [];
   curso?: number;
-
+  nombreCurso?;
   constructor(private clasesService: ClasesService,public router: Router,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.curso=params['id'];
+      this.nombreCurso=params['curso'];
       this.clasesService.getClases(params['id']).subscribe(
         data=>{
           this.clases = data;
@@ -49,7 +50,23 @@ export class ClaseComponent implements OnInit {
     this.router.navigate(['/editarclase'], { queryParams: { id, fecha, titulo, descripcion, curso } });
   }
 
+  
+  borrar(id){
+    // this.router.navigateByUrl('/editar/' + id);
+    this.clasesService.deleteClases(id).subscribe(
+      data=>{
+        console.log(data);
+        this.reloadPage();
+      });
+     
+  }
+
   ngOnInit(): void {
+  }
+
+  
+  reloadPage(): void {
+    window.location.reload();
   }
 
 }

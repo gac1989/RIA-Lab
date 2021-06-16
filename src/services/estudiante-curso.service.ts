@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const AUTH_API = '/api/EstudiantesCursos/';
+const AUTH_API2 = '/api/EstudiantesCursos';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,6 +25,10 @@ export class EstudianteCursoService {
       estudianteId,
       cursoId
       }, httpOptions);
+  }
+
+  getEstudiantesCurso(cursoId: number): Observable<any>{
+    return this.http.get(AUTH_API2 + '?cursoId=' + cursoId, httpOptions);
   }
 
   // editarEstudiante(id: string, documento: string, primerApellido: string, segundoApellido: string,
