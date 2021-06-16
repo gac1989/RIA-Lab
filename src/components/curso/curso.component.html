@@ -13,6 +13,7 @@
               <th>Programa</th>
               <th>Docente</th>
               <th></th>
+              <th></th>
               <th class="left"></th>
             </tr>
           </thead>
@@ -23,11 +24,20 @@
               <td>{{curso.descripcion}}</td>
               <td>{{curso.programa}}</td>
               <td id="idDocente" value="curso.docenteId">{{curso.docenteId}}</td>
-              <td> <button class="btn btn-primary btn-sm" 
+              <td> <button class="btn btn-icon btn-primary" 
                           (click)="editar(curso.id)"
-                          routerLinkActive="active">Editar</button></td>
+                          routerLinkActive="active"><i class="fas fa-edit"></i>
+                    </button>
+              </td>
+              <td> 
+                <button class="btn btn-icon btn-warning" (click)="borrar(curso.id)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
               <td class="left"> 
-                <button class="btn btn-danger btn-sm" (click)="borrar(curso.id)">Borrar</button>
+                <button class="btn btn-icon btn-success" (click)="agregarEstudiante(curso.id)">
+                  <i class="fas fa-user-plus"></i>
+                </button>
               </td>
             </tr>
           </tbody>

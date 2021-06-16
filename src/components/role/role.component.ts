@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { timeout } from 'rxjs/operators';
 import { AuthService } from 'src/services/auth.service';
 import Swal from 'sweetalert2';
 

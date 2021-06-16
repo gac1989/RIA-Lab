@@ -28,6 +28,10 @@ export class CursoComponent  {
       this.router.navigate(['/editarcurso'], { queryParams: { id } });
   }
 
+  agregarEstudiante(id){
+    this.router.navigate(['/agregarestudiantecurso'], { queryParams: { id } });
+  }
+
   borrar(id) {
 
     Swal.fire({

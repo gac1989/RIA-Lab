@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 const TOKEN_KEY = 'auth-token';
 const ROLE_NAME = 'role';
 const USER_NAME = '';
+const USER_ID = '';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,14 @@ export class TokenStorageService {
     return window.sessionStorage.getItem(USER_NAME);
   }
 
+  public saveUserId(id: string): void {
+    window.sessionStorage.removeItem(USER_ID);
+    window.sessionStorage.setItem(USER_ID, id);
+  }
+
+  public getUserId(): string | null {
+    return window.sessionStorage.getItem(USER_ID);
+  }
   
   public async chequearSiEsAdministrador(): Promise<any> {
    

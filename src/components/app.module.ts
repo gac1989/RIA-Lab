@@ -28,16 +28,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { authInterceptorProviders } from '../_helpers/auth.interceptor';
 import { RoleComponent } from './role/role.component';
 import { CursoABMComponent } from './curso-abm/curso-abm.component';
-import { IssueComponent } from './issue/issue.component';
-import { AddDialogComponent } from 'src/dialogs/add/add.dialog.component';
-import { EditDialogComponent } from 'src/dialogs/edit/edit.dialog.component';
-import { DeleteDialogComponent } from 'src/dialogs/delete/delete.dialog.component';
-import { DataService } from 'src/services/data.service';
 import { CursoEditComponent } from './curso-edit/curso-edit.component';
 import { EstudianteAbmComponent } from './estudiante-abm/estudiante-abm.component';
 import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.component';
-
-
+import { EstudianteCursoABMComponent } from './estudiante-curso-abm/estudiante-curso-abm.component';
 
 
 @NgModule({
@@ -53,13 +47,11 @@ import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.compo
     PerfilComponent,
     RoleComponent,
     CursoABMComponent,
-    AddDialogComponent,
-    EditDialogComponent,
-    DeleteDialogComponent,
-    IssueComponent,
     CursoEditComponent,
     EstudianteAbmComponent,
-    EstudianteEditComponent
+    EstudianteEditComponent,
+    EstudianteCursoABMComponent
+
   ],
   imports: [
     BrowserModule,
@@ -79,12 +71,7 @@ import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.compo
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [
-    AddDialogComponent,
-    EditDialogComponent,
-    DeleteDialogComponent
-  ],
-  providers: [authInterceptorProviders, DataService],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
   isLoginFailed = false;
   errorMessage = '';
   rol = ""
+  users = [];
 
   constructor(
     private authService: AuthService, private tokenStorage: TokenStorageService, public router: Router) {}
@@ -38,14 +39,16 @@ export class LoginComponent implements OnInit{
     this.authService.login(username, password).subscribe(
       data => { 
         this.tokenStorage.saveToken(data.token);
+        // this.getUserId(username);
         this.tokenStorage.saveUserName(username);
         this.tokenStorage.chequearSiEsAdministrador().then(() => {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.reloadPage();
-          this.goHome();
+          // this.reloadPage();
+          // this.goHome();
         })
         .catch(err => {
+          this.goHome(); //this.goDocenteHome(/homeDocente) ;; esta func hay q preguntar porq si no es admin puede q tampoco tenga rol no solo ser docente
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
         })
@@ -56,6 +59,18 @@ export class LoginComponent implements OnInit{
       }
     );
   }
+
+  // async getUserId(username): Promise<any> {
+
+  //   this.users = await this.authService.getUsers().toPromise();
+
+  //   console.log (this.users);
+
+  //   var user = this.users.filter(function(){username === this.users.userName})
+
+  //   console.log(user);
+
+  // }
 
   reloadPage(): void {
     window.location.reload();
