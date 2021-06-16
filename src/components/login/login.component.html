@@ -1,36 +1,65 @@
-<app-header></app-header>
-
 <div class="login-wrapper">
-    <form class="login" [formGroup]="signinForm" (ngSubmit)="login(signinForm.value)">
+  <form
+  *ngIf="!isLoggedIn"
+  name="form"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  #f="ngForm"
+  novalidate
+  class="login"
+  >
       <section class="title">
         <h5 class="hint">Use sus credenciales para iniciar sesión</h5>
       </section>
       <div class="login-group">
-        <clr-select-container>
-          <label class="clr-sr-only">User Role</label>
-          <select clrSelect name="type" >
-            <option value="local">Docente</option>
-            <option value="admin">Administrador</option>
-          </select>
-        </clr-select-container>
         <clr-input-container>
-          <label class="clr-sr-only">Username</label>
-          <input type="text" id="username" formControlName="username" clrInput placeholder="username" />
-        </clr-input-container>
-        <clr-password-container>
-          <label class="clr-sr-only">Password</label>
-          <input type="password" id="password" formControlName="password" clrPassword placeholder="password" />
-        </clr-password-container>
-        <!-- <clr-checkbox-wrapper>
-          <label>Recordarme</label>
-          <input type="checkbox" name="rememberMe" clrCheckbox/>
-        </clr-checkbox-wrapper> -->
-        <div class="error active" hidden="true">
-          Usuario o password incorrectos
+          <label for="username" class="clr-control-label">Username</label>
+          <input
+          clrInput 
+          type="text"
+          class="form-control clr-input"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+        />
+        <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="username.errors && f.submitted">
+          Usuario es requerido
         </div>
-        <!-- <button type="submit" class="btn btn-primary" (click)="login()">SIGUIENTE</button> -->
-        <button type="submit" class="btn btn-primary" [disabled]="signinForm.invalid">SIGUIENTE</button>
-        <!-- <a href="javascript://" class="signup">Sign up for a Company ID</a> -->
+    </clr-input-container>
+        <clr-password-container>
+          <label for="password" class="clr-control-label">Contraseña</label>
+          <input
+          clrPassword 
+          type="password"
+          class="form-control clr-input"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="4"
+          #password="ngModel"/>
+        <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors.required">Contraseña es requerida</div>
+          <div *ngIf="password.errors.minlength">debe tener al menos cuatro caracteres</div>
+        </div>
+      </clr-password-container>
+      <div class="form-group">
+      <button class="btn btn-primary">SIGUIENTE</button>
+      </div>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+          Inicio de sesión falló: {{ errorMessage }}
+        </div>
       </div>
     </form>
   </div>

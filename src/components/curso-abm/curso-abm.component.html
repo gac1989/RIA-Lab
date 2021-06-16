@@ -1,0 +1,85 @@
+
+    <div class="registro-component">
+        <form id="form-role"
+              *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+            <h1 >Crear Curso</h1>
+            <br><br>
+            <div>
+                <!-- <h4>Nombre de curso:</h4> -->
+                <label for="curso" class="clr-control-label">Nombre Curso:</label>
+                <input
+                clrInput
+                type="text"
+                class="form-control clr-input"
+                name="nombre"
+                [(ngModel)]="form.nombre"
+                required
+                #nombre="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="nombre.errors && f.submitted">
+                Nombre curso es requerido
+                </div>
+
+                <label for="descripcion" class="clr-control-label">Descripción:</label>
+                <input
+                clrInput
+                type="text"
+                class="form-control clr-input"
+                name="descripcion"
+                [(ngModel)]="form.descripcion"
+                required
+                #descripcion="ngModel"
+                />
+                <!-- <h4>Nombre de programa:</h4> -->
+                <label for="programa" class="clr-control-label">Nombre de programa:</label>
+                <input
+                clrInput
+                type="text"
+                class="form-control clr-input"
+                name="programa"
+                [(ngModel)]="form.programa"
+                required
+                #programa="ngModel"
+              />
+                <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="programa.errors && f.submitted">
+                Nombre programa es requerido
+                </div>
+
+              <clr-select-container>
+                <label for="docente" class="clr-control-label">Seleccione el docente asignar:</label>
+                <select clrSelect  [(ngModel)]="form.docenteId"  name="docenteId" required>
+                    <option *ngFor="let docente of docentes" [value]="docente.id">
+                    {{docente.userName}}
+                    </option>
+                </select>
+                <!-- <clr-control-error>El campo es requerido!</clr-control-error> -->
+              </clr-select-container>
+            </div>
+            <br><br>
+            <div id="registro-buttons">
+                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-success" >Aceptar</button>
+            </div>
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Falló la carga del curso.<br />{{ errorMessage }}
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            CURSO AGREGADO CORRECTAMENTE 
+            <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+          </div>
+        </div>
+          <div id="logo-utec">
+            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+        </div>
+    

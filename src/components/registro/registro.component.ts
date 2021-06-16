@@ -1,46 +1,58 @@
-import { Component } from '@angular/core';
-import { UsersService } from 'src/services/users.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/services/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit {
+  form: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  signupForm: FormGroup;
+  constructor(private authService: AuthService, public router: Router) { }
 
-  
-  // username: string;
-  // email: string;
-  // password: string;
-  // confirmpassword: string;
-  // passwordError: boolean;
-
-  constructor(
-    public userService: UsersService, 
-    public router: Router,
-    private _builder: FormBuilder
-    ) { 
-      this.signupForm = this._builder.group({
-        username: ['', Validators.required],
-        email: ['',Validators.compose([Validators.required, Validators.email])], 
-        password: ['', Validators.required]
-      })
-
+  ngOnInit(): void {
   }
 
-  enviar(values) {
-  // const user = { username: this.username, email: this.email, password: this.password };
-    this.userService.register(values).subscribe(data => {
-      this.userService.setToken(data.token);
-    });
+  onSubmit(): void {
+    const { username, email, password } = this.form;
+
+    this.authService.register(username, email, password).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        this.showSuccessAlert(); 
+        this.goLogin();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+        this.showErrorAlert();
+      }
+    );
   }
 
-  goHome(){
-    this.router.navigateByUrl('/');
+  showSuccessAlert() {
+    Swal.fire('OK', 'Usuario registrado con éxito!', 'success')
   }
+
+  showErrorAlert() {
+    Swal.fire('Error!', 'Algo salió mal!', 'error')
+  }
+
+  goLogin(){
+    this.router.navigateByUrl('/login');
+  }
+
 
 }

@@ -1,43 +1,80 @@
-import { Component } from '@angular/core';
-import { UsersService } from 'src/services/users.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AuthService } from 'src/services/auth.service';
+import { TokenStorageService } from 'src/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
 
-  // username: string;
-  // password: string;
-  
-  signinForm: FormGroup;
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  rol = ""
+  users = [];
 
   constructor(
-    public userService: UsersService, 
-    public router: Router,
-    private _builder: FormBuilder
-    ) { 
-      this.signinForm = this._builder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
-      })
+    private authService: AuthService, private tokenStorage: TokenStorageService, public router: Router) {}
 
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    //  this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
-  login(values) {
-    this.userService.login(values).subscribe(
-      data => {
-        this.userService.setToken(data.token);
-        this.router.navigateByUrl('/');
+  goHome(): void{
+    this.router.navigateByUrl('/home');
+  }
+
+  onSubmit(): void {
+    const { username, password } = this.form;
+    this.authService.login(username, password).subscribe(
+      data => { 
+        this.tokenStorage.saveToken(data.token);
+        // this.getUserId(username);
+        this.tokenStorage.saveUserName(username);
+        this.tokenStorage.chequearSiEsAdministrador().then(() => {
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          // this.reloadPage();
+          // this.goHome();
+        })
+        .catch(err => {
+          this.goHome(); //this.goDocenteHome(/homeDocente) ;; esta func hay q preguntar porq si no es admin puede q tampoco tenga rol no solo ser docente
+          this.errorMessage = err.error.message;
+          this.isLoginFailed = true;
+        })
       },
-      error => {
-        this.router.navigateByUrl('/error');
-      });
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
   }
 
+  // async getUserId(username): Promise<any> {
+
+  //   this.users = await this.authService.getUsers().toPromise();
+
+  //   console.log (this.users);
+
+  //   var user = this.users.filter(function(){username === this.users.userName})
+
+  //   console.log(user);
+
+  // }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
 
 
 }

@@ -1,0 +1,47 @@
+
+   
+
+    <div class="registro-component">
+    <form id="form-role"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate>
+        <h1 >Asignar Rol</h1>
+        <div>
+          <label for="usuario" class="clr-control-label">Seleccione el usuario:</label>
+            <select clrSelect [(ngModel)]="form.selectedUser" name="user" required>
+                <option *ngFor="let user of users" [value]="user.userName" >
+                {{user.userName}}
+                </option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+          <label for="rol" class="clr-control-label">Seleccione el rol a asignar:</label>
+
+            <select clrSelect [(ngModel)]="form.selectedRol" name="rol" required>
+                <option value="" selected></option>
+                <option *ngFor="let rol of roles" [value]="rol">
+                {{rol}}
+                </option>
+            </select>
+        </div>
+        <br><br>
+        <div id="registro-buttons">
+            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+            <button class="btn btn-success" >Aceptar</button>
+        </div>
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Ya tiene el rol asignado.<br />{{ errorMessage }}
+        </div>
+      </form>
+      <!-- <div class="alert alert-success" *ngIf="isSuccessful">
+        ROL ASIGNADO CORRECTAMENTE 
+        <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+      </div> -->
+    </div>
+      <div id="logo-utec">
+        <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+    </div>
