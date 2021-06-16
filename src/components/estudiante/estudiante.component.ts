@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EstudianteService } from 'src/services/estudiante.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-estudiante',
   templateUrl: './estudiante.component.html',
@@ -26,6 +27,10 @@ export class EstudianteComponent implements OnInit {
   editar(id) {
     // this.router.navigateByUrl('/editar/' + id);
     this.router.navigate(['/editarestudiante'], { queryParams: { id } });
+  }
+
+  agregarEstudiante(id){
+    this.router.navigate(['/agregarcursoestudiante'], { queryParams: { id } });
   }
 
   borrar(id) {

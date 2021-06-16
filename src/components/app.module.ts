@@ -32,6 +32,7 @@ import { CursoEditComponent } from './curso-edit/curso-edit.component';
 import { EstudianteAbmComponent } from './estudiante-abm/estudiante-abm.component';
 import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.component';
 import { EstudianteCursoABMComponent } from './estudiante-curso-abm/estudiante-curso-abm.component';
+import { CursoEstudianteABMComponent } from './curso-estudiante-abm/curso-estudiante-abm.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EstudianteCursoABMComponent } from './estudiante-curso-abm/estudiante-c
     CursoEditComponent,
     EstudianteAbmComponent,
     EstudianteEditComponent,
-    EstudianteCursoABMComponent
+    EstudianteCursoABMComponent,
+    CursoEstudianteABMComponent
 
   ],
   imports: [
