@@ -1,0 +1,41 @@
+<clr-main-container>
+    <div class="content-container">
+      <main class="content-area">
+        <table class="table">
+          <caption>
+            <h1>Mis Cursos</h1>
+          </caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Curso</th>
+              <th>Descripcion</th>
+              <th>Programa</th>
+              <th>Docente</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let curso of misCursos">
+              <td>{{curso.id}}</td>
+              <td>{{curso.nombre}}</td>
+              <td>{{curso.descripcion}}</td>
+              <td>{{curso.programa}}</td>
+              <td id="idDocente" value="curso.docenteId">{{curso.docente.userName}}</td>
+              <td>
+                <button class="btn btn-icon btn-primary" 
+                    (click)="mostrarClases(curso.id)"
+                    routerLinkActive="active">Clases
+                </button>
+                <button class="btn btn-icon btn-primary" 
+                    (click)="mostrarEvaluaciones(curso.id)"
+                    routerLinkActive="active">Evaluaciones
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+  </clr-main-container>
+  

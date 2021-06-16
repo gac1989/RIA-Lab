@@ -16,8 +16,8 @@ export class CursoComponent  {
   constructor(private cursosService: CursosService, public router: Router ) {
    this.cursosService.getCursos().subscribe(
       data=>{
-
         this.cursos = data;
+        console.log(this.cursos);
       }
    );
   }

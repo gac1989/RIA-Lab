@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CursosService } from 'src/services/cursos.service';
+import { ClasesService } from 'src/services/clases.service';
 
 @Component({
   selector: 'app-clase',
@@ -7,7 +10,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClaseComponent implements OnInit {
 
-  constructor() { }
+  misCursos? = [];
+  clases? = [];
+  curso?: number;
+
+  constructor(private clasesService: ClasesService,public router: Router,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.curso=params['id'];
+      this.clasesService.getClases(params['id']).subscribe(
+        data=>{
+          this.clases = data;
+          console.log(this.clases);
+        }
+      );
+    });
+  }
+
+  callType(value) {
+    console.log(value);
+    this.clasesService.getClases(value).subscribe(
+      data=>{
+        this.clases = data;
+        console.log(this.clases);
+      }
+    );
+  }
+
+  agregarClase(curso){
+    console.log("EL CURSO EN EL LISTADO ES: " + curso )
+    // this.router.navigateByUrl('/editar/' + id);
+    this.router.navigate(['/clases-abm'], { queryParams: { curso } });
+  }
+
+  editar(id, fecha, titulo, descripcion){
+    // this.router.navigateByUrl('/editar/' + id);
+    console.log(id, fecha, titulo, descripcion);
+    let curso = this.curso;
+    this.router.navigate(['/editarclase'], { queryParams: { id, fecha, titulo, descripcion, curso } });
+  }
 
   ngOnInit(): void {
   }

@@ -36,9 +36,11 @@ export class LoginComponent implements OnInit{
 
   onSubmit(): void {
     const { username, password } = this.form;
+    console.log(1);
     this.authService.login(username, password).subscribe(
       data => { 
         this.tokenStorage.saveToken(data.token);
+       
         // this.getUserId(username);
         this.tokenStorage.saveUserName(username);
         this.tokenStorage.chequearSiEsAdministrador().then(() => {
@@ -48,12 +50,14 @@ export class LoginComponent implements OnInit{
           // this.goHome();
         })
         .catch(err => {
+          
           this.goHome(); //this.goDocenteHome(/homeDocente) ;; esta func hay q preguntar porq si no es admin puede q tampoco tenga rol no solo ser docente
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
         })
       },
       err => {
+        console.log(4);
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }

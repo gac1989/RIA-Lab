@@ -3,12 +3,41 @@
 <caption id="curso_caption">
     <h1 >  Evaluaciones  </h1>
     <clr-button-group class="btn-primary" id="curso_button">
-      <clr-button>Agregar</clr-button>
+      <clr-button (click)="agregarEvaluacion(curso)">Agregar</clr-button>
       <clr-button>Borrar</clr-button>
       <clr-button >Editar</clr-button>
     </clr-button-group>
       </caption>
-<table class="table" id="cursoTable">
+    <select clrSelect required #t (change)="callType(t.value)">
+        <option *ngFor="let curso of misCursos" [value]="curso.id" >
+        {{curso.nombre}}
+        </option>
+    </select>
+
+    <table class="table">
+        <caption>
+            Lista de Evaluaciones
+        </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Ponderacion</th>
+                <th>Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let calif of evaluaciones">
+                <td>{{calif.id}}</td>
+                <td>{{calif.titulo}}</td>
+                <td>{{calif.ponderacion}}</td>
+                <td>{{calif.cursosId}}</td>
+            </tr>
+          </tbody>
+    </table>
+
+
+<!--<table class="table" id="cursoTable">
     <thead>
     <tr>
         <th class="left">ID</th>
@@ -45,7 +74,7 @@
         <td> 50 %</td>
     </tr>
     </tbody>
-</table>
+</table>-->
 
 
 <div id="curso-buttons-footer">
