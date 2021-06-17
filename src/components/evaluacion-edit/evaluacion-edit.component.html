@@ -1,62 +1,65 @@
 
-<div class="registro-component">
-    <form id="form-role"
-          *ngIf="!isSuccessful"
-          name="form"
-          (ngSubmit)="f.form.valid && onSubmit()"
-          #f="ngForm"
-          novalidate>
-        <h1 >Editar evaluacion</h1>
-        <br><br>
-        <div>
-            <label for="curso" class="clr-control-label">Titulo:</label>
-            <input
-            clrInput
-            type="text"
-            class="form-control clr-input"
-            name="titulo"
-            [(ngModel)]="form.titulo"
-            required
-            #nombre="ngModel"
-          />
-            <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="nombre.errors && f.submitted">
-            Titulo es requerido
-            </div>
-            <label for="descripcion" class="clr-control-label">Ponderacion:</label>
-            <input
-            clrInput
-            type="text"
-            class="form-control clr-input"
-            name="descripcion"
-            [(ngModel)]="form.ponderacion"
-            required
-            #programa="ngModel"
-          />
-            <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="programa.errors && f.submitted">
-            La descripcion es requerida
-            </div>
-        </div>
-        <br><br>
-        <div id="registro-buttons">
-            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
-            <button class="btn btn-success" >Aceptar</button>
-        </div>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-            Falló la carga de la clase.<br />{{ errorMessage }}
-        </div>
-      </form>
-    <div class="alert alert-success" *ngIf="isSuccessful">
-    CLASE AGREGADA CORRECTAMENTE 
-    <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+<clr-main-container>
+    <main class="content-area">
+      <div class="registro-component">
+          <form id="form-role"
+                *ngIf="!isSuccessful"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+              <h1 >Editar evaluacion</h1>
+              <br><br>
+              <div>
+                  <label for="curso" class="clr-control-label">Titulo:</label>
+                  <input clrInput type="text" class="form-control clr-input" name="titulo" [(ngModel)]="form.titulo" required #nombre="ngModel" />
+                  <div class="alert alert-danger" role="alert" *ngIf="nombre.errors && f.submitted"> Titulo es requerido </div>
+                  <br>
+                  <label for="descripcion" class="clr-control-label">Ponderacion:</label>
+                  <input  clrInput  type="text" class="form-control clr-input" name="descripcion" [(ngModel)]="form.ponderacion" required #programa="ngModel" />
+                  <div class="alert alert-danger" role="alert" *ngIf="programa.errors && f.submitted"> La descripcion es requerida</div>
+              </div>
+              <br><br>
+              
+              <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                  Falló la carga de la clase.<br />{{ errorMessage }}
+              </div>
+          
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            CLASE AGREGADA CORRECTAMENTE 
+            <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+          </div>
+        <table class="table table-compact">
+          <caption>
+              <h1>Calificar:  {{form.titulo}}</h1>
+          </caption>
+          <thead>
+              <tr>
+                  <th>Documento</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Nota actual</th>
+                  <th>Nota</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let estudiante of calificaciones">
+                  <td>{{estudiante.estudiante.documento}}</td>
+                  <td>{{estudiante.estudiante.primerNombre}}</td>
+                  <td>{{estudiante.estudiante.primerApellido}}</td>
+                  <td>{{estudiante.nota}}</td>
+                  <td>
+                      <input  name="nota" type="number" required min="0" max="12" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      <br>
+      <div id="registro-buttons">
+        <button class="btn btn-danger" >Cancelar</button>
+        <button class="btn btn-success" >Aceptar</button>
+      </div>
+    </form>
     </div>
-</div>
-    <div id="logo-utec">
-    <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-</div>
-
+  </main>
+</clr-main-container>

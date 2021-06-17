@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { EvaluacionesService } from 'src/services/evaluaciones.service';
+import { CalificacionesService } from 'src/services/calificaciones.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,6 +21,8 @@ export class EvaluacionEditComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  calificaciones?= [];
+
 
   form: any = {
     id: null,
@@ -29,13 +32,19 @@ export class EvaluacionEditComponent implements OnInit {
   };
   
 
-  constructor(private authService: AuthService,private califService: EvaluacionesService, private route: ActivatedRoute, private router: Router) { 
+  constructor(private authService: AuthService,private evaluacionesService: EvaluacionesService, private route: ActivatedRoute, private router: Router, private califService: CalificacionesService) { 
     this.route.queryParams.subscribe(params => {
       let { id, titulo, ponderacion, cursoId } = params;
       this.form.id=id;
       this.form.titulo=titulo;
       this.form.ponderacion=ponderacion;
       this.form.cursoId=cursoId;
+      this.califService.getCalificaciones(id).subscribe(
+        data=>{
+          this.calificaciones = data;
+          console.log(this.calificaciones);
+        }
+      );
       console.log("El curso en edit es: " + cursoId);
     });
   }
@@ -44,7 +53,7 @@ export class EvaluacionEditComponent implements OnInit {
 
     let { id, titulo, ponderacion, cursoId } = this.form;
    
-    this.califService.putEvaluaciones(id, titulo, ponderacion, cursoId).subscribe(
+    this.evaluacionesService.putEvaluaciones(id, titulo, ponderacion, cursoId).subscribe(
       data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
@@ -56,6 +65,25 @@ export class EvaluacionEditComponent implements OnInit {
         this.showErrorAlert();
       }
     );
+
+    for(let estudiante of this.calificaciones){
+      
+      if(estudiante.estudiante.nota){
+        console.log(estudiante.estudiante.nota);
+        this.califService.putCalificaciones(estudiante.id, estudiante.estudiante.id, this.form.id=id, estudiante.estudiante.nota).subscribe(
+          data => {
+            this.isSuccessful = true;
+            this.isSignUpFailed = false;
+            this.showSuccessAlert();
+          },
+          err => {
+            this.errorMessage = err.error.message;
+            this.isSignUpFailed = true;
+            this.showErrorAlert();
+          }
+        );
+      }
+    }
     id=cursoId;
     this.router.navigate(['/evaluaciones'], { queryParams: { id } });
   }

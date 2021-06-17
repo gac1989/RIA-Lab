@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckLogginGuard } from 'src/guards/check-loggin.guard';
 import { CheckRoleGuard } from 'src/guards/check-role.guard';
 import { ClaseComponent } from './clase/clase.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 import { ClaseEditComponent } from './clase-edit/clase-edit.component';
 import { ClaseAbmComponent } from './clase-abm/clase-abm.component';
 import { EvaluacionAbmComponent } from './evaluacion-abm/evaluacion-abm.component';
@@ -35,6 +36,11 @@ const routes: Routes = [
     path:'cursos',
     component: CursoComponent,
     canActivate: [CheckLogginGuard, CheckRoleGuard]
+  },
+  {
+    path:'asistencia',
+    component: AsistenciaComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
     path:'cursos-docente',

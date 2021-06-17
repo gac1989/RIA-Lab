@@ -39,6 +39,10 @@
                     (click)="borrar(clase.id)"
                     routerLinkActive="active"><i class="fas fa-trash-alt"></i>
                 </button>
+                <button class="btn btn-icon btn-success" 
+                    (click)="asistencia(clase.id, clase.nombre)"
+                    routerLinkActive="active">Asistencia
+                </button>
             </td>
         </tr>
       </tbody>
