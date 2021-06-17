@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit{
         this.tokenStorage.chequearSiEsAdministrador().then(() => {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          // this.reloadPage();
-          // this.goHome();
+           this.reloadPage();
+           this.goHome();
         })
         .catch(err => {
           

@@ -2,7 +2,7 @@ import { CursosService } from 'src/services/cursos.service';
 import { CalificacionesService } from 'src/services/calificaciones.service';
 import { EstudianteCursoService } from 'src/services/estudiante-curso.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormArray, FormControl, FormGroup } from '@angular/forms'
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
@@ -15,15 +15,12 @@ import Swal from 'sweetalert2';
 export class CalificacionComponent implements OnInit {
 
   
-  checkoutForm = new FormGroup({
-    notas: new FormControl(''),
-    lastName: new FormControl(''),
-    age: new FormControl('')
-  });
-
- 
-
-  
+  form: any = {
+    notas: [],
+    titulo: null,
+    fecha: null,
+    descripcion: null,
+  };
 
   isSuccessful = false;
   isSignUpFailed = false;
@@ -49,8 +46,13 @@ export class CalificacionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.warn('Los forms son: ', this.checkoutForm.value);
- 
+    for(let estudiante of this.estudiantes){
+      this.cursosCalif.postCalificaciones(estudiante.estudiante.id, this.evaluacion, estudiante.estudiante.nota).subscribe(
+        data=>{
+          console.log(data);
+        }
+      );
+    }
   }
 
   ngOnInit(): void {

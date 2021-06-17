@@ -26,6 +26,14 @@ export class CalificacionesService {
     return this.http.get(AUTH_API + 'Calificacion/' + id, httpOptions);
   }
 
+  postCalificaciones(estudiantesId: number, calificacionesId: number, nota: number): Observable<any>{
+    return this.http.post(AUTH_API, {
+      estudiantesId,
+      calificacionesId,
+      nota
+    }, httpOptions);
+  }
+
   // editarEstudiante(id: string, documento: string, primerApellido: string, segundoApellido: string,
   //   primerNombre: string, segundoNombre: string, fechaNacimiento: string): Observable<any> {
   //   return this.http.put(AUTH_API + id, {
