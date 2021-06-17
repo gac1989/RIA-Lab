@@ -61,7 +61,7 @@ const routes: Routes = [
   {
     path:'evaluaciones',
     component: EvaluacionComponent,
-    canActivate: [CheckLogginGuard, !CheckRoleGuard]
+    canActivate: [CheckLogginGuard]
   },
   {
     path:'clases',

@@ -23,7 +23,7 @@
               <td>{{curso.nombre}}</td>
               <td>{{curso.descripcion}}</td>
               <td>{{curso.programa}}</td>
-              <td id="idDocente" value="curso.docenteId">{{curso.docenteId}}</td>
+              <td id="idDocente" value="curso.docenteId">{{curso.docente.nombre}}</td>
               <td> <button class="btn btn-icon btn-primary" 
                           (click)="editar(curso.id)"
                           routerLinkActive="active"><i class="fas fa-edit"></i>
