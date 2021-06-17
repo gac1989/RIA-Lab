@@ -33,11 +33,6 @@ export class CursosDocenteComponent implements OnInit {
     this.router.navigate(['/estudiantescurso'], { queryParams: { id, curso } });
   }
 
-  mostrarResumen(id, curso){
-    // this.router.navigateByUrl('/editar/' + id);
-    this.router.navigate(['/resumenCurso'], { queryParams: { id, curso } });
-  }
-
   ngOnInit(): void {
   }
 

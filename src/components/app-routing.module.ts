@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckLogginGuard } from 'src/guards/check-loggin.guard';
 import { CheckRoleGuard } from 'src/guards/check-role.guard';
 import { ClaseComponent } from './clase/clase.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 import { ClaseEditComponent } from './clase-edit/clase-edit.component';
 import { ClaseAbmComponent } from './clase-abm/clase-abm.component';
 import { EvaluacionAbmComponent } from './evaluacion-abm/evaluacion-abm.component';
@@ -16,7 +17,6 @@ import { EstudianteAbmComponent } from './estudiante-abm/estudiante-abm.componen
 import { EstudianteCursoABMComponent } from './estudiante-curso-abm/estudiante-curso-abm.component';
 import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.component';
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
-import { ResumenCursoComponent } from './resumen-curso/resumen-curso.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { EvaluacionComponent } from './evaluacion/evaluacion.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
@@ -36,6 +36,11 @@ const routes: Routes = [
     path:'cursos',
     component: CursoComponent,
     canActivate: [CheckLogginGuard, CheckRoleGuard]
+  },
+  {
+    path:'asistencia',
+    component: AsistenciaComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
     path:'cursos-docente',
@@ -122,11 +127,6 @@ const routes: Routes = [
   {
     path:'estudiantescurso',
     component: EstudianteCursoComponent,
-    canActivate: [CheckLogginGuard]
-  },
-  {
-    path:'resumenCurso',
-    component: ResumenCursoComponent,
     canActivate: [CheckLogginGuard]
   },
   {

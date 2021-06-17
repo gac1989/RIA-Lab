@@ -38,7 +38,7 @@ import { ClaseEditComponent } from './clase-edit/clase-edit.component';
 import { EvaluacionEditComponent } from './evaluacion-edit/evaluacion-edit.component';
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
-import { ResumenCursoComponent } from './resumen-curso/resumen-curso.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 
 
 @NgModule({
@@ -66,7 +66,7 @@ import { ResumenCursoComponent } from './resumen-curso/resumen-curso.component';
     EvaluacionEditComponent,
     EstudianteCursoComponent,
     CalificacionComponent,
-    ResumenCursoComponent
+    AsistenciaComponent
   ],
   imports: [
     BrowserModule,

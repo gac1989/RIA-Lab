@@ -1,78 +1,104 @@
-<div class="registro-component">
-    <form id="form-role"
-          *ngIf="!isSuccessful"
-          name="form"
-          (ngSubmit)="f.form.valid && onSubmit()"
-          #f="ngForm"
-          novalidate>
-        <h1 >Agregar clase</h1>
-        <br><br>
-        <div>
-            <label for="curso" class="clr-control-label">Titulo:</label>
-            <input
-            clrInput
-            type="text"
-            class="form-control clr-input"
-            name="titulo"
-            [(ngModel)]="form.titulo"
-            required
-            #nombre="ngModel"
-          />
-            <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="nombre.errors && f.submitted">
-            Titulo es requerido
-            </div>
-            <clr-date-container>
-                <label for="fecha" class="clr-control-label">Fecha:</label>
-                  <input 
-                  type="date" 
-                  clrDate 
+<clr-main-container>
+  <div class="content-container">
+    <main class="content-area">
+      <div class="registro-component">
+          <form id="form-role"
+                *ngIf="!isSuccessful"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+              <h1 >Agregar clase</h1>
+              <br><br>
+              <div>
+                  <label for="curso" class="clr-control-label">Titulo:</label>
+                  <input
+                  clrInput
+                  type="text"
                   class="form-control clr-input"
-                  name="fecha"
-                  [(ngModel)]="form.fecha"
+                  name="titulo"
+                  [(ngModel)]="form.titulo"
                   required
-                  #fechaNacimiento="ngModel"/>
-                </clr-date-container>
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="fechaNacimiento.errors && f.submitted">
-                  Fecha de clase  es requerido
-                </div>
-            <label for="descripcion" class="clr-control-label">Descripcion:</label>
-            <input
-            clrInput
-            type="text"
-            class="form-control clr-input"
-            name="descripcion"
-            [(ngModel)]="form.descripcion"
-            required
-            #programa="ngModel"
-          />
-            <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="programa.errors && f.submitted">
-            La descripcion es requerida
-            </div>
-        </div>
-        <br><br>
-        <div id="registro-buttons">
-            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
-            <button class="btn btn-success" >Aceptar</button>
-        </div>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-            Falló la carga de la clase.<br />{{ errorMessage }}
-        </div>
-      </form>
-    <div class="alert alert-success" *ngIf="isSuccessful">
-    CLASE AGREGADA CORRECTAMENTE 
-    <button class="btn btn-success" (click)="goHome()">VOLVER</button>
-    </div>
-</div>
-    <div id="logo-utec">
-    <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-</div>
+                  #nombre="ngModel"
+                />
+                  <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="nombre.errors && f.submitted">
+                  Titulo es requerido
+                  </div>
+                  <clr-date-container>
+                      <label for="fecha" class="clr-control-label">Fecha:</label>
+                        <input 
+                        type="date" 
+                        clrDate 
+                        class="form-control clr-input"
+                        name="fecha"
+                        [(ngModel)]="form.fecha"
+                        required
+                        #fechaNacimiento="ngModel"/>
+                      </clr-date-container>
+                      <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="fechaNacimiento.errors && f.submitted">
+                        Fecha de clase  es requerido
+                      </div>
+                  <br>
+                  <label for="descripcion" class="clr-control-label">Descripcion:</label>
+                  <input
+                  clrInput
+                  type="text"
+                  class="form-control clr-input"
+                  name="descripcion"
+                  [(ngModel)]="form.descripcion"
+                  required
+                  #programa="ngModel"
+                />
+                  <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="programa.errors && f.submitted">
+                  La descripcion es requerida
+                  </div>
+              </div>
+              <br><br>
+              <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                  Falló la carga de la clase.<br />{{ errorMessage }}
+              </div>
+              <table class="table table-compact">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Asistencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudiante of estudiantes">
+                        <td>{{estudiante.estudiante.documento}}</td>
+                        <td>{{estudiante.estudiante.primerNombre}}</td>
+                        <td>{{estudiante.estudiante.primerApellido}}</td>
+                        <td>
+                            <input type="checkbox" [(ngModel)]="estudiante.estudiante.asistencia" [ngModelOptions]="{standalone: true}" />
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+              <br>
+              <div id="registro-buttons">
+                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-success" >Aceptar</button>
+              </div>
+            </form>
+          </div>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+          CLASE AGREGADA CORRECTAMENTE 
+          <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+          </div>
+          
+    </main>
+  </div>
+</clr-main-container>
 
