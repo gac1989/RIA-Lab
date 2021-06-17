@@ -30,28 +30,39 @@ export class CalificacionComponent implements OnInit {
   nombreEvaluacion?;
   estudiantes?=[];
   curso?;
+  califico?: boolean;
+  
 
   constructor(private estudianteService: EstudianteCursoService, private cursosCalif: CalificacionesService,public route: ActivatedRoute, public router: Router,  private formBuilder: FormBuilder ) {
     this.route.queryParams.subscribe(params => {
       this.evaluacion=params['id'];
       this.curso=params['curso'];
       this.nombreEvaluacion=params['titulo'];
+      this.cursosCalif.getCalificaciones(this.evaluacion).subscribe(
+        data=>{
+          this.califico=(data.length != 0);
+          console.log(this.califico);
+        }
+      );
       this.estudianteService.getEstudiantesCurso(this.curso).subscribe(
         data=>{
           this.estudiantes = data;
-          console.log(this.estudiantes);
+          //console.log(this.estudiantes);
         }
       );
     });
   }
 
   onSubmit(): void {
-    for(let estudiante of this.estudiantes){
-      this.cursosCalif.postCalificaciones(estudiante.estudiante.id, this.evaluacion, estudiante.estudiante.nota).subscribe(
-        data=>{
-          console.log(data);
-        }
-      );
+    console.log('estamos aca!!!!');
+    if(!this.califico){
+      for(let estudiante of this.estudiantes){
+          this.cursosCalif.postCalificaciones(estudiante.estudiante.id, this.evaluacion, estudiante.estudiante.nota).subscribe(
+            data=>{
+              console.log(data);
+            }
+          );
+      }
     }
   }
 

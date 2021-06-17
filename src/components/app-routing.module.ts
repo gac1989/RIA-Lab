@@ -16,6 +16,7 @@ import { EstudianteAbmComponent } from './estudiante-abm/estudiante-abm.componen
 import { EstudianteCursoABMComponent } from './estudiante-curso-abm/estudiante-curso-abm.component';
 import { EstudianteEditComponent } from './estudiante-edit/estudiante-edit.component';
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
+import { ResumenCursoComponent } from './resumen-curso/resumen-curso.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { EvaluacionComponent } from './evaluacion/evaluacion.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
@@ -121,6 +122,11 @@ const routes: Routes = [
   {
     path:'estudiantescurso',
     component: EstudianteCursoComponent,
+    canActivate: [CheckLogginGuard]
+  },
+  {
+    path:'resumenCurso',
+    component: ResumenCursoComponent,
     canActivate: [CheckLogginGuard]
   },
   {

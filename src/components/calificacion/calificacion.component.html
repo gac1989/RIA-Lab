@@ -2,7 +2,7 @@
     <div class="content-container">
       <div class="content-area">
 
-        <form (ngSubmit)=" f.form.valid  && onSubmit()"  #f="ngForm"
+        <form (ngSubmit)=" f.form.valid && !califico && onSubmit()"  #f="ngForm"
         novalidate>
             <table class="table table-compact">
             <caption>
@@ -37,7 +37,8 @@
                 </tr>
             </tbody>
             </table>
-            <button class="btn btn-success" >Aceptar</button>
+            <button class="btn btn-success" *ngIf="!califico">Aceptar</button>
+            <div *ngIf="califico"> <h3> Ya existe una calificación para esta evaluación</h3></div>
         </form>
       </div>
     </div>
