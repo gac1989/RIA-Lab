@@ -1,0 +1,49 @@
+<clr-main-container>
+    <div class="content-container">
+      <div class="content-area">
+
+        <form (ngSubmit)=" f.form.valid  && onSubmit()"  #f="ngForm"
+        novalidate>
+            <table class="table table-compact">
+            <caption>
+                <h1>Estudiantes del curso {{nombreEvaluacion}}</h1>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estudiante of estudiantes">
+                    <td>{{estudiante.estudiante.documento}}</td>
+                    <td>{{estudiante.estudiante.primerNombre}}</td>
+                    <td>{{estudiante.estudiante.primerApellido}}</td>
+                    <td>
+                            <input  name="nota" type="number" required min="0" max="12" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
+                            <div class="alert alert-danger" role="alert" *ngIf="nota.errors && f.submitted">
+                                <div *ngIf="nota.errors.required">Nota requerida</div>
+                                <div *ngIf="nota.errors.min">
+                                    Minimo 0
+                                </div>
+                                <div *ngIf="nota.errors.max">
+                                    Maximo 12
+                                </div>
+                            </div>
+                    </td>
+                
+                </tr>
+            </tbody>
+            </table>
+            <button class="btn btn-success" >Aceptar</button>
+        </form>
+      </div>
+    </div>
+  </clr-main-container>
+  
+  
+      
+  
+  

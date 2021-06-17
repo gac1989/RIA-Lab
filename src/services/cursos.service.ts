@@ -45,4 +45,8 @@ export class CursosService {
     return this.http.get(AUTH_API + id, httpOptions);
   }
 
+  misCursos(): Observable<any>{
+    return this.http.get(AUTH_API + 'MisCursos' , httpOptions);
+  }
+
 }

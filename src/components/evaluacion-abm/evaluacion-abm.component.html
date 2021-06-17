@@ -1,0 +1,61 @@
+<div class="registro-component">
+    <form id="form-role"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate>
+        <h1 >Agregar evaluacion</h1>
+        <br><br>
+        <div>
+            <label for="curso" class="clr-control-label">Titulo:</label>
+            <input
+            clrInput
+            type="text"
+            class="form-control clr-input"
+            name="titulo"
+            [(ngModel)]="form.titulo"
+            required
+            #nombre="ngModel"
+          />
+            <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="nombre.errors && f.submitted">
+            Titulo es requerido
+            </div>
+            <label for="ponderacion" class="clr-control-label">Ponderacion:</label>
+            <input
+            clrInput
+            type="text"
+            class="form-control clr-input"
+            name="descripcion"
+            [(ngModel)]="form.ponderacion"
+            required
+            #programa="ngModel"
+          />
+            <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="programa.errors && f.submitted">
+            La ponderacion es requerida
+            </div>
+        </div>
+        <br><br>
+        <div id="registro-buttons">
+            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+            <button class="btn btn-success" >Aceptar</button>
+        </div>
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Falló la carga de la clase.<br />{{ errorMessage }}
+        </div>
+      </form>
+    <div class="alert alert-success" *ngIf="isSuccessful">
+    CLASE AGREGADA CORRECTAMENTE 
+    <button class="btn btn-success" (click)="goHome()">VOLVER</button>
+    </div>
+</div>
+    <div id="logo-utec">
+    <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
+</div>
+
