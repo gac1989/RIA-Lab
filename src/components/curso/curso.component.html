@@ -1,49 +1,44 @@
 <clr-main-container>
-    <div class="content-container">
-      <div class="content-area">
-        <table class="table table-compact">
-          <caption>
-            Lista de Cursos
-          </caption>
-          <thead>
-            <tr>
-              <th class="left">ID</th>
-              <th>Curso</th>
-              <th>Descripcion</th>
-              <th>Programa</th>
-              <th>Docente</th>
-              <th></th>
-              <th></th>
-              <th class="left"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let curso of cursos">
-              <td class="left">{{curso.id}}</td>
-              <td>{{curso.nombre}}</td>
-              <td>{{curso.descripcion}}</td>
-              <td>{{curso.programa}}</td>
-              <td id="idDocente" value="curso.docenteId">{{curso.docenteId}}</td>
-              <td> <button class="btn btn-icon btn-primary" 
-                          (click)="editar(curso.id)"
-                          routerLinkActive="active"><i class="fas fa-edit"></i>
-                    </button>
-              </td>
-              <td> 
-                <button class="btn btn-icon btn-warning" (click)="borrar(curso.id)">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </td>
-              <td class="left"> 
-                <button class="btn btn-icon btn-success" (click)="agregarEstudiante(curso.id)">
-                  <i class="fas fa-user-plus"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  <div class="content-container">
+    <main class="content-area">
+      <table class="table">
+        <caption>
+          Lista de Cursos
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Curso</th>
+            <th>Descripcion</th>
+            <th>Programa</th>
+            <th>Docente</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of cursos">
+            <td>{{curso.id}}</td>
+            <td>{{curso.nombre}}</td>
+            <td>{{curso.descripcion}}</td>
+            <td>{{curso.programa}}</td>
+            <td id="idDocente" value="curso.docenteId">{{curso.docente.userName}}</td>
+            <td> 
+              <button class="btn btn-icon btn-primary" 
+                    (click)="editar(curso.id)"
+                    routerLinkActive="active"><i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-icon btn-warning" (click)="borrar(curso.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              <button class="btn btn-icon btn-success" (click)="agregarEstudiante(curso.id)">
+                <i class="fas fa-user-plus"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
 </clr-main-container>
 
 

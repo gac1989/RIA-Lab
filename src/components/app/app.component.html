@@ -1,12 +1,12 @@
-<div id="app">
-    <header class="header-6">
+<clr-main-container>
+  <clr-header class="header-6">
         <div class="branding">
           <a href="/" class="nav-link">
             <!-- <clr-icon shape="home" size="24"></clr-icon> -->
             <span class="title">Libreta Digital</span>
           </a>
         </div>
-        <div class="header-nav">
+        <div class="header-nav" [clr-nav-level]="1">
             <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
             <clr-dropdown >
               <a clrDropdownToggle *ngIf="showAdminBoard">
@@ -30,6 +30,7 @@
             </clr-dropdown>
             <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
             <a *ngIf="showIsLoggin && !showAdminBoard" href="/clases" class="nav-link nav-text">Clases</a>
+            <a *ngIf="showIsLoggin && !showAdminBoard" href="/cursos-docente" class="nav-link nav-text">Mis cursos</a>
           <clr-dropdown *ngIf="showIsLoggin && !showAdminBoard">
             <a clrDropdownToggle>
               <span class="nav-link nav-text">Evaluaciones</span>
@@ -59,12 +60,12 @@
             </div>
         </div>
 
-    </header>
+    </clr-header>
 
     <div class="container">
         <router-outlet></router-outlet>
     </div>
-</div>
+</clr-main-container>
  
 
 

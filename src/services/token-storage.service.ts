@@ -56,11 +56,17 @@ export class TokenStorageService {
   public async chequearSiEsAdministrador(): Promise<any> {
    
     return this.authService.getRole(this.getUserName()).toPromise().then((rol) => {
-      if(rol[0] == "ADMIN" || rol[1] == "ADMIN") 
-      this.saveRoleName("ADMIN");
+      if(rol[0] == "ADMIN" || rol[1] == "ADMIN"){
+        this.saveRoleName("ADMIN");
+        console.log("ADMINNN");
+      } 
+      else{
+        this.saveRoleName("DOCENTE");
+      }
+      
     })
     .catch(e => {
-      this.saveRoleName("");
+      this.saveRoleName("DOCENTE");
     })
 
   }

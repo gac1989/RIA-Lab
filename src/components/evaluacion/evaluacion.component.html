@@ -1,55 +1,46 @@
 
 
 <caption id="curso_caption">
-    <h1 >  Evaluaciones  </h1>
     <clr-button-group class="btn-primary" id="curso_button">
-      <clr-button>Agregar</clr-button>
-      <clr-button>Borrar</clr-button>
-      <clr-button >Editar</clr-button>
+      <clr-button (click)="agregarEvaluacion(curso)">Agregar</clr-button>
     </clr-button-group>
       </caption>
-<table class="table" id="cursoTable">
-    <thead>
-    <tr>
-        <th class="left">ID</th>
-        <th>Curso</th>
-        <th>Fecha</th>
-        <th>% Ponderación</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td class="left">1</td>
-        <td>Matematicas</td>
-        <td>12/03/2021</td>
-        <td> 60 %</td>
 
-    </tr>
-    <tr>
-        <td class="left">2</td>
-        <td>Biologia</td>
-        <td>12/03/2021</td>
-        <td> 50 %</td>
+    <table class="table">
+        <caption>
+           <h1>Evaluaciones del curso {{nombreCurso}}</h1>
+        </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Ponderacion</th>
+                <th>Curso</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let calif of evaluaciones">
+                <td>{{calif.id}}</td>
+                <td>{{calif.titulo}}</td>
+                <td>{{calif.ponderacion}}</td>
+                <td>{{calif.cursosId}}</td>
+                <td>
+                    <button class="btn btn-icon btn-danger" 
+                        (click)="borrar(calif.id)"
+                        routerLinkActive="active"><i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-icon btn-primary" 
+                        (click)="editar(calif.id, calif.titulo, calif.ponderacion)"
+                        routerLinkActive="active"><i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-icon btn-success" 
+                        (click)="asignarNotas(calif.id, calif.titulo, calif.ponderacion, calif.cursosId)"
+                        routerLinkActive="active">Calificar
+                    </button>
+                </td>
+            </tr>
+          </tbody>
+    </table>
 
-    </tr>
-    <tr>
-        <td class="left">3</td>
-        <td>Historia</td>
-        <td>20/04/2021</td>
-        <td> 60 %</td>
-    </tr>
-    <tr>
-        <td class="left">4</td>
-        <td>Geografia</td>
-        <td>12/06/2021</td>
-        <td> 50 %</td>
-    </tr>
-    </tbody>
-</table>
-
-
-<div id="curso-buttons-footer">
-    <button class="btn btn-success btn-block">Confirmar</button>
-    <button class="btn btn-danger btn-block">Cancelar</button>
-</div>
 

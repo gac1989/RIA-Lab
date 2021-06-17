@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const AUTH_API = '/api/EstudiantesCursos/';
-const AUTH_API2 = '/api/EstudiantesCursos';
+const AUTH_API = '/api/CalificacionEstudiantes/';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class EstudianteCursoService {
+export class CalificacionesService {
 
   constructor(private http: HttpClient) { }
 
@@ -20,15 +20,18 @@ export class EstudianteCursoService {
   //   return this.http.get(AUTH_API , httpOptions);
   // }
 
-  agregarEstCurso(estudianteId: number, cursoId: number): Observable<any> {
-    return this.http.post(AUTH_API, {
-      estudianteId,
-      cursoId
-      }, httpOptions);
+
+
+  getCalificaciones(id: number): Observable<any>{
+    return this.http.get(AUTH_API + 'Calificacion/' + id, httpOptions);
   }
 
-  getEstudiantesCurso(cursoId: number): Observable<any>{
-    return this.http.get(AUTH_API2 + '?cursoId=' + cursoId, httpOptions);
+  postCalificaciones(estudiantesId: number, calificacionesId: number, nota: number): Observable<any>{
+    return this.http.post(AUTH_API, {
+      estudiantesId,
+      calificacionesId,
+      nota
+    }, httpOptions);
   }
 
   // editarEstudiante(id: string, documento: string, primerApellido: string, segundoApellido: string,
