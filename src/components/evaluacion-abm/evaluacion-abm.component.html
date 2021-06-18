@@ -27,10 +27,12 @@
             <label for="ponderacion" class="clr-control-label">Ponderacion:</label>
             <input
             clrInput
-            type="text"
+            type="number"
             class="form-control clr-input"
             name="descripcion"
             [(ngModel)]="form.ponderacion"
+            min=0
+            max={{totalPonderaciones}}
             required
             #programa="ngModel"
           />
@@ -43,7 +45,7 @@
         </div>
         <br><br>
         <div id="registro-buttons">
-            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+            <button class="btn btn-danger" (click)="this.router.navigateByUrl('/evaluaciones?id='+ curso);">Cancelar</button>
             <button class="btn btn-success" >Aceptar</button>
         </div>
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

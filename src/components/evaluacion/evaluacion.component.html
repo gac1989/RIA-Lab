@@ -3,7 +3,7 @@
 <caption id="curso_caption">
     <br>
     <clr-button-group class="btn-primary" id="curso_button">
-      <clr-button (click)="agregarEvaluacion(curso)">Agregar</clr-button>
+      <clr-button *ngIf="totalPonderaciones<100" (click)="agregarEvaluacion(curso)">Agregar</clr-button>
     </clr-button-group>
       </caption>
 

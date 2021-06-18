@@ -22,14 +22,14 @@
                     <td>{{estudiante.estudiante.primerNombre}}</td>
                     <td>{{estudiante.estudiante.primerApellido}}</td>
                     <td>
-                            <input  name="nota" type="number" required min="0" max="12" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
+                            <input  name="nota" type="number" required min="0" max={{ponderacion}} [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
                             <div class="alert alert-danger" role="alert" *ngIf="nota.errors && f.submitted">
                                 <div *ngIf="nota.errors.required">Nota requerida</div>
                                 <div *ngIf="nota.errors.min">
                                     Minimo 0
                                 </div>
                                 <div *ngIf="nota.errors.max">
-                                    Maximo 12
+                                    Maximo {{ponderacion}}
                                 </div>
                             </div>
                     </td>

@@ -31,6 +31,7 @@ export class CalificacionComponent implements OnInit {
   estudiantes?=[];
   curso?;
   califico?: boolean;
+  ponderacion?: number;
   
 
   constructor(private estudianteService: EstudianteCursoService, private cursosCalif: CalificacionesService,public route: ActivatedRoute, public router: Router,  private formBuilder: FormBuilder ) {
@@ -38,6 +39,8 @@ export class CalificacionComponent implements OnInit {
       this.evaluacion=params['id'];
       this.curso=params['curso'];
       this.nombreEvaluacion=params['titulo'];
+      this.ponderacion=params['ponderacion'];
+      console.log(this.ponderacion);
       this.cursosCalif.getCalificaciones(this.evaluacion).subscribe(
         data=>{
           this.califico=(data.length != 0);

@@ -19,11 +19,16 @@ export class EvaluacionAbmComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   curso?;
+  totalPonderaciones?: number = 0;
+  total?: number = 0;
 
   constructor(private authService: AuthService,private califService: EvaluacionesService, private route: ActivatedRoute, public router: Router) { 
     this.route.queryParams.subscribe(params => {
       console.log("EL CURSO EN EL ABM ES: " + params['curso'] )
       this.curso=params['curso'];
+      this.total = params['total'];
+      this.totalPonderaciones = 100 - this.total;
+      console.log(this.totalPonderaciones);
     });
   
   }

@@ -23,6 +23,7 @@ export class EstudianteCursoABMComponent implements OnInit {
   errorMessage = '';
 
   estudiantes: [];
+  estudiantescurso: [];
   cursos: [];
   nombreCurso = "";
   nombreEstudiante = "";
@@ -32,7 +33,12 @@ export class EstudianteCursoABMComponent implements OnInit {
               private estudianteService: EstudianteService,
               private estudianteCursoService: EstudianteCursoService, 
               public router: Router, 
-              private cursoService: CursosService) {}
+              private cursosService: EstudianteCursoService,
+              private cursoService: CursosService) {
+                
+    
+
+              }
 
   ngOnInit(): void {
 
@@ -48,6 +54,12 @@ export class EstudianteCursoABMComponent implements OnInit {
         this.form.selectedCurso = data.id;
       }
     )
+    this.cursosService.getEstudiantesCurso(idNum).subscribe(
+      data=>{
+        this.estudiantescurso = data;
+        console.log(this.estudiantes);
+      }
+    );
 
   }
 
