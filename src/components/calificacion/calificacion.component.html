@@ -1,12 +1,11 @@
 <clr-main-container>
     <div class="content-container">
       <div class="content-area">
-
-        <form (ngSubmit)=" f.form.valid  && onSubmit()"  #f="ngForm"
+        <form (ngSubmit)=" f.form.valid && !califico && onSubmit()"  #f="ngForm"
         novalidate>
             <table class="table table-compact">
             <caption>
-                <h1>Calificar:  {{nombreEvaluacion}}</h1>
+                <h1>Estudiantes del curso {{nombreEvaluacion}}</h1>
             </caption>
             <thead>
                 <tr>
@@ -22,23 +21,22 @@
                     <td>{{estudiante.estudiante.primerNombre}}</td>
                     <td>{{estudiante.estudiante.primerApellido}}</td>
                     <td>
-                            <input  name="nota" type="number" required min="0" max="12" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
-                            <div class="alert alert-danger" role="alert" *ngIf="nota.errors && f.submitted">
-                                <div *ngIf="nota.errors.required">Nota requerida</div>
-                                <div *ngIf="nota.errors.min">
-                                    Minimo 0
-                                </div>
-                                <div *ngIf="nota.errors.max">
-                                    Maximo 12
-                                </div>
+                        <input  name="nota" type="number" required min="0" max="{{ponderacion}}" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
+                        <div class="alert alert-danger" role="alert" *ngIf="nota.errors && f.submitted">
+                            <div *ngIf="nota.errors.required">Nota requerida</div>
+                            <div *ngIf="nota.errors.min">
+                                Minimo 0
                             </div>
+                            <div *ngIf="nota.errors.max">
+                                Maximo 12
+                            </div>
+                        </div>
                     </td>
-                
                 </tr>
             </tbody>
             </table>
-            <br>
-            <button class="btn btn-success" >Aceptar</button>
+            <button class="btn btn-success" *ngIf="!califico">Aceptar</button>
+            <div *ngIf="califico"> <h3> Ya existe una calificación para esta evaluación</h3></div>
         </form>
       </div>
     </div>

@@ -11,6 +11,8 @@
             <h1 >Agregar Estudiante a Curso</h1>
             <div>
               <label for="estudiante" class="clr-control-label">Seleccione el estudiante:</label>
+              <input type="text" clrInput placeholder="Ingrese el identificador"       
+               [(ngModel)]="form.selectedEstudiante" name="buscar"/>
                 <select clrSelect [(ngModel)]="form.selectedEstudiante" name="estudiante" required>
                     <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id" >
                         {{estudiante.primerNombre}} {{estudiante.primerApellido}}
@@ -19,16 +21,7 @@
             </div>
             <br><br>
             <div>
-              <label for="curso" class="clr-control-label">Seleccione el curso:</label>
-              <!-- <input  (ngModel)="form.selectedCurso"
-                      name="selectedCurso"
-                      clrInput 
-                      type="text" 
-                      disabled 
-                      value={{form.nombreCurso}}
-
-              /> -->
-    
+              <label for="curso" class="clr-control-label">Curso:</label>
                 <select disabled clrSelect [(ngModel)]="form.selectedCurso" selected="form.selectedCurso" 
                         name="curso" required >
                     <option *ngFor="let curso of cursos" [value]="curso.id">
@@ -38,11 +31,14 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/cursos');">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Ya tiene el rol asignado.<br />{{ errorMessage }}
+            </div>
+            <div id="logo-utec">
+              <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
             </div>
           </form>
           <!-- <div class="alert alert-success" *ngIf="isSuccessful">
@@ -50,7 +46,33 @@
             <button class="btn btn-success" (click)="goHome()">VOLVER</button>
           </div> -->
         </div>
-          <div id="logo-utec">
-            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-        </div>
-    
+        <br>
+        <br>
+        <table class="table table-compact">
+          <caption>
+            <h1>Estudiantes del curso {{nombreCurso}}</h1>
+          </caption>
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Primer Apellido</th>
+              <th>Segundo Apellido</th>
+              <th>Primer Nombre</th>
+              <th>Segundo Nombre</th>
+              <th>Fecha Nacimiento</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let estudiante of estudiantescurso">
+              <td>{{estudiante.estudiante.documento}}</td>
+              <td>{{estudiante.estudiante.primerApellido}}</td>
+              <td>{{estudiante.estudiante.segundoApellido}}</td>
+              <td>{{estudiante.estudiante.primerNombre}}</td>
+              <td>{{estudiante.estudiante.segundoNombre}}</td>
+              <td >{{estudiante.estudiante.fechaNacimiento}}</td>
+              <td ><button class="btn btn-icon btn-warning" (click)="borrar(estudiante.id)"> <i class="fas fa-trash-alt"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+

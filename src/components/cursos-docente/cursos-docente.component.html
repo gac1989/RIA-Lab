@@ -1,13 +1,13 @@
 <clr-main-container>
     <div class="content-container">
       <main class="content-area">
-        <table class="table">
+        <table class="table" [clr-nav-level]="1">
           <caption>
             <h1>Mis Cursos</h1>
           </caption>
           <thead>
             <tr>
-              <th>ID</th>
+              <th >ID</th>
               <th>Curso</th>
               <th>Descripcion</th>
               <th>Programa</th>
@@ -34,6 +34,10 @@
                 <button class="btn btn-icon btn-primary" 
                     (click)="mostrarEstudiantes(curso.id, curso.nombre)"
                     routerLinkActive="active">Estudiantes
+                </button>
+                <button class="btn btn-icon btn-primary" 
+                    (click)="mostrarResultado(curso.id, curso.nombre)"
+                    routerLinkActive="active">Resultado
                 </button>
               </td>
             </tr>

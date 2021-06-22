@@ -26,6 +26,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { RegistroComponent } from './registro/registro.component';
 import { RoleComponent } from './role/role.component';
 import { CheckDocenteGuard } from 'src/guards/check-docente.guard';
+import { ResultadoCursoComponent } from './resultado-curso/resultado-curso.component';
+
 
 const routes: Routes = [
   {
@@ -51,6 +53,11 @@ const routes: Routes = [
     path:'agregarcurso',
     component: CursoABMComponent,
     canActivate: [CheckLogginGuard, CheckRoleGuard]
+  },
+  {
+    path:'resultadocurso',
+    component: ResultadoCursoComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
     path:'editarcurso',

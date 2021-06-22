@@ -30,7 +30,8 @@
               /> -->
     
                 <select clrSelect [(ngModel)]="form.selectedCurso" 
-                        name="curso" required >
+                        name="curso" required
+                        (change)="estudiantesCurso(form.selectedCurso)" >
                     <option *ngFor="let curso of cursos" [value]="curso.id">
                     {{curso.nombre}}
                     </option>
@@ -53,4 +54,33 @@
           <div id="logo-utec">
             <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
         </div>
+        <br>
+        <br>
+        <table class="table table-compact">
+          <caption>
+            <h1>Estudiantes del curso {{nombreCurso}}</h1>
+          </caption>
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Primer Apellido</th>
+              <th>Segundo Apellido</th>
+              <th>Primer Nombre</th>
+              <th>Segundo Nombre</th>
+              <th>Fecha Nacimiento</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let estudiante of estudiantescurso">
+              <td>{{estudiante.estudiante.documento}}</td>
+              <td>{{estudiante.estudiante.primerApellido}}</td>
+              <td>{{estudiante.estudiante.segundoApellido}}</td>
+              <td>{{estudiante.estudiante.primerNombre}}</td>
+              <td>{{estudiante.estudiante.segundoNombre}}</td>
+              <td >{{estudiante.estudiante.fechaNacimiento}}</td>
+              <td ><button class="btn btn-icon btn-warning" (click)="borrar(estudiante.id)"> <i class="fas fa-trash-alt"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
     

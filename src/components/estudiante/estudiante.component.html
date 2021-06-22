@@ -1,50 +1,30 @@
-<clr-main-container>
-  <div class="content-container">
-    <div class="content-area">
-      <table class="table table-compact">
-        <caption>
-          Lista de Estudiantes
-        </caption>
-        <thead>
-          <tr>
-            <th class="left">ID</th>
-            <th>Documento</th>
-            <th>Primer Apellido</th>
-            <th>Segundo Apellido</th>
-            <th>Primer Nombre</th>
-            <th>Segundo Nombre</th>
-            <th>Fecha Nacimiento</th>
-            <th></th>
-            <th></th>
-            <th class="left"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let estudiante of estudiantes">
-            <td class="left">{{estudiante.id}}</td>
-            <td>{{estudiante.documento}}</td>
-            <td>{{estudiante.primerApellido}}</td>
-            <td>{{estudiante.segundoApellido}}</td>
-            <td>{{estudiante.primerNombre}}</td>
-            <td>{{estudiante.segundoNombre}}</td>
-            <td >{{estudiante.fechaNacimiento}}</td>
-            <td> <button class="btn btn-icon btn-primary" 
-                        (click)="editar(estudiante.id)"
-                        routerLinkActive="active"><i class="fas fa-edit"></i></button></td>
-            <td class="left"> 
-              <button class="btn btn-icon btn-warning" (click)="borrar(estudiante.id)"> <i class="fas fa-trash-alt"></i></button>
-            </td>
-            <td class="left"> 
-              <button class="btn btn-icon btn-success" (click)="agregarEstudiante(estudiante.id)">
-                <i class="fas fa-user-plus"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</clr-main-container>
+<div class="panel">
+  <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column [clrDgField]="'name'">Nombre</clr-dg-column>
+    <clr-dg-column [clrDgField]="'creation'">Primer apellido</clr-dg-column>
+    <clr-dg-column [clrDgField]="'pokemon'">Segundo apellido</clr-dg-column>
+    <clr-dg-column [clrDgField]="'pokemon'">Acciones</clr-dg-column>
+
+    <clr-dg-row *ngFor="let user of estudiantes">
+        <clr-dg-cell>{{user.id}}</clr-dg-cell>
+        <clr-dg-cell>{{user.primerNombre}}</clr-dg-cell>
+        <clr-dg-cell>{{user.primerApellido}}</clr-dg-cell>
+        <clr-dg-cell>{{user.segundoApellido}}</clr-dg-cell>
+        <clr-dg-cell>
+            <button class="btn btn-icon btn-primary" (click)="editar(user.id)" routerLinkActive="active"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-icon btn-warning" (click)="borrar(user.id)"> <i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-icon btn-success" (click)="agregarEstudiante(user.id)"><i class="fas fa-user-plus"></i></button>
+        </clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{total}} users
+        <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="5"></clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>
 
 
     

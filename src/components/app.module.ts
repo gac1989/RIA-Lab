@@ -39,7 +39,9 @@ import { EvaluacionEditComponent } from './evaluacion-edit/evaluacion-edit.compo
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
 import { AsistenciaComponent } from './asistencia/asistencia.component';
-
+import { ResultadoCursoComponent } from './resultado-curso/resultado-curso.component';
+import { ChartsModule } from 'ng2-charts';
+ 
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { AsistenciaComponent } from './asistencia/asistencia.component';
     EvaluacionEditComponent,
     EstudianteCursoComponent,
     CalificacionComponent,
-    AsistenciaComponent
+    AsistenciaComponent,
+    ResultadoCursoComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,8 @@ import { AsistenciaComponent } from './asistencia/asistencia.component';
     MatToolbarModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

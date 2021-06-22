@@ -51,8 +51,11 @@ export class EvaluacionEditComponent implements OnInit {
 
   onSubmit(): void {
 
+    if(!this.checkNotas()){
+      this.showNotasAlert();
+      return;
+    }
     let { id, titulo, ponderacion, cursoId } = this.form;
-   
     this.evaluacionesService.putEvaluaciones(id, titulo, ponderacion, cursoId).subscribe(
       data => {
         this.isSuccessful = true;
@@ -65,9 +68,7 @@ export class EvaluacionEditComponent implements OnInit {
         this.showErrorAlert();
       }
     );
-
     for(let estudiante of this.calificaciones){
-      
       if(estudiante.estudiante.nota){
         console.log(estudiante.estudiante.nota);
         this.califService.putCalificaciones(estudiante.id, estudiante.estudiante.id, this.form.id=id, estudiante.estudiante.nota).subscribe(
@@ -88,6 +89,14 @@ export class EvaluacionEditComponent implements OnInit {
     this.router.navigate(['/evaluaciones'], { queryParams: { id } });
   }
 
+  checkNotas(): boolean{
+    for(let estudiante of this.calificaciones){
+      if(0>estudiante.estudiante.nota || estudiante.estudiante.nota>this.form.ponderacion){
+        return false;
+      }
+    }
+    return true;
+  }
 
   showSuccessAlert() {
     Swal.fire('OK', 'Clase editada con éxito!', 'success')
@@ -97,6 +106,9 @@ export class EvaluacionEditComponent implements OnInit {
     Swal.fire('Error!', 'Algo salió mal!', 'error')
   }
 
+  showNotasAlert() {
+    Swal.fire('Error!', 'La nota maxima es: ' + this.form.ponderacion, 'error')
+  }
   ngOnInit(): void {
   }
 
