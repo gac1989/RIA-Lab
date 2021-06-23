@@ -11,14 +11,11 @@ import {ClrDatagridStateInterface} from "@clr/angular";
 })
 export class EstudianteComponent implements OnInit {
 
-
-
-  
   estudiantes?= [];
 
   ngOnInit(): void {
     this.loading=false;
-    this.estudianteService.getEstudiantesPag(5,1).subscribe(
+    this.estudianteService.getEstudiantesPag(5,1,'','','').subscribe(
       data => {
         this.estudiantes = data.lista;
         this.total=data.size;
@@ -26,26 +23,49 @@ export class EstudianteComponent implements OnInit {
     );
   }
 
+  
+ 
+
   users:[];
   total: number;
   loading: boolean;
 
   refresh(state: ClrDatagridStateInterface) {
-    this.loading=true;
-      this.estudianteService.getEstudiantesPag(5,state.page.current).subscribe(
+    
+    if(state.filters){
+      let filters:{[prop:string]: string} = {};
+      for (let filter of state.filters) {
+        let {property, value} = <{property: string, value: string}>filter;
+        filters[property] = value;
+      }
+      this.loading=true;
+      this.estudianteService.getEstudiantesPag(state.page.size,state.page.current,filters['primerNombre'] ,filters['primerApellido'],filters['documento']).subscribe(
         data => {
           this.estudiantes = data.lista;
+          console.log(this.estudiantes);
+          this.total=data.size;
           this.loading = false;
         }
       );
+    }
+    else{
+      this.loading=true;
+      this.estudianteService.getEstudiantesPag(state.page.size,state.page.current,'','','').subscribe(
+        data => {
+          this.estudiantes = data.lista;
+          console.log(this.estudiantes)
+          this.loading = false;
+        }
+      );
+    }
+   }
+
+   change(e){
+    console.log(e);
    }
 
   constructor(private estudianteService: EstudianteService, public router: Router) {
-    console.log("ACA PRIMERO??");
   }
-
-
-
 
   editar(id) {
     // this.router.navigateByUrl('/editar/' + id);
@@ -89,6 +109,5 @@ export class EstudianteComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
-
 
 }

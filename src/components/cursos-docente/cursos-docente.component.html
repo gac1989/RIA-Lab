@@ -1,28 +1,28 @@
 <clr-main-container>
     <div class="content-container">
       <main class="content-area">
-        <table class="table" [clr-nav-level]="1">
+        <table class="table" >
           <caption>
             <h1>Mis Cursos</h1>
           </caption>
           <thead>
             <tr>
-              <th >ID</th>
-              <th>Curso</th>
-              <th>Descripcion</th>
-              <th>Programa</th>
-              <th>Docente</th>
-              <th>Acciones</th>
+              <th>ID</th>
+              <th class="left">Curso</th>
+              <th class="left">Descripcion</th>
+              <th class="left">Programa</th>
+              <th class="left">Docente</th>
+              <th class="left">Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let curso of misCursos">
-              <td>{{curso.id}}</td>
-              <td>{{curso.nombre}}</td>
-              <td>{{curso.descripcion}}</td>
-              <td>{{curso.programa}}</td>
-              <td id="idDocente" value="curso.docenteId">{{curso.docente.userName}}</td>
-              <td>
+              <td >{{curso.id}}</td>
+              <td class="left">{{curso.nombre}}</td>
+              <td class="left">{{curso.descripcion}}</td>
+              <td class="left">{{curso.programa}}</td>
+              <td id="idDocente" value="curso.docenteId" class="left">{{curso.docente.userName}}</td>
+              <td class="left">
                 <button class="btn btn-icon btn-primary" 
                     (click)="mostrarClases(curso.id, curso.nombre)"
                     routerLinkActive="active">Clases
