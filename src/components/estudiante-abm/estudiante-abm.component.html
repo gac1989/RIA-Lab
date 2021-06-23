@@ -7,7 +7,7 @@
               #f="ngForm"
               novalidate>
             <h1 >Crear Estudiante</h1>
-            <br><br>
+            <br>
             <div>
               <label for="documento" class="clr-control-label">Numero de documento:</label>
                 <input
@@ -68,7 +68,7 @@
                 *ngIf="primerApellido.errors && f.submitted">
                 Primer apellido es requerido
                 </div>
-
+             
                 <label for="segundoApellido" class="clr-control-label">Segundo Apellido:</label>
                 <input
                 clrInput
@@ -105,7 +105,7 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/home');">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

@@ -1,13 +1,15 @@
 <div class="panel">
   <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
     <clr-dg-column>ID</clr-dg-column>
-    <clr-dg-column [clrDgField]="'name'">Nombre</clr-dg-column>
-    <clr-dg-column [clrDgField]="'creation'">Primer apellido</clr-dg-column>
-    <clr-dg-column [clrDgField]="'pokemon'">Segundo apellido</clr-dg-column>
+    <clr-dg-column [clrDgField]="'documento'">Documento</clr-dg-column>
+    <clr-dg-column [clrDgField]="'primerNombre'">Nombre</clr-dg-column>
+    <clr-dg-column [clrDgField]="'primerApellido'">Primer apellido</clr-dg-column>
+    <clr-dg-column [clrDgField]="'segundoApellido'">Segundo apellido</clr-dg-column>
     <clr-dg-column [clrDgField]="'pokemon'">Acciones</clr-dg-column>
 
     <clr-dg-row *ngFor="let user of estudiantes">
         <clr-dg-cell>{{user.id}}</clr-dg-cell>
+        <clr-dg-cell>{{user.documento}}</clr-dg-cell>
         <clr-dg-cell>{{user.primerNombre}}</clr-dg-cell>
         <clr-dg-cell>{{user.primerApellido}}</clr-dg-cell>
         <clr-dg-cell>{{user.segundoApellido}}</clr-dg-cell>
@@ -19,9 +21,12 @@
     </clr-dg-row>
 
     <clr-dg-footer>
-        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-        of {{total}} users
-        <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="5"></clr-dg-pagination>
+      
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      of {{total}} users
+      <clr-dg-pagination #pagination [clrDgTotalItems]="total">
+        <clr-dg-page-size [clrPageSizeOptions]="[5, 10,15]">Page</clr-dg-page-size>
+      </clr-dg-pagination>
     </clr-dg-footer>
   </clr-datagrid>
 </div>

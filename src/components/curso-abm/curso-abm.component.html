@@ -26,7 +26,7 @@
                 *ngIf="nombre.errors && f.submitted">
                 Nombre curso es requerido
                 </div>
-
+                <br>
                 <label for="descripcion" class="clr-control-label">Descripción:</label>
                 <input
                 clrInput
@@ -37,6 +37,7 @@
                 required
                 #descripcion="ngModel"
                 />
+                <br>
                 <!-- <h4>Nombre de programa:</h4> -->
                 <label for="programa" class="clr-control-label">Nombre de programa:</label>
                 <input
@@ -67,7 +68,7 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/home');">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

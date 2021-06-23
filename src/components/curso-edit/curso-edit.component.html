@@ -7,7 +7,7 @@
               #f="ngForm"
               novalidate>
             <h1> Editar Curso: </h1>
-            <br><br>
+            <br>
             <div>
               <label for="curso" class="clr-control-label">Nombre Curso:</label>
                 <input
@@ -25,7 +25,7 @@
                 *ngIf="nombre.errors && f.submitted">
                 Nombre curso es requerido
                 </div>
-
+                <br>
                 <label for="descripcion" class="clr-control-label">Descripción:</label>
                 <input
                 clrInput
@@ -36,6 +36,7 @@
                 required
                 #descripcion="ngModel"
                 />
+                <br>
                 <label for="programa" class="clr-control-label">Nombre de programa:</label>
                 <input
                 clrInput
@@ -52,6 +53,7 @@
                 *ngIf="programa.errors && f.submitted">
                 Nombre programa es requerido
                 </div>
+                <br>
                 <label for="docente" class="clr-control-label">Seleccione el docente asignar:</label>
                 <select clrSelect [(ngModel)]="form.docenteId" selected="form.docenteId" name="docenteId" required>
                     <option *ngFor="let docente of docentes" [value]="docente.id">
@@ -62,7 +64,7 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/cursos');">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

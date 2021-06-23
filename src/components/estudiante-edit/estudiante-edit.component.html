@@ -105,7 +105,7 @@
           </div>
           <br><br>
           <div id="registro-buttons">
-              <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
+              <button class="btn btn-danger" (click)="this.router.navigateByUrl('/estudiantes');">Cancelar</button>
               <button class="btn btn-success" >Aceptar</button>
           </div>
           <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
