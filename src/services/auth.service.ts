@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 const AUTH_API = '/api/Authenticate/';
 
@@ -48,6 +48,8 @@ export class AuthService {
     }, httpOptions);
   }
 
-
+  getUserInfo(): Observable<any> {
+    return this.http.get(AUTH_API + 'user-info', httpOptions);
+  }
 
 }

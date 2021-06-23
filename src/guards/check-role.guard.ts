@@ -18,11 +18,7 @@ export class CheckRoleGuard implements CanActivate {
     const isLoggedIn = !!this.tokenStorageService.getToken();
     if (isLoggedIn) {
       console.log(this.tokenStorageService.getRoleName());
-      if(this.tokenStorageService.getRoleName() == "ADMIN"){
-        return true;
-      }else{
-        return false;
-      }
+      return (this.tokenStorageService.getRoleName().search("ADMIN") > -1 );
     }
     return false;
 

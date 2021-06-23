@@ -18,11 +18,7 @@ export class CheckDocenteGuard implements CanActivate {
     const isLoggedIn = !!this.tokenStorageService.getToken();
     if (isLoggedIn) {
       console.log(this.tokenStorageService.getRoleName());
-      if(this.tokenStorageService.getRoleName() == "DOCENTE"){
-        return true;
-      }else{
-        return false;
-      }
+      return (this.tokenStorageService.getRoleName().search("DOCENTE") > -1 );
     }
     return false;
 
