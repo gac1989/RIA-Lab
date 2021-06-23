@@ -53,4 +53,7 @@ export class EstudianteService {
     return this.http.get(AUTH_API + id, httpOptions);
   }
 
+  getEstudiantesPag(size: number, index: number): Observable<any>{
+    return this.http.get(AUTH_API + 'api/Estudiantes/Paging' + '?size=' + size + '&index=' + index , httpOptions);
+  }
 }

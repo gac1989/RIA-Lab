@@ -55,6 +55,11 @@ const routes: Routes = [
     canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
+    path:'resultadocurso',
+    component: ResultadoCursoComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
+  },
+  {
     path:'editarcurso',
     component: CursoEditComponent,
     canActivate: [CheckLogginGuard, CheckRoleGuard]
@@ -86,11 +91,6 @@ const routes: Routes = [
   {
     path:'calificaciones',
     component: CalificacionComponent,
-    canActivate: [CheckLogginGuard, CheckDocenteGuard]
-  },
-  {
-    path:'resultadocurso',
-    component: ResultadoCursoComponent,
     canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {

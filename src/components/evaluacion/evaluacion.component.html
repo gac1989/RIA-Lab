@@ -1,47 +1,43 @@
-
-
 <caption id="curso_caption">
     <br>
     <clr-button-group class="btn-primary" id="curso_button">
-      <clr-button *ngIf="totalPonderaciones<100" (click)="agregarEvaluacion(curso)">Agregar</clr-button>
+        <clr-button *ngIf="totalPonderaciones<100" (click)="agregarEvaluacion(curso)">Agregar</clr-button>
     </clr-button-group>
-      </caption>
+</caption>
 
-    <table class="table">
-        <caption>
-           <h1>Evaluaciones del curso {{nombreCurso}}</h1>
-        </caption>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titulo</th>
-                <th>Ponderacion</th>
-                <th>Curso</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let calif of evaluaciones">
-                <td>{{calif.id}}</td>
-                <td>{{calif.titulo}}</td>
-                <td>{{calif.ponderacion}}</td>
-                <td>{{calif.cursosId}}</td>
-                <td>
-                    <button class="btn btn-icon btn-danger" 
-                        (click)="borrar(calif.id)"
-                        routerLinkActive="active"><i class="fas fa-trash-alt"></i>
-                    </button>
-                    <button class="btn btn-icon btn-primary" 
-                        (click)="editar(calif.id, calif.titulo, calif.ponderacion)"
-                        routerLinkActive="active"><i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-icon btn-success" 
-                        (click)="asignarNotas(calif.id, calif.titulo, calif.ponderacion, calif.cursosId)"
-                        routerLinkActive="active">Calificar
-                    </button>
-                </td>
-            </tr>
-          </tbody>
-    </table>
-
-
+<table class="table">
+    <caption>
+        <h1>Evaluaciones del curso {{nombreCurso}}</h1>
+    </caption>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Ponderacion</th>
+            <th>Curso</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let calif of evaluaciones">
+            <td>{{calif.id}}</td>
+            <td>{{calif.titulo}}</td>
+            <td>{{calif.ponderacion}}</td>
+            <td>{{calif.cursosId}}</td>
+            <td>
+                <button class="btn btn-icon btn-danger" 
+                    (click)="borrar(calif.id)"
+                    routerLinkActive="active"><i class="fas fa-trash-alt"></i>
+                </button>
+                <button class="btn btn-icon btn-primary" 
+                    (click)="editar(calif.id, calif.titulo, calif.ponderacion)"
+                    routerLinkActive="active"><i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-icon btn-success" 
+                    (click)="asignarNotas(calif.id, calif.titulo, calif.ponderacion, calif.cursosId)"
+                    routerLinkActive="active">Calificar
+                </button>
+            </td>
+        </tr>
+        </tbody>
+</table>

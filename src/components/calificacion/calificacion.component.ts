@@ -22,6 +22,7 @@ export class CalificacionComponent implements OnInit {
     descripcion: null,
   };
 
+  ponderacion?;
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -31,16 +32,14 @@ export class CalificacionComponent implements OnInit {
   estudiantes?=[];
   curso?;
   califico?: boolean;
-  ponderacion?: number;
   
 
   constructor(private estudianteService: EstudianteCursoService, private cursosCalif: CalificacionesService,public route: ActivatedRoute, public router: Router,  private formBuilder: FormBuilder ) {
     this.route.queryParams.subscribe(params => {
       this.evaluacion=params['id'];
       this.curso=params['curso'];
-      this.nombreEvaluacion=params['titulo'];
       this.ponderacion=params['ponderacion'];
-      console.log(this.ponderacion);
+      this.nombreEvaluacion=params['titulo'];
       this.cursosCalif.getCalificaciones(this.evaluacion).subscribe(
         data=>{
           this.califico=(data.length != 0);
@@ -57,28 +56,45 @@ export class CalificacionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('estamos aca!!!!');
-    if(!this.califico){
+    if(!this.checkNotas()){
+      this.showNotaAlert();
+      return;
+    }
+    if(!this.califico && this.checkNotas()){
       for(let estudiante of this.estudiantes){
-          this.cursosCalif.postCalificaciones(estudiante.estudiante.id, this.evaluacion, estudiante.estudiante.nota).subscribe(
-            data=>{
-              console.log(data);
-            }
-          );
+        this.cursosCalif.postCalificaciones(estudiante.estudiante.id, this.evaluacion, estudiante.estudiante.nota).subscribe(
+          data=>{
+            console.log(data);
+          }
+        );
+      }
+      let id = this.curso;
+      this.showSuccessAlert();
+      this.router.navigate(['/evaluaciones'], { queryParams: { id } });
+    }
+  }
+
+  checkNotas(): boolean{
+    for(let estudiante of this.estudiantes){
+      if(!estudiante.estudiante.nota || 0>estudiante.estudiante.nota || estudiante.estudiante.nota>this.ponderacion){
+        return false;
       }
     }
+    return true;
   }
 
   ngOnInit(): void {
   }
 
   showSuccessAlert() {
-    Swal.fire('OK', 'Usuario registrado con éxito!', 'success')
+    Swal.fire('OK', 'Calificaciones registradas con éxito!', 'success')
   }
 
   showErrorAlert() {
     Swal.fire('Error!', 'Algo salió mal!', 'error')
   }
 
+  showNotaAlert() {
+    Swal.fire('Error!', 'Ingrese una nota valida' , 'error')
+  }
 }
-

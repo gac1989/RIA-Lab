@@ -25,6 +25,7 @@ export class CursoEstudianteABMComponent implements OnInit {
   errorMessage = '';
 
   estudiantes: [];
+  estudiantescurso: [];
   cursos: [];
   nombreCurso = "";
   nombreEstudiante = "";
@@ -53,6 +54,17 @@ this.estudianteService.getEstudiante(idNum).subscribe(
     }
 )
 
+}
+
+estudiantesCurso(cursoid){
+  //const {selectedCurso } = this.form;
+  this.estudianteCursoService.getEstudiantesCurso(cursoid).subscribe(
+    data=>{
+      this.estudiantescurso = data;
+      console.log(this.estudiantescurso);
+      //console.log(selectedCurso);
+    }
+  )
 }
 
 
@@ -86,6 +98,14 @@ this.estudianteCursoService.agregarEstCurso(selectedEstudiante, selectedCurso).s
     }
 );
 
+}
+
+borrar(id){
+  this.estudianteCursoService.borrarEstudiante(id).subscribe(
+    data => {
+      window.location.reload();
+    }
+  );
 }
 
 goHome(){

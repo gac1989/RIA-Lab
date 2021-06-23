@@ -39,13 +39,9 @@ import { EvaluacionEditComponent } from './evaluacion-edit/evaluacion-edit.compo
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
 import { AsistenciaComponent } from './asistencia/asistencia.component';
-import { MatSelectModule } from '@angular/material/select';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ResultadoCursoComponent } from './resultado-curso/resultado-curso.component';
-//import { ChartsModule } from 'ng2-charts/ng2-charts';
-
-
-
+import { ChartsModule } from 'ng2-charts';
+ 
 
 @NgModule({
   declarations: [
@@ -73,8 +69,7 @@ import { ResultadoCursoComponent } from './resultado-curso/resultado-curso.compo
     EstudianteCursoComponent,
     CalificacionComponent,
     AsistenciaComponent,
-    ResultadoCursoComponent,
-    
+    ResultadoCursoComponent
   ],
   imports: [
     BrowserModule,
@@ -93,11 +88,7 @@ import { ResultadoCursoComponent } from './resultado-curso/resultado-curso.compo
     MatPaginatorModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    BrowserAnimationsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    NgxMatSelectSearchModule,
-    //ChartsModule
+    ChartsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

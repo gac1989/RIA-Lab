@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EstudianteService } from 'src/services/estudiante.service';
 import Swal from 'sweetalert2';
-
+import {ClrDatagridStateInterface} from "@clr/angular";
 
 @Component({
   selector: 'app-estudiante',
@@ -11,17 +11,40 @@ import Swal from 'sweetalert2';
 })
 export class EstudianteComponent implements OnInit {
 
+
+
+  
   estudiantes?= [];
 
-  ngOnInit(): void {}
-
-  constructor(private estudianteService: EstudianteService, public router: Router) {
-    this.estudianteService.getEstudiantes().subscribe(
+  ngOnInit(): void {
+    this.loading=false;
+    this.estudianteService.getEstudiantesPag(5,1).subscribe(
       data => {
-        this.estudiantes = data;
+        this.estudiantes = data.lista;
+        this.total=data.size;
       }
     );
   }
+
+  users:[];
+  total: number;
+  loading: boolean;
+
+  refresh(state: ClrDatagridStateInterface) {
+    this.loading=true;
+      this.estudianteService.getEstudiantesPag(5,state.page.current).subscribe(
+        data => {
+          this.estudiantes = data.lista;
+          this.loading = false;
+        }
+      );
+   }
+
+  constructor(private estudianteService: EstudianteService, public router: Router) {
+    console.log("ACA PRIMERO??");
+  }
+
+
 
 
   editar(id) {

@@ -33,7 +33,6 @@ export class EstudianteCursoABMComponent implements OnInit {
               private estudianteService: EstudianteService,
               private estudianteCursoService: EstudianteCursoService, 
               public router: Router, 
-              private cursosService: EstudianteCursoService,
               private cursoService: CursosService) {
                 
     
@@ -54,7 +53,7 @@ export class EstudianteCursoABMComponent implements OnInit {
         this.form.selectedCurso = data.id;
       }
     )
-    this.cursosService.getEstudiantesCurso(idNum).subscribe(
+    this.estudianteCursoService.getEstudiantesCurso(idNum).subscribe(
       data=>{
         this.estudiantescurso = data;
         console.log(this.estudiantes);
@@ -94,6 +93,14 @@ export class EstudianteCursoABMComponent implements OnInit {
       }
     );
 
+  }
+
+  borrar(id){
+    this.estudianteCursoService.borrarEstudiante(id).subscribe(
+      data => {
+        window.location.reload();
+      }
+    );
   }
 
   goHome(){

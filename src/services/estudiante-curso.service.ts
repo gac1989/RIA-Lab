@@ -44,9 +44,9 @@ export class EstudianteCursoService {
   //   }, httpOptions);
   // }
 
-  // borrarEstudiante(id: number): Observable<any>{
-  //   return this.http.delete(AUTH_API + id, httpOptions);
-  // }
+  borrarEstudiante(id: number): Observable<any>{
+    return this.http.delete(AUTH_API + id, httpOptions);
+  }
 
   // getEstudiante(id:number): Observable<any>{
   //   return this.http.get(AUTH_API + id, httpOptions);

@@ -31,7 +31,7 @@
           </div>
         <table class="table table-compact">
           <caption>
-              <h1>Calificar:  {{form.titulo}}</h1>
+              <h1>Calificaciones:</h1>
           </caption>
           <thead>
               <tr>
@@ -49,14 +49,14 @@
                   <td>{{estudiante.estudiante.primerApellido}}</td>
                   <td>{{estudiante.nota}}</td>
                   <td>
-                      <input  name="nota" type="number" required min="0" max="12" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
+                      <input  name="nota" type="number" required min="0" max="{{form.ponderacion}}" [(ngModel)]="estudiante.estudiante.nota" [ngModelOptions]="{standalone: true}" #nota="ngModel" class="form-control clr-input"/>
                   </td>
               </tr>
           </tbody>
         </table>
       <br>
       <div id="registro-buttons">
-        <button class="btn btn-danger" >Cancelar</button>
+        <a href="/evaluaciones?id={{form.cursoId}}" class="btn btn-danger" >Cancelar</a>
         <button class="btn btn-success" >Aceptar</button>
       </div>
     </form>
