@@ -60,8 +60,8 @@ export class ClaseComponent implements OnInit {
       });
   }
 
-  asistencia(id, nombre){
-    this.router.navigate(['/asistencia'], { queryParams: { id, nombre } });
+  asistencia(id, nombre, curso){
+    this.router.navigate(['/asistencia'], { queryParams: { id, nombre, curso } });
   }
 
   ngOnInit(): void {

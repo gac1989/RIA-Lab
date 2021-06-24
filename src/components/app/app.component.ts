@@ -4,8 +4,10 @@ import { TokenStorageService } from 'src/services/token-storage.service';
 import { CheckRoleGuard } from 'src/guards/check-role.guard';
 import { CheckLogginGuard } from 'src/guards/check-loggin.guard';
 import { ActivatedRouteSnapshot } from '@angular/router';
+import '@cds/core/icon/register.js';
+import { ClarityIcons, userIcon } from '@cds/core/icon';
 
-
+ClarityIcons.addIcons(userIcon);
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

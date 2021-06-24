@@ -10,11 +10,8 @@
       <clr-button (click)="agregarClase(curso)">Agregar</clr-button>
     </clr-button-group>
 </caption>
-
+<br>
 <table class="table" id="cursoTable">
-    <caption>
-        Lista de Clases
-    </caption>
     <thead>
         <tr>
             <th>ID</th>
@@ -40,7 +37,7 @@
                     routerLinkActive="active"><i class="fas fa-trash-alt"></i>
                 </button>
                 <button class="btn btn-icon btn-success" 
-                    (click)="asistencia(clase.id, clase.nombre)"
+                    (click)="asistencia(clase.id, clase.titulo, curso)"
                     routerLinkActive="active">Asistencia
                 </button>
             </td>

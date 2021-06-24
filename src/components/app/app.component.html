@@ -8,50 +8,75 @@
         </div>
         <div class="header-nav" [clr-nav-level]="1">
             <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
-            <clr-dropdown >
+            <clr-dropdown [clrCloseMenuOnItemClick]="true">
               <a clrDropdownToggle *ngIf="showAdminBoard">
                 <span class="nav-link nav-text">Cursos</span>
               </a>
-              <div class="dropdown-menu">
+              <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
                 <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarcurso"> Agregar Curso</a>
-                <div class="dropdown-divider"></div>
-                  <a href="/cursos" class="dropdown-item">Ver Cursos</a>
-              </div>
+                <a href="/cursos" class="dropdown-item">Ver Cursos</a>
+              </clr-dropdown-menu>
             </clr-dropdown>
-            <clr-dropdown >
+            <clr-dropdown [clrCloseMenuOnItemClick]="true">
               <a clrDropdownToggle *ngIf="showAdminBoard">
                 <span class="nav-link nav-text">Estudiantes</span>
               </a>
-              <div class="dropdown-menu">
+              <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
                 <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarestudiante"> Agregar Estudiante</a>
-                <div class="dropdown-divider"></div>
-                  <a href="/estudiantes" class="dropdown-item">Ver Estudiantes</a>
-              </div>
+                <a href="/estudiantes" class="dropdown-item">Ver Estudiantes</a>
+              </clr-dropdown-menu>
             </clr-dropdown>
             <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
             <a *ngIf="showIsLoggin && !showAdminBoard" href="/cursos-docente" class="nav-link nav-text">Mis cursos</a>
         </div>
         <div class="header-actions">
-            <div class="navbar-nav ml-auto" *ngIf="!isLoggedIn"> 
-                <a href="/registro" class="nav-link nav-icon-text">
-                <span class="nav-text">Registrarse</span>
-                </a>
-                <a href="/login" class="nav-link nav-icon-text">
-                <span class="nav-text">Iniciar Sesión</span>
-                </a>
-            </div>
-        
-            <div class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-                <!-- <a href="/perfil" class="nav-link nav-text">Perfil</a> -->
-                <a href class="nav-link nav-icon-text" (click)="logout()">LogOut</a>
-            </div>
+          <clr-dropdown>
+            <button class="nav-icon" clrDropdownTrigger>
+              <cds-icon shape="user"></cds-icon>
+            </button>
+            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                <a href="/registro" clrDropdownItem *ngIf="!isLoggedIn"> Registrarse</a>
+                <a href="/login" *ngIf="!isLoggedIn" clrDropdownItem>Login</a>
+                <a href *ngIf="isLoggedIn" (click)="logout()" clrDropdownItem>Logout</a>
+            </clr-dropdown-menu>
+        </clr-dropdown>
         </div>
 
     </clr-header>
-
-    <div class="container">
+    <div class="content-container">
+      <main class="content-area">
+        <!-- app / page content -->
         <router-outlet></router-outlet>
+      </main>
+      <!-- designate secondary navigation -->
+      <nav class="sidenav" [clr-nav-level]="1">
+        <section class="sidenav-content">
+          <!-- cursos -->
+          <section class="nav-group collapsible" *ngIf="showAdminBoard">
+            <input id="tabexample1" type="checkbox" />
+            <label for="tabexample1">Cursos</label>
+            <ul class="nav-list">
+              <li><a class="nav-link" *ngIf="showAdminBoard" href="/agregarestudiante"> Agregar Estudiante</a></li>
+              <li><a class="nav-link" href="/estudiantes">Ver Estudiantes</a></li>
+            </ul>
+          </section>
+          <!-- estudiantes -->
+          <section class="nav-group collapsible" *ngIf="showAdminBoard">
+            <input id="tabexample1" type="checkbox" />
+            <label for="tabexample1">Estudiantes</label>
+            <ul class="nav-list">
+              <li><a class="nav-link" *ngIf="showAdminBoard"  href="/agregarcurso">Agregar Curso</a></li>
+              <li><a class="nav-link"  href="/cursos" >Ver Cursos</a></li>
+            </ul>
+          </section>
+
+          <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
+          <a *ngIf="showIsLoggin && !showAdminBoard" href="/cursos-docente" class="nav-link nav-text">Mis cursos</a>
+
+        </section>
+      </nav>
     </div>
+
 </clr-main-container>
  
 

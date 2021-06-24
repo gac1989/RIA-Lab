@@ -15,11 +15,13 @@ export class AsistenciaComponent implements OnInit {
   clase: number;
   nombreClase: string;
   asistencias?=[];
-
+  curso?: number;
   constructor(private asisService: AsistenciasService,public router: Router,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.clase=params['id'];
+      this.curso=params['curso'];
       this.nombreClase=params['nombre'];
+      console.log(this.nombreClase);
       this.asisService.getAsistencias(this.clase).subscribe(
         data=>{
           this.asistencias = data;
