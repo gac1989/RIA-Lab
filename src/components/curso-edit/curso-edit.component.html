@@ -1,5 +1,5 @@
 
-    <div class="registro-component">
+    <div class="login-wrapper">
         <form id="form-role"
               *ngIf="!isSuccessful"
               name="form"
@@ -7,7 +7,7 @@
               #f="ngForm"
               novalidate>
             <h1> Editar Curso: </h1>
-            <br><br>
+            <br>
             <div>
               <label for="curso" class="clr-control-label">Nombre Curso:</label>
                 <input
@@ -62,8 +62,8 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/cursos');">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Falló la carga del curso.<br />{{ errorMessage }}
@@ -74,7 +74,5 @@
             <button class="btn btn-success" (click)="goHome()">VOLVER</button>
           </div>
         </div>
-          <div id="logo-utec">
-            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-        </div>
+
     

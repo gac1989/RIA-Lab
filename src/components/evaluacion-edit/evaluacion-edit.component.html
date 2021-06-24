@@ -1,7 +1,5 @@
 
-<clr-main-container>
-  <div class="content-container">
-    <main class="content-area">
+
       <div class="registro-component">
           <form id="form-role"
                 *ngIf="!isSuccessful"
@@ -10,7 +8,7 @@
                 #f="ngForm"
                 novalidate>
               <h1 >Editar evaluacion</h1>
-              <br><br>
+              <br>
               <div>
                   <label for="curso" class="clr-control-label">Titulo:</label>
                   <input clrInput type="text" class="form-control clr-input" name="titulo" [(ngModel)]="form.titulo" required #nombre="ngModel" />
@@ -57,11 +55,8 @@
         </table>
       <br>
       <div id="registro-buttons">
-        <a href="/evaluaciones?id={{form.cursoId}}" class="btn btn-danger" >Cancelar</a>
         <button class="btn btn-success" >Aceptar</button>
+        <a href="/evaluaciones?id={{form.cursoId}}" class="btn btn-primary" >Cancelar</a>
       </div>
     </form>
     </div>
-  </main>
-  </div>
-</clr-main-container>

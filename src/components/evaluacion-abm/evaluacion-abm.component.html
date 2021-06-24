@@ -1,10 +1,8 @@
-<clr-main-container>
-  <div class="content-container">
-    <main class="content-area">
-      <div class="registro-component">
+
+      <div class="login-wrapper">
         <form id="form-role" *ngIf="!isSuccessful" name="form" (ngSubmit)="ponderacion.valid && f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <h1 >Agregar evaluacion</h1>
-            <br><br>
+            <br>
             <div>
                 <label for="curso" class="clr-control-label">Titulo:</label>
                 <input clrInput   type="text"  class="form-control clr-input" name="titulo" [(ngModel)]="form.titulo" required #nombre="ngModel" />
@@ -21,8 +19,8 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/evaluaciones?id='+ curso);">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/evaluaciones?id='+ curso);">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Falló la carga de la clase.<br />{{ errorMessage }}
@@ -33,6 +31,4 @@
         <button class="btn btn-success" (click)="goHome()">VOLVER</button>
         </div>
       </div>
-    </main>
-  </div>
-</clr-main-container>
+

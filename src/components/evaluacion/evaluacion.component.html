@@ -25,14 +25,15 @@
             <td>{{calif.ponderacion}}</td>
             <td>{{calif.cursosId}}</td>
             <td>
+                <button class="btn btn-icon btn-primary" 
+                (click)="editar(calif.id, calif.titulo, calif.ponderacion)"
+                routerLinkActive="active"><i class="fas fa-edit"></i>
+            </button>
                 <button class="btn btn-icon btn-danger" 
                     (click)="borrar(calif.id)"
                     routerLinkActive="active"><i class="fas fa-trash-alt"></i>
                 </button>
-                <button class="btn btn-icon btn-primary" 
-                    (click)="editar(calif.id, calif.titulo, calif.ponderacion)"
-                    routerLinkActive="active"><i class="fas fa-edit"></i>
-                </button>
+              
                 <button class="btn btn-icon btn-success" 
                     (click)="asignarNotas(calif.id, calif.titulo, calif.ponderacion, calif.cursosId)"
                     routerLinkActive="active">Calificar
