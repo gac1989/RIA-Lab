@@ -7,7 +7,7 @@
             <th>Documento</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Promedio</th>
+            <th>Nota</th>
             <th>Asistencia</th>
             <th>Resultado</th>
         </tr>
@@ -26,29 +26,28 @@
     </tbody>
   </table>
   <br>
-    <div class="clr-row" style="padding-left:20%;">
-        <div class="clr-col-4" style="text-align: center;">
-            <h3>Asistencia</h3>
-            <div class="chart">
-                <canvas baseChart width="300" height="300"
-                [data]="pieChartData2"
-                [labels]="pieChartLabels2"
-                [chartType]="pieChartType2"
-                [colors]="pieChartColors2"
-                [legend]="pieChartLegend2">
-                </canvas>
-            </div>
-        </div>
-        <div class="clr-col-4" style="text-align: center;">
-            <h3>Resultado del curso</h3>
-            <div class="chart">
-                <canvas baseChart width="300" height="300"
-                [data]="pieChartData"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                [colors]="pieChartColors"
-                [legend]="pieChartLegend">
-                </canvas>
-            </div>
+<div class="clr-row clr-justify-content-center">
+    <div class="clr-col-sm-4">
+        <div class="chart">
+            <canvas baseChart width="300" height="300"
+            [data]="pieChartData2"
+            [labels]="pieChartLabels2"
+            [chartType]="pieChartType2"
+            [colors]="pieChartColors2"
+            [legend]="pieChartLegend2">
+            </canvas>
         </div>
     </div>
+    <div class="clr-col-sm-4">
+        <div class="chart">
+            <canvas baseChart width="300" height="300"
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+     

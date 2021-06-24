@@ -1,65 +1,33 @@
+
 <div class="login-wrapper">
-  <form
-  *ngIf="!isLoggedIn"
-  name="form"
-  (ngSubmit)="f.form.valid && onSubmit()"
-  #f="ngForm"
-  novalidate
-  class="login"
-  >
-      <section class="title">
-        <h1>Use sus credenciales para iniciar sesión</h1>
-      </section>
-      <div class="login-group">
-        <clr-input-container>
-          <label for="username" class="clr-control-label">Username</label>
-          <input
-          clrInput 
-          type="text"
-          class="form-control clr-input"
-          name="username"
-          [(ngModel)]="form.username"
-          required
-          #username="ngModel"
-        />
-        <div
-        class="alert alert-danger"
-        role="alert"
-        *ngIf="username.errors && f.submitted">
+  <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()"  #f="ngForm" novalidate class="login">
+    <section class="title">
+      <h1>Use sus credenciales para iniciar sesión</h1>
+    </section>
+    <div class="login-group">
+      <clr-input-container>
+        <label for="username" class="clr-control-label">Username</label>
+        <input clrInput  type="text" class="form-control clr-input" name="username" [(ngModel)]="form.username" required #username="ngModel" />
+        <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
           Usuario es requerido
         </div>
-    </clr-input-container>
-        <clr-password-container>
-          <label for="password" class="clr-control-label">Contraseña</label>
-          <input
-          clrPassword 
-          type="password"
-          class="form-control clr-input"
-          name="password"
-          [(ngModel)]="form.password"
-          required
-          minlength="4"
-          #password="ngModel"/>
-        <div
-        class="alert alert-danger"
-        role="alert"
-        *ngIf="password.errors && f.submitted">
+      </clr-input-container>
+      <clr-password-container>
+        <label for="password" class="clr-control-label">Contraseña</label>
+        <input clrPassword  type="password" class="form-control clr-input" name="password" [(ngModel)]="form.password" required  minlength="4"   #password="ngModel"/>
+        <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">Contraseña es requerida</div>
           <div *ngIf="password.errors.minlength">debe tener al menos cuatro caracteres</div>
         </div>
       </clr-password-container>
       <div class="form-group">
-      <button class="btn btn-primary">SIGUIENTE</button>
+        <button class="btn btn-primary">SIGUIENTE</button>
       </div>
+    </div>
+    <div class="form-group">
+      <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+        Inicio de sesión falló: {{ errorMessage }}
       </div>
-      <div class="form-group">
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="f.submitted && isLoginFailed"
-        >
-          Inicio de sesión falló: {{ errorMessage }}
-        </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>

@@ -1,49 +1,44 @@
-<clr-main-container>
-    <div class="content-container">
-      <main class="content-area">
-        <table class="table" >
-          <caption>
-            <h1>Mis Cursos</h1>
-          </caption>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th class="left">Curso</th>
-              <th class="left">Descripcion</th>
-              <th class="left">Programa</th>
-              <th class="left">Docente</th>
-              <th class="left">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let curso of misCursos">
-              <td >{{curso.id}}</td>
-              <td class="left">{{curso.nombre}}</td>
-              <td class="left">{{curso.descripcion}}</td>
-              <td class="left">{{curso.programa}}</td>
-              <td id="idDocente" value="curso.docenteId" class="left">{{curso.docente.userName}}</td>
-              <td class="left">
-                <button class="btn btn-icon btn-primary" 
-                    (click)="mostrarClases(curso.id, curso.nombre)"
-                    routerLinkActive="active">Clases
-                </button>
-                <button class="btn btn-icon btn-primary" 
-                    (click)="mostrarEvaluaciones(curso.id, curso.nombre)"
-                    routerLinkActive="active">Evaluaciones
-                </button>
-                <button class="btn btn-icon btn-primary" 
-                    (click)="mostrarEstudiantes(curso.id, curso.nombre)"
-                    routerLinkActive="active">Estudiantes
-                </button>
-                <button class="btn btn-icon btn-primary" 
-                    (click)="mostrarResultado(curso.id, curso.nombre)"
-                    routerLinkActive="active">Resultado
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
-    </div>
-  </clr-main-container>
-  
+
+  <table class="table" >
+    <caption>
+      <h1>Mis Cursos</h1>
+    </caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th class="left">Curso</th>
+        <th class="left">Descripcion</th>
+        <th class="left">Programa</th>
+        <th class="left">Docente</th>
+        <th class="left">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of misCursos">
+        <td >{{curso.id}}</td>
+        <td class="left">{{curso.nombre}}</td>
+        <td class="left">{{curso.descripcion}}</td>
+        <td class="left">{{curso.programa}}</td>
+        <td id="idDocente" value="curso.docenteId" class="left">{{curso.docente.userName}}</td>
+        <td class="left">
+          <button class="btn btn-icon btn-primary" 
+              (click)="mostrarClases(curso.id, curso.nombre)"
+              routerLinkActive="active">Clases
+          </button>
+          <button class="btn btn-icon btn-primary" 
+              (click)="mostrarEvaluaciones(curso.id, curso.nombre)"
+              routerLinkActive="active">Evaluaciones
+          </button>
+          <button class="btn btn-icon btn-primary" 
+              (click)="mostrarEstudiantes(curso.id, curso.nombre)"
+              routerLinkActive="active">Estudiantes
+          </button>
+          <button class="btn btn-icon btn-primary" 
+              (click)="mostrarResultado(curso.id, curso.nombre)"
+              routerLinkActive="active">Resultado
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
