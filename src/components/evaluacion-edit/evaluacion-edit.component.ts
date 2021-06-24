@@ -31,14 +31,20 @@ export class EvaluacionEditComponent implements OnInit {
     cursoId: null
   };
   
+  ponderacionVieja?;
+  total?: number;
+  maximo?: number;
 
   constructor(private authService: AuthService,private evaluacionesService: EvaluacionesService, private route: ActivatedRoute, private router: Router, private califService: CalificacionesService) { 
     this.route.queryParams.subscribe(params => {
-      let { id, titulo, ponderacion, cursoId } = params;
+      let { id, titulo, ponderacion, cursoId, total } = params;
       this.form.id=id;
       this.form.titulo=titulo;
       this.form.ponderacion=ponderacion;
+      this.ponderacionVieja=ponderacion;
       this.form.cursoId=cursoId;
+      this.total=total;
+      this.maximo=100-total;
       this.califService.getCalificaciones(id).subscribe(
         data=>{
           this.calificaciones = data;
@@ -50,7 +56,11 @@ export class EvaluacionEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    
+    if(this.form.ponderacion+(this.total-this.ponderacionVieja)>100){
+      this.showPonderacionAlert();
+      return;
+    }
     if(!this.checkNotas()){
       this.showNotasAlert();
       return;
@@ -61,6 +71,7 @@ export class EvaluacionEditComponent implements OnInit {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.showSuccessAlert();
+        this.router.navigate(['/evaluaciones'], { queryParams: { id } });
       },
       err => {
         this.errorMessage = err.error.message;
@@ -108,6 +119,10 @@ export class EvaluacionEditComponent implements OnInit {
 
   showNotasAlert() {
     Swal.fire('Error!', 'La nota maxima es: ' + this.form.ponderacion, 'error')
+  }
+
+  showPonderacionAlert() {
+    Swal.fire('Error!', 'No puede agregar mas de: ' + this.maximo + ' puntos extra.', 'error')
   }
   ngOnInit(): void {
   }

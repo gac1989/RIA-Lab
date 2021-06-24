@@ -48,6 +48,9 @@ export class AuthService {
     }, httpOptions);
   }
 
+  getUserInfo(): Observable<any> {
+    return this.http.get(AUTH_API + 'user-info', httpOptions);
+  }
 
 
 }

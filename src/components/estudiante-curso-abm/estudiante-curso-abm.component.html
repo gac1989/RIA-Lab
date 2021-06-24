@@ -9,6 +9,7 @@
               #f="ngForm"
               novalidate>
             <h1 >Agregar Estudiante a Curso</h1>
+            <br>
             <div>
               <label for="estudiante" class="clr-control-label">Seleccione el estudiante:</label>
               <input type="text" clrInput placeholder="Ingrese el identificador"       
@@ -31,15 +32,13 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/cursos');">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/cursos');">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Ya tiene el rol asignado.<br />{{ errorMessage }}
             </div>
-            <div id="logo-utec">
-              <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-            </div>
+
           </form>
           <!-- <div class="alert alert-success" *ngIf="isSuccessful">
             ROL ASIGNADO CORRECTAMENTE 

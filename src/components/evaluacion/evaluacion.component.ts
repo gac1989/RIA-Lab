@@ -63,7 +63,8 @@ export class EvaluacionComponent implements OnInit {
   editar(id, titulo, ponderacion){
     // this.router.navigateByUrl('/editar/' + id);
     let cursoId = this.curso;
-    this.router.navigate(['/editarevaluacion'], { queryParams: { id,  titulo, ponderacion, cursoId } });
+    let total = this.totalPonderaciones;
+    this.router.navigate(['/editarevaluacion'], { queryParams: { id,  titulo, ponderacion, cursoId, total } });
   }
 
   borrar(id){

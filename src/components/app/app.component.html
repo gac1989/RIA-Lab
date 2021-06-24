@@ -6,29 +6,6 @@
             <span class="title">Libreta Digital</span>
           </a>
         </div>
-        <div class="header-nav" [clr-nav-level]="1">
-            <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
-            <clr-dropdown [clrCloseMenuOnItemClick]="true">
-              <a clrDropdownToggle *ngIf="showAdminBoard">
-                <span class="nav-link nav-text">Cursos</span>
-              </a>
-              <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarcurso"> Agregar Curso</a>
-                <a href="/cursos" class="dropdown-item">Ver Cursos</a>
-              </clr-dropdown-menu>
-            </clr-dropdown>
-            <clr-dropdown [clrCloseMenuOnItemClick]="true">
-              <a clrDropdownToggle *ngIf="showAdminBoard">
-                <span class="nav-link nav-text">Estudiantes</span>
-              </a>
-              <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarestudiante"> Agregar Estudiante</a>
-                <a href="/estudiantes" class="dropdown-item">Ver Estudiantes</a>
-              </clr-dropdown-menu>
-            </clr-dropdown>
-            <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
-            <a *ngIf="showIsLoggin && !showAdminBoard" href="/cursos-docente" class="nav-link nav-text">Mis cursos</a>
-        </div>
         <div class="header-actions">
           <clr-dropdown>
             <button class="nav-icon" clrDropdownTrigger>

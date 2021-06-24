@@ -21,6 +21,7 @@ export class AsistenciaComponent implements OnInit {
       this.clase=params['id'];
       this.curso=params['curso'];
       this.nombreClase=params['nombre'];
+      console.log(this.nombreClase);
       this.asisService.getAsistencias(this.clase).subscribe(
         data=>{
           this.asistencias = data;

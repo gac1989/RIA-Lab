@@ -28,7 +28,7 @@ export class ResultadoCursoComponent implements OnInit {
   estBuenos?: number =0;
   estMalos?: number = 0;
   estMedios?: number = 0;
-
+  loading?: boolean = true;
 
 
   //Grafica aprobados
@@ -101,6 +101,7 @@ export class ResultadoCursoComponent implements OnInit {
           }
           this.pieChartData2=[this.estMalos, this.estBuenos, this.estMedios];
           this.pieChartData=[this.reprobados, this.aprobados, this.examen];
+          this.loading=false;
         })
       })
     });

@@ -129,12 +129,12 @@ const routes: Routes = [
   {
     path:'estudiantes',
     component: EstudianteComponent,
-    canActivate: [CheckLogginGuard]
+    canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
     path:'estudiantescurso',
     component: EstudianteCursoComponent,
-    canActivate: [CheckLogginGuard]
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
     path:'agregarestudiante',

@@ -1,5 +1,5 @@
 
-    <div class="registro-component">
+    <div class="login-wrapper">
         <form id="form-role"
               *ngIf="!isSuccessful"
               name="form"
@@ -8,7 +8,7 @@
               class="clr-form"
               novalidate>
             <h1 >Crear Estudiante</h1>
-            <br><br>
+            <br>
             <div>
               <div class="clr-form-control">
                 <label for="documento" class="clr-control-label">Numero de documento:</label>
@@ -72,8 +72,8 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/estudiantes');">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/estudiantes');">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Error al crear el estudiante.<br />{{ errorMessage }}

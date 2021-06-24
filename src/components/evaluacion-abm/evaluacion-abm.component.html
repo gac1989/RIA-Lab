@@ -1,10 +1,8 @@
-<clr-main-container>
-  <div class="content-container">
-    <main class="content-area">
-      <div class="registro-component">
+
+      <div class="login-wrapper">
         <form id="form-role" *ngIf="!isSuccessful" name="form" (ngSubmit)="ponderacion.valid && f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <h1 >Agregar evaluacion</h1>
-            <br><br>
+            <br>
             <div>
                 <label for="curso" class="clr-control-label">Titulo:</label>
                 <input clrInput   type="text"  class="form-control clr-input" name="titulo" [(ngModel)]="form.titulo" required #nombre="ngModel" />
@@ -13,7 +11,7 @@
                 </div>
                 <br>
                 <label for="ponderacion" class="clr-control-label">Ponderacion:</label>
-                <input clrInput type="number"class="form-control clr-input"  name="ponderacion" [(ngModel)]="form.ponderacion"  [min]="10" [max]="totalPonderaciones" required #ponderacion="ngModel"/>
+                <input clrInput type="number"class="form-control clr-input"  name="ponderacion" [(ngModel)]="form.ponderacion"  [min]="0" [max]="totalPonderaciones" required #ponderacion="ngModel"/>
                 <p *ngIf="ponderacion.errors?.min">error message</p>
                 <div class="alert alert-danger" role="alert" *ngIf="ponderacion.errors && f.submitted">
                   La ponderacion es requerida
@@ -21,8 +19,8 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="this.router.navigateByUrl('/evaluaciones?id='+ curso);">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/evaluaciones?id='+ curso);">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Falló la carga de la clase.<br />{{ errorMessage }}
@@ -33,6 +31,4 @@
         <button class="btn btn-success" (click)="goHome()">VOLVER</button>
         </div>
       </div>
-    </main>
-  </div>
-</clr-main-container>
+

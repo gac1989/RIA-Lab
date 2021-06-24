@@ -1,27 +1,28 @@
+.centered-content-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 23%;
+  }
 
-#curso_button {
-    margin-bottom: 20px;
-    float:right;
-    margin-right: 180px;
+  .embed-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+	background-color: rgb(199,222,222,0.6);
+  }
+  
+  .wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+.vertical-center {
+	padding-top: 10%;
 }
 
-#curso_caption{
-    display: block;
-}
-
-#cursoTable{
-    width: 75%;
-    line-height: 100px;
-    margin-left: 13%;
-    border: 3px solid rgb(43, 53, 43);
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-#curso-buttons-footer{
-    width: 70%;
-    margin-left: 15%;
-}
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {

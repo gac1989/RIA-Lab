@@ -1,53 +1,67 @@
-<table class="table table-compact">
-    <caption>
-        <h1>Calificaciones:</h1>
-    </caption>
-    <thead>
-        <tr>
-            <th>Documento</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Nota</th>
-            <th>Asistencia</th>
-            <th>Resultado</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let estudiante of estudiantes">
-            <td>{{estudiante.estudiante.documento}}</td>
-            <td>{{estudiante.estudiante.primerNombre}}</td>
-            <td>{{estudiante.estudiante.primerApellido}}</td>
-            <td>{{estudiante.promedio}}</td>
-            <td>{{estudiante.asistencia}}%</td>
-            <td *ngIf="estudiante.promedio>= 60">APROBADO</td>
-            <td *ngIf="estudiante.promedio>= 25 && estudiante.promedio <60 ">EXAMEN</td>
-            <td *ngIf="estudiante.promedio< 25">REPROBADO</td>
-        </tr>
-    </tbody>
-  </table>
-  <br>
-<div class="clr-row clr-justify-content-center">
-    <div class="clr-col-sm-4">
-        <div class="chart">
-            <canvas baseChart width="300" height="300"
-            [data]="pieChartData2"
-            [labels]="pieChartLabels2"
-            [chartType]="pieChartType2"
-            [colors]="pieChartColors2"
-            [legend]="pieChartLegend2">
-            </canvas>
+
+<div class="wrapper" >
+    <table class="table table-compact" >
+        <caption>
+            <h1>Calificaciones:</h1>
+        </caption>
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nota</th>
+                <th>Asistencia</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let estudiante of estudiantes">
+                <td>{{estudiante.estudiante.documento}}</td>
+                <td>{{estudiante.estudiante.primerNombre}}</td>
+                <td>{{estudiante.estudiante.primerApellido}}</td>
+                <td>{{estudiante.promedio}}</td>
+                <td>{{estudiante.asistencia}}%</td>
+                <td *ngIf="estudiante.promedio>= 60">APROBADO</td>
+                <td *ngIf="estudiante.promedio>= 25 && estudiante.promedio <60 ">EXAMEN</td>
+                <td *ngIf="estudiante.promedio< 25">REPROBADO</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div class="clr-row clr-justify-content-center">
+        <div class="clr-col-sm-4" style="text-align: center;">
+            <h2>Asistencia</h2>
+            <div class="chart">
+                <canvas baseChart width="300" height="300"
+                [data]="pieChartData2"
+                [labels]="pieChartLabels2"
+                [chartType]="pieChartType2"
+                [colors]="pieChartColors2"
+                [legend]="pieChartLegend2">
+                </canvas>
+            </div>
+        </div>
+        <div class="clr-col-sm-4" style="text-align: center;">
+            <h2>Resultado final</h2>
+            <div class="chart">
+                <canvas baseChart width="300" height="300"
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [colors]="pieChartColors"
+                [legend]="pieChartLegend">
+                </canvas>
+            </div>
         </div>
     </div>
-    <div class="clr-col-sm-4">
-        <div class="chart">
-            <canvas baseChart width="300" height="300"
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [colors]="pieChartColors"
-            [legend]="pieChartLegend">
-            </canvas>
+    <div class="embed-cover" *ngIf="loading" style="width: 100%; height: 5000px; overflow-y: scroll;" >
+        <div class="centered-content-area">
+            <span class="spinner spinner-inverse" *ngIf="loading">
+                Loading...
+            </span>
         </div>
     </div>
 </div>
-     
+
+        
+        

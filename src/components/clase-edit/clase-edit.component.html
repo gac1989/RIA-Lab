@@ -1,9 +1,9 @@
-<clr-main-container>
-  <div class="content-container">
-    <main class="content-area">
-      <div class="registro-component">
+
+      <div class="login-wrapper">
         <form clrLabelSize="1" class="clr-form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
           <div class="clr-form-control">
+            <h1>Editar clase</h1>
+            <br>
             <label for="titulo" class="clr-control-label">Titulo</label>
             <div class="clr-control-container">
               <div class="clr-input-wrapper">
@@ -32,12 +32,9 @@
           </div>
           <br>
           <br>
-          <div class="clr-form-control">
+          <div id="registro-buttons">
             <button class="btn btn-success" >Aceptar</button>
-            <button class="btn btn-danger" (click)="this.router.navigateByUrl('/clases?id=' + curso);">Cancelar</button>
+            <button class="btn btn-primary" (click)="this.router.navigateByUrl('/clases?id=' + curso);">Cancelar</button>
           </div>
         </form>
       </div>
-    </main>
-  </div>
-</clr-main-container>

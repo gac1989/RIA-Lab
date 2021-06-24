@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EstudianteService } from 'src/services/estudiante.service';
 import Swal from 'sweetalert2';
@@ -13,25 +13,23 @@ export class EstudianteComponent implements OnInit {
 
   estudiantes?= [];
 
-  ngOnInit(): void {
-    this.loading=false;
-    this.estudianteService.getEstudiantesPag(5,1,'','','').subscribe(
-      data => {
-        this.estudiantes = data.lista;
-        this.total=data.size;
-      }
-    );
+
+  constructor(private estudianteService: EstudianteService, public router: Router, private cd: ChangeDetectorRef) {
   }
 
-  
- 
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
+
+  ngOnInit(): void {
+   
+  }
   users:[];
   total: number;
   loading: boolean;
 
   refresh(state: ClrDatagridStateInterface) {
-    
     if(state.filters){
       let filters:{[prop:string]: string} = {};
       for (let filter of state.filters) {
@@ -54,19 +52,14 @@ export class EstudianteComponent implements OnInit {
         data => {
           this.estudiantes = data.lista;
           console.log(this.estudiantes)
+          this.total=data.size;
           this.loading = false;
         }
       );
     }
    }
 
-   change(e){
-    console.log(e);
-   }
-
-  constructor(private estudianteService: EstudianteService, public router: Router) {
-  }
-
+  
   editar(id) {
     // this.router.navigateByUrl('/editar/' + id);
     this.router.navigate(['/editarestudiante'], { queryParams: { id } });

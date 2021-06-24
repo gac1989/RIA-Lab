@@ -36,7 +36,7 @@
             </tbody>
             </table>
             <button class="btn btn-success" *ngIf="!califico">Aceptar</button>
-            <button class="btn btn-danger" (click)="this.router.navigateByUrl('/evaluaciones?id=' + curso);">Cancelar</button>
+            <button class="btn btn-primary" (click)="this.router.navigateByUrl('/evaluaciones?id=' + curso);">Cancelar</button>
             <div *ngIf="califico"> <h3> Ya existe una calificación para esta evaluación</h3></div>
         </form>
       </div>
