@@ -28,6 +28,12 @@ export class CursosDocenteComponent implements OnInit {
     this.router.navigate(['/evaluaciones'], { queryParams: { id, curso } });
   }
 
+  mostrarResultado(id, curso){
+    // this.router.navigateByUrl('/editar/' + id);
+    this.router.navigate(['/resultadocurso'], { queryParams: { id, curso } });
+  }
+
+
   mostrarEstudiantes(id, curso){
     // this.router.navigateByUrl('/editar/' + id);
     this.router.navigate(['/estudiantescurso'], { queryParams: { id, curso } });

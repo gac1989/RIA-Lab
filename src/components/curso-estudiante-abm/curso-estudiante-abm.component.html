@@ -8,9 +8,10 @@
               (ngSubmit)="f.form.valid && onSubmit()"
               #f="ngForm"
               novalidate>
-            <h1 >Agregar Estudiante a Curso lalala</h1>
+            <h1 >Agregar Estudiante a Curso</h1>
+            <br>
             <div>
-              <label for="estudiante" class="clr-control-label">Seleccione el estudiante:</label>
+              <label for="estudiante" class="clr-control-label">Estudiante:</label>
                 <select clrSelect [(ngModel)]="form.selectedEstudiante" name="estudiante" selected="form.selectedEstudiante" required disabled>
                     <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id" >
                         {{estudiante.primerNombre}} {{estudiante.primerApellido}}
@@ -20,17 +21,9 @@
             <br><br>
             <div>
               <label for="curso" class="clr-control-label">Seleccione el curso:</label>
-              <!-- <input  (ngModel)="form.selectedCurso"
-                      name="selectedCurso"
-                      clrInput 
-                      type="text" 
-                      disabled 
-                      value={{form.nombreCurso}}
-
-              /> -->
-    
                 <select clrSelect [(ngModel)]="form.selectedCurso" 
-                        name="curso" required >
+                        name="curso" required
+                        (change)="estudiantesCurso(form.selectedCurso)" >
                     <option *ngFor="let curso of cursos" [value]="curso.id">
                     {{curso.nombre}}
                     </option>
@@ -38,19 +31,41 @@
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/estudiantes');">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Ya tiene el rol asignado.<br />{{ errorMessage }}
             </div>
           </form>
-          <!-- <div class="alert alert-success" *ngIf="isSuccessful">
-            ROL ASIGNADO CORRECTAMENTE 
-            <button class="btn btn-success" (click)="goHome()">VOLVER</button>
-          </div> -->
         </div>
-          <div id="logo-utec">
-            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-        </div>
+        <br>
+        <br>
+        <table class="table table-compact">
+          <caption>
+            <h1>Estudiantes del curso {{nombreCurso}}</h1>
+          </caption>
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Primer Apellido</th>
+              <th>Segundo Apellido</th>
+              <th>Primer Nombre</th>
+              <th>Segundo Nombre</th>
+              <th>Fecha Nacimiento</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let estudiante of estudiantescurso">
+              <td>{{estudiante.estudiante.documento}}</td>
+              <td>{{estudiante.estudiante.primerApellido}}</td>
+              <td>{{estudiante.estudiante.segundoApellido}}</td>
+              <td>{{estudiante.estudiante.primerNombre}}</td>
+              <td>{{estudiante.estudiante.segundoNombre}}</td>
+              <td >{{estudiante.estudiante.fechaNacimiento}}</td>
+              <td ><button class="btn btn-icon btn-warning" (click)="borrar(estudiante.id)"> <i class="fas fa-trash-alt"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
     

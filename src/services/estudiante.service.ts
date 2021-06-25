@@ -53,4 +53,29 @@ export class EstudianteService {
     return this.http.get(AUTH_API + id, httpOptions);
   }
 
+  getEstudiantesPag(size: number, index: number, nombre: string, apellido: string, documento: string): Observable<any>{
+    let ruta = AUTH_API + 'api/Estudiantes/Paging' + '?size=' + size + '&index=' + index;
+    if(documento){
+      ruta= ruta + "&documento=" + documento;
+    }
+    if(nombre){
+      ruta= ruta + "&nombre=" + nombre;
+    }
+    if(apellido){
+      ruta= ruta + "&apellido=" + apellido;
+    }
+    if(documento && nombre){
+      ruta= ruta +  "&nombre=" + nombre + "&documento=" + documento;
+    }
+    if(documento && apellido){
+      ruta= ruta +  "&apellidoe=" + apellido + "&documento=" + documento;
+    }
+    if(nombre && apellido){
+      ruta= ruta +  "&nombre=" + nombre + "&apellido=" + apellido;
+    }
+    if(nombre && apellido && documento){
+      ruta= ruta +  "&nombre=" + nombre + "&apellido=" + apellido + "&documento=" + documento;
+    }
+    return this.http.get(ruta, httpOptions);
+  }
 }

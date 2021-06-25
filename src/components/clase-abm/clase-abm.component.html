@@ -1,3 +1,4 @@
+
 <div class="registro-component">
     <form id="form-role"
           *ngIf="!isSuccessful"
@@ -6,7 +7,7 @@
           #f="ngForm"
           novalidate>
         <h1 >Agregar clase</h1>
-        <br><br>
+        <br>
         <div>
             <label for="curso" class="clr-control-label">Titulo:</label>
             <input
@@ -41,6 +42,7 @@
                 *ngIf="fechaNacimiento.errors && f.submitted">
                   Fecha de clase  es requerido
                 </div>
+            <br>
             <label for="descripcion" class="clr-control-label">Descripcion:</label>
             <input
             clrInput
@@ -59,20 +61,39 @@
             </div>
         </div>
         <br><br>
-        <div id="registro-buttons">
-            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
-            <button class="btn btn-success" >Aceptar</button>
-        </div>
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
             Falló la carga de la clase.<br />{{ errorMessage }}
         </div>
+        <table class="table table-compact">
+          <thead>
+              <tr>
+                  <th>Documento</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Asistencia</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let estudiante of estudiantes">
+                  <td>{{estudiante.estudiante.documento}}</td>
+                  <td>{{estudiante.estudiante.primerNombre}}</td>
+                  <td>{{estudiante.estudiante.primerApellido}}</td>
+                  <td>
+                      <input type="checkbox" [(ngModel)]="estudiante.estudiante.asistencia" [ngModelOptions]="{standalone: true}" />
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+        <br>
+        <div id="registro-buttons">
+          <button class="btn btn-success" >Aceptar</button>
+          <button class="btn btn-primary" (click)="this.router.navigateByUrl('/clases?id=' + curso);">Cancelar</button>
+        </div>
       </form>
+    </div>
     <div class="alert alert-success" *ngIf="isSuccessful">
     CLASE AGREGADA CORRECTAMENTE 
     <button class="btn btn-success" (click)="goHome()">VOLVER</button>
     </div>
-</div>
-    <div id="logo-utec">
-    <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-</div>
+    
 

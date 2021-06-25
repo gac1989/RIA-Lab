@@ -31,10 +31,9 @@ export class TokenStorageService {
     window.sessionStorage.setItem(ROLE_NAME, rol);
   }
 
-  public getRoleName(): string | null {
+  public getRoleName(): string {
     return window.sessionStorage.getItem(ROLE_NAME);
   }
-
   public saveUserName(username: string): void {
     window.sessionStorage.removeItem(USER_NAME);
     window.sessionStorage.setItem(USER_NAME, username);
@@ -69,6 +68,29 @@ export class TokenStorageService {
       this.saveRoleName("DOCENTE");
     })
 
+  }
+
+  public async checkRole(): Promise<string | void> {
+    return await this.authService.getUserInfo().toPromise().then(
+      data => {
+        let rol: string = "";
+        if (data.roles[0] == "ADMIN" || data.roles[1] == "ADMIN") {
+          rol += "ADMIN";
+          console.log("ADMINNN");
+        }
+        if (data.roles[0] == "DOCENTE" || data.roles[1] == "DOCENTE") {
+          rol += "DOCENTE";
+          console.log("DOCENTE");
+        }
+        if (rol === "")
+          rol = "NO ROL";
+
+        this.saveRoleName(rol);
+        return rol;
+      })
+      .catch(
+      err => err 
+      )
   }
 
 }

@@ -58,7 +58,10 @@ export class ClaseComponent implements OnInit {
         console.log(data);
         this.reloadPage();
       });
-     
+  }
+
+  asistencia(id, nombre, curso){
+    this.router.navigate(['/asistencia'], { queryParams: { id, nombre, curso } });
   }
 
   ngOnInit(): void {

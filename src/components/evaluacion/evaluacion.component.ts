@@ -18,7 +18,7 @@ export class EvaluacionComponent implements OnInit {
   @ViewChild('myDiv') myDiv: ElementRef;
 
   nombreCurso?;
-
+  totalPonderaciones?: number = 0;
 
   constructor(private cursosService: CursosService, private cursosCalif: EvaluacionesService,public route: ActivatedRoute, public router: Router ) {
     this.route.queryParams.subscribe(params => {
@@ -27,7 +27,11 @@ export class EvaluacionComponent implements OnInit {
       this.cursosCalif.getEvaluaciones(params['id']).subscribe(
         data=>{
           this.evaluaciones = data;
+          for(let evaluacion of this.evaluaciones){
+            this.totalPonderaciones+= evaluacion.ponderacion;
+          }
           console.log(this.evaluaciones);
+          console.log(this.totalPonderaciones);
         }
       );
     });
@@ -44,9 +48,11 @@ export class EvaluacionComponent implements OnInit {
   }
 
   agregarEvaluacion(curso){
-    console.log("EL CURSO EN EL LISTADO ES: " + curso )
+    let total = this.totalPonderaciones;
+    console.log("EL CURSO EN EL LISTADO ES: " + curso );
+    console.log("el total de ponderacioneses: " + total );
     // this.router.navigateByUrl('/editar/' + id);
-    this.router.navigate(['/evaluaciones-abm'], { queryParams: { curso } });
+    this.router.navigate(['/evaluaciones-abm'], { queryParams: { curso, total } });
   }
 
   asignarNotas(id, titulo, ponderacion, curso){
@@ -57,7 +63,8 @@ export class EvaluacionComponent implements OnInit {
   editar(id, titulo, ponderacion){
     // this.router.navigateByUrl('/editar/' + id);
     let cursoId = this.curso;
-    this.router.navigate(['/editarevaluacion'], { queryParams: { id,  titulo, ponderacion, cursoId } });
+    let total = this.totalPonderaciones;
+    this.router.navigate(['/editarevaluacion'], { queryParams: { id,  titulo, ponderacion, cursoId, total } });
   }
 
   borrar(id){

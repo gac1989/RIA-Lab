@@ -1,0 +1,50 @@
+
+<!-- <div class="btn-group btn-primary" id="curso_button">
+    <button class="btn btn-success">Agregar</button>
+    <button class="btn btn-danger">Borrar</button>
+    <button class="btn">Editar</button>
+</div> -->
+<caption id="curso_caption">
+    
+</caption>
+<form id="form-role" name="form" (ngSubmit)="onSubmit()" >
+   <div class="registro-component">
+        <table class="table" id="cursoTable">
+            <caption>
+                <h1 >  Asistencias de la clase {{nombreClase}}  </h1>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Docuento</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Asistio</th>
+                    <th>Actualizar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let asistencia of asistencias">
+                    <td>{{asistencia.estudiante.documento}}</td>
+                    <td>{{asistencia.estudiante.primerNombre}} {{asistencia.estudiante.primerApellido}}</td>
+                    <td>{{asistencia.clases.fecha}}</td>
+                    <td *ngIf="asistencia.asiste==true">ASISTIO</td>
+                    <td *ngIf="asistencia.asiste==false">NO ASISTIO</td>
+                    <td>
+                        <clr-radio-wrapper>
+                            <input type="radio" clrRadio value="true" name="{{asistencia.id}}" [(ngModel)]="asistencia.estudiante.asistio" />
+                            <label>Asistio</label>
+                          </clr-radio-wrapper>
+                          <clr-radio-wrapper>
+                            <input type="radio" clrRadio value="false" name="{{asistencia.id}}" [(ngModel)]="asistencia.estudiante.asistio" />
+                            <label>No asistio</label>
+                        </clr-radio-wrapper>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button class="btn btn-success" >Aceptar</button>
+        <button class="btn btn-primary" (click)="this.router.navigateByUrl('/clases?id=' + curso);">Cancelar</button>
+   </div>
+</form>
+

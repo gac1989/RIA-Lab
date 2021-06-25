@@ -4,17 +4,15 @@
     <button class="btn btn-danger">Borrar</button>
     <button class="btn">Editar</button>
 </div> -->
+<h1 >  Clases del curso {{nombreCurso}}  </h1>
 <caption id="curso_caption">
-    <h1 >  Clases del curso {{nombreCurso}}  </h1>
+    
     <clr-button-group class="btn-primary" id="curso_button">
       <clr-button (click)="agregarClase(curso)">Agregar</clr-button>
     </clr-button-group>
 </caption>
-
+<br>
 <table class="table" id="cursoTable">
-    <caption>
-        Lista de Clases
-    </caption>
     <thead>
         <tr>
             <th>ID</th>
@@ -38,6 +36,10 @@
                 <button class="btn btn-icon btn-danger" 
                     (click)="borrar(clase.id)"
                     routerLinkActive="active"><i class="fas fa-trash-alt"></i>
+                </button>
+                <button class="btn btn-icon btn-success" 
+                    (click)="asistencia(clase.id, clase.titulo, curso)"
+                    routerLinkActive="active">Asistencia
                 </button>
             </td>
         </tr>

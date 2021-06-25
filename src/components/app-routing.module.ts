@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckLogginGuard } from 'src/guards/check-loggin.guard';
 import { CheckRoleGuard } from 'src/guards/check-role.guard';
 import { ClaseComponent } from './clase/clase.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 import { ClaseEditComponent } from './clase-edit/clase-edit.component';
 import { ClaseAbmComponent } from './clase-abm/clase-abm.component';
 import { EvaluacionAbmComponent } from './evaluacion-abm/evaluacion-abm.component';
@@ -25,6 +26,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { RegistroComponent } from './registro/registro.component';
 import { RoleComponent } from './role/role.component';
 import { CheckDocenteGuard } from 'src/guards/check-docente.guard';
+import { ResultadoCursoComponent } from './resultado-curso/resultado-curso.component';
+
 
 const routes: Routes = [
   {
@@ -37,6 +40,11 @@ const routes: Routes = [
     canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
+    path:'asistencia',
+    component: AsistenciaComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
+  },
+  {
     path:'cursos-docente',
     component: CursosDocenteComponent,
     canActivate: [CheckLogginGuard, CheckDocenteGuard]
@@ -45,6 +53,11 @@ const routes: Routes = [
     path:'agregarcurso',
     component: CursoABMComponent,
     canActivate: [CheckLogginGuard, CheckRoleGuard]
+  },
+  {
+    path:'resultadocurso',
+    component: ResultadoCursoComponent,
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
     path:'editarcurso',
@@ -116,12 +129,12 @@ const routes: Routes = [
   {
     path:'estudiantes',
     component: EstudianteComponent,
-    canActivate: [CheckLogginGuard]
+    canActivate: [CheckLogginGuard, CheckRoleGuard]
   },
   {
     path:'estudiantescurso',
     component: EstudianteCursoComponent,
-    canActivate: [CheckLogginGuard]
+    canActivate: [CheckLogginGuard, CheckDocenteGuard]
   },
   {
     path:'agregarestudiante',

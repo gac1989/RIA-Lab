@@ -1,112 +1,79 @@
 
-    <div class="registro-component">
+    <div class="login-wrapper">
         <form id="form-role"
               *ngIf="!isSuccessful"
               name="form"
               (ngSubmit)="f.form.valid && onSubmit()"
               #f="ngForm"
+              class="clr-form"
               novalidate>
             <h1 >Crear Estudiante</h1>
-            <br><br>
+            <br>
             <div>
-              <label for="documento" class="clr-control-label">Numero de documento:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="documento"
-                [(ngModel)]="form.documento"
-                required
-                #documento="ngModel"
-              />
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="documento.errors && f.submitted">
-                Documento es requerido
-                </div>
-                <label for="primerNombre" class="clr-control-label">Primer nombre:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="primerNombre"
-                [(ngModel)]="form.primerNombre"
-                required
-                #primerNombre="ngModel"
-              />
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="primerNombre.errors && f.submitted">
-                Primer nombre es requerido
-                </div>
-
-                <label for="segundoNombre" class="clr-control-label">Segundo nombre:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="segundoNombre"
-                [(ngModel)]="form.segundoNombre"
-                #segundoNombre="ngModel"
-                />
-
-                <label for="primerApellido" class="clr-control-label">Primer apellido:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="primerApellido"
-                [(ngModel)]="form.primerApellido"
-                required
-                #primerApellido="ngModel"
-              />
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="primerApellido.errors && f.submitted">
-                Primer apellido es requerido
-                </div>
-
-                <label for="segundoApellido" class="clr-control-label">Segundo Apellido:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="segundoApellido"
-                [(ngModel)]="form.segundoApellido"
-                required
-                #segundoApellido="ngModel"
-                />
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="primerApellido.errors && f.submitted">
-                Segundo apellido es requerido
-                </div>
-                <clr-date-container>
-                  <label for="primerNombre" class="clr-control-label">Fecha de nacimiento:</label>
-                    <input 
-                    type="date" 
-                    clrDate 
-                    class="form-control clr-input"
-                    name="fechaNacimiento"
-                    [(ngModel)]="form.fechaNacimiento"
-                    required
-                    #fechaNacimiento="ngModel"/>
-                  </clr-date-container>
-                  <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="fechaNacimiento.errors && f.submitted">
-                    Fecha Nacimiento  es requerido
+              <div class="clr-form-control">
+                <label for="documento" class="clr-control-label">Numero de documento:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text" class="form-control clr-input" name="documento" [(ngModel)]="form.documento" required #documento="ngModel" />
                   </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="documento.errors && f.submitted"> Documento es requerido </div>
+              </div>
+                
+              <div class="clr-form-control">
+                <label for="primerNombre" class="clr-control-label">Primer nombre:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text"  class="form-control clr-input" name="primerNombre"[(ngModel)]="form.primerNombre" required #primerNombre="ngModel" />
+                  </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="primerNombre.errors && f.submitted"> Primer nombre es requerido </div>
+              </div>
+                   
+              <div class="clr-form-control">
+                <label for="segundoNombre" class="clr-control-label">Segundo nombre:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text" class="form-control clr-input" name="segundoNombre" [(ngModel)]="form.segundoNombre" #segundoNombre="ngModel" />
+                  </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="segundoNombre.errors && f.submitted"> Segundo nombre es requerido </div>
+              </div>
+                
+              <div class="clr-form-control">
+                <label for="primerApellido" class="clr-control-label">Primer apellido:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text" class="form-control clr-input" name="primerApellido" [(ngModel)]="form.primerApellido" required #primerApellido="ngModel"/>
+                  </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="primerApellido.errors && f.submitted"> Primer apellido es requerido </div>
+              </div>
+
+              <div class="clr-form-control">
+                <label for="segundoApellido" class="clr-control-label">Segundo Apellido:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text" class="form-control clr-input" name="segundoApellido"  [(ngModel)]="form.segundoApellido" required #segundoApellido="ngModel"/>
+                  </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="segundoApellido.errors && f.submitted"> Segundo apellido es requerido </div>
+              </div>
+                
+              <div class="clr-form-control">
+                <label for="primerNombre" class="clr-control-label">Fecha de nacimiento:</label>
+                <div class="clr-control-container">
+                  <clr-date-container>
+                    <input  type="date" clrDate  class="form-control clr-input" name="fechaNacimiento"  [(ngModel)]="form.fechaNacimiento" required #fechaNacimiento="ngModel"/>
+                  </clr-date-container>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="fechaNacimiento.errors && f.submitted"> Fecha nacimiento es requerida </div>
+              </div>
             </div>
             <br><br>
             <div id="registro-buttons">
-                <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
                 <button class="btn btn-success" >Aceptar</button>
+                <button class="btn btn-primary" (click)="this.router.navigateByUrl('/estudiantes');">Cancelar</button>
             </div>
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Error al crear el estudiante.<br />{{ errorMessage }}
@@ -117,7 +84,3 @@
             <button class="btn btn-success" (click)="goHome()">VOLVER</button>
           </div>
         </div>
-          <div id="logo-utec">
-            <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-        </div>
-    

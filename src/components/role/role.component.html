@@ -1,7 +1,7 @@
 
    
 
-    <div class="registro-component">
+      <div class="login-wrapper">
     <form id="form-role"
           *ngIf="!isSuccessful"
           name="form"
@@ -30,8 +30,8 @@
         </div>
         <br><br>
         <div id="registro-buttons">
-            <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
             <button class="btn btn-success" >Aceptar</button>
+            <button class="btn btn-primary" (click)="goHome()">Cancelar</button>
         </div>
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
             Ya tiene el rol asignado.<br />{{ errorMessage }}
@@ -42,6 +42,5 @@
         <button class="btn btn-success" (click)="goHome()">VOLVER</button>
       </div> -->
     </div>
-      <div id="logo-utec">
-        <img src="../../assets/Logo-png-2.png" height="200px" width="300px"/>
-    </div>
+
+

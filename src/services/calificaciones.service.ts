@@ -33,6 +33,14 @@ export class CalificacionesService {
       nota
     }, httpOptions);
   }
+  putCalificaciones(id: number, estudiantesId: number, calificacionesId: number, nota: number): Observable<any>{
+    return this.http.put(AUTH_API + id, {
+      id,
+      estudiantesId,
+      calificacionesId,
+      nota
+    }, httpOptions);
+  }
 
   // editarEstudiante(id: string, documento: string, primerApellido: string, segundoApellido: string,
   //   primerNombre: string, segundoNombre: string, fechaNacimiento: string): Observable<any> {
