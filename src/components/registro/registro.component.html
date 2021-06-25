@@ -90,8 +90,8 @@
             </div>
       </div>
       <div id="registro-buttons">
-          <button class="btn btn-danger" (click)="goHome()">Cancelar</button>
           <button class="btn btn-success" >Aceptar</button>
+          <button class="btn btn-primary" (click)="this.router.navigateByUrl('/home');">Cancelar</button>
       </div>
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
           El registro falló<br />{{ errorMessage }}

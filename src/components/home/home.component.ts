@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/services/token-storage.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn?;
+  user?;
 
+
+  constructor(tokenStorageService: TokenStorageService) {
+
+    this.isLoggedIn = !!tokenStorageService.getToken();
+    this.user = tokenStorageService.getUserName();
+  }
   ngOnInit(): void {
 
-    // this.isLoggedIn = !!this.tokenStorageService.getToken();
+    
     // this.checkRoleGuard.checkRoleUser(this.route).then((value) => this.showAdminBoard = value );
 
   }

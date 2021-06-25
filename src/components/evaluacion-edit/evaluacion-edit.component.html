@@ -15,7 +15,7 @@
                   <div class="alert alert-danger" role="alert" *ngIf="nombre.errors && f.submitted"> Titulo es requerido </div>
                   <br>
                   <label for="descripcion" class="clr-control-label">Ponderacion:</label>
-                  <input  clrInput  type="text" class="form-control clr-input" name="descripcion" [(ngModel)]="form.ponderacion" required #programa="ngModel" />
+                  <input  clrInput  type="number" class="form-control clr-input" name="descripcion" [(ngModel)]="form.ponderacion" required #programa="ngModel" />
                   <div class="alert alert-danger" role="alert" *ngIf="programa.errors && f.submitted"> La descripcion es requerida</div>
               </div>
               <br><br>

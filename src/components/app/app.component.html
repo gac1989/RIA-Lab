@@ -6,29 +6,6 @@
             <span class="title">Libreta Digital</span>
           </a>
         </div>
-        <div class="header-nav" [clr-nav-level]="1">
-            <!-- <a href="/" class="active nav-link nav-text">Inicio</a> -->
-            <clr-dropdown [clrCloseMenuOnItemClick]="true">
-              <a clrDropdownToggle *ngIf="showAdminBoard">
-                <span class="nav-link nav-text">Cursos</span>
-              </a>
-              <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarcurso"> Agregar Curso</a>
-                <a href="/cursos" class="dropdown-item">Ver Cursos</a>
-              </clr-dropdown-menu>
-            </clr-dropdown>
-            <clr-dropdown [clrCloseMenuOnItemClick]="true">
-              <a clrDropdownToggle *ngIf="showAdminBoard">
-                <span class="nav-link nav-text">Estudiantes</span>
-              </a>
-              <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a *ngIf="showAdminBoard" class="dropdown-item " href="/agregarestudiante"> Agregar Estudiante</a>
-                <a href="/estudiantes" class="dropdown-item">Ver Estudiantes</a>
-              </clr-dropdown-menu>
-            </clr-dropdown>
-            <a *ngIf="showAdminBoard" href="/roles" class="nav-link nav-text" >Roles</a>
-            <a *ngIf="showIsLoggin && !showAdminBoard" href="/cursos-docente" class="nav-link nav-text">Mis cursos</a>
-        </div>
         <div class="header-actions">
           <clr-dropdown>
             <button class="nav-icon" clrDropdownTrigger>
@@ -54,7 +31,7 @@
           <!-- cursos -->
           <section class="nav-group collapsible" *ngIf="showAdminBoard">
             <input id="tabexample1" type="checkbox" />
-            <label for="tabexample1">Cursos</label>
+            <label for="tabexample1">Estudiantes</label>
             <ul class="nav-list">
               <li><a class="nav-link" *ngIf="showAdminBoard" href="/agregarestudiante"> Agregar Estudiante</a></li>
               <li><a class="nav-link" href="/estudiantes">Ver Estudiantes</a></li>
@@ -63,7 +40,7 @@
           <!-- estudiantes -->
           <section class="nav-group collapsible" *ngIf="showAdminBoard">
             <input id="tabexample1" type="checkbox" />
-            <label for="tabexample1">Estudiantes</label>
+            <label for="tabexample1">Cursos</label>
             <ul class="nav-list">
               <li><a class="nav-link" *ngIf="showAdminBoard"  href="/agregarcurso">Agregar Curso</a></li>
               <li><a class="nav-link"  href="/cursos" >Ver Cursos</a></li>

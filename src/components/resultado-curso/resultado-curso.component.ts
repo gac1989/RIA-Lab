@@ -28,7 +28,7 @@ export class ResultadoCursoComponent implements OnInit {
   estBuenos?: number =0;
   estMalos?: number = 0;
   estMedios?: number = 0;
-
+  loading?: boolean = true;
 
 
   //Grafica aprobados
@@ -69,7 +69,7 @@ export class ResultadoCursoComponent implements OnInit {
                 }
               }
             }
-            estudiante.promedio=notaTotal;
+            estudiante.promedio=Math.round(notaTotal);
             if(estudiante.promedio>=60){
               this.aprobados++;
             }
@@ -88,7 +88,7 @@ export class ResultadoCursoComponent implements OnInit {
               }
             }
             let promasist = (totalasistencia/this.clases.length)*100;
-            estudiante.asistencia=promasist;
+            estudiante.asistencia=Math.round(promasist);
             if(estudiante.asistencia>=80){
               this.estBuenos++;
             }
@@ -101,6 +101,7 @@ export class ResultadoCursoComponent implements OnInit {
           }
           this.pieChartData2=[this.estMalos, this.estBuenos, this.estMedios];
           this.pieChartData=[this.reprobados, this.aprobados, this.examen];
+          this.loading=false;
         })
       })
     });

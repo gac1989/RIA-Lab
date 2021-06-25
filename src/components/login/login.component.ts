@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit{
   }
 
   goHome(): void{
-    this.router.navigateByUrl('/home');
+    window.location.href="/home";
+    //this.router.navigateByUrl('/home');
   }
 
   onSubmit(): void {
@@ -43,11 +44,8 @@ export class LoginComponent implements OnInit{
        
         // this.getUserId(username);
         this.tokenStorage.saveUserName(username);
-        this.tokenStorage.chequearSiEsAdministrador().then(() => {
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
-           this.goHome();
-           this.reloadPage();
+        this.tokenStorage.checkRole().then(role => {
+          this.goHome();
         })
         .catch(err => {
           

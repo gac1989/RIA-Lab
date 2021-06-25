@@ -1,12 +1,15 @@
 
 <div class="login-wrapper">
-    <form class="login" method="post">
-      <section class="title">
-        <h3 class="welcome">Bienvenido a la</h3>
-        Libreta Digital
-        <h5 class="hint">Use sus credenciales para iniciar sesión o regístrese.</h5>
-      </section>
-      <div class="login-group">
-      </div>
-    </form>
-  </div>
+  <form class="login" method="post">
+    <section class="title">
+      <h3 class="welcome">Bienvenido a la</h3>
+      Libreta Digital
+      <h5 class="hint" *ngIf="!isLoggedIn">Use sus credenciales para iniciar sesión o regístrese.</h5>
+      <br>
+      <br>
+      <h1 *ngIf="isLoggedIn" style="color: rgb(150,199,223);">{{user | uppercase}}</h1>
+    </section>
+    <div class="login-group">
+    </div>
+  </form>
+</div>

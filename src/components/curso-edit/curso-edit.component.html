@@ -9,56 +9,43 @@
             <h1> Editar Curso: </h1>
             <br>
             <div>
-              <label for="curso" class="clr-control-label">Nombre Curso:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="nombre"
-                [(ngModel)]="form.nombre"
-                required
-                #nombre="ngModel"
-              />
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="nombre.errors && f.submitted">
-                Nombre curso es requerido
+              <div class="clr-form-control">
+                <label for="curso" class="clr-control-label">Nombre Curso:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input  class="clr-input" type="text" class="form-control clr-input" name="nombre" [(ngModel)]="form.nombre" required   #nombre="ngModel"/>
+                  </div>
                 </div>
-
+                <div class="alert alert-danger" role="alert" *ngIf="nombre.errors && f.submitted"> Nombre es requerido </div>
+              </div>
+  
+              <div class="clr-form-control">
                 <label for="descripcion" class="clr-control-label">Descripción:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="descripcion"
-                [(ngModel)]="form.descripcion"
-                required
-                #descripcion="ngModel"
-                />
-                <label for="programa" class="clr-control-label">Nombre de programa:</label>
-                <input
-                clrInput
-                type="text"
-                class="form-control clr-input"
-                name="programa"
-                [(ngModel)]="form.programa"
-                required
-                #programa="ngModel"
-              />
-                <div
-                class="alert alert-danger"
-                role="alert"
-                *ngIf="programa.errors && f.submitted">
-                Nombre programa es requerido
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text" class="form-control clr-input"   name="descripcion" [(ngModel)]="form.descripcion" required #descripcion="ngModel"/>
+                  </div>
                 </div>
+                <div class="alert alert-danger" role="alert" *ngIf="descripcion.errors && f.submitted"> Nombre es requerido </div>
+              </div>
+              <div class="clr-form-control">
+                <label for="programa" class="clr-control-label">Nombre de programa:</label>
+                <div class="clr-control-container">
+                  <div class="clr-input-wrapper">
+                    <input class="clr-input" type="text" class="form-control clr-input"  name="programa" [(ngModel)]="form.programa" required #programa="ngModel"/>
+                  </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="programa.errors && f.submitted"> Nombre es requerido </div>
+              </div>
+              <clr-select-container>
                 <label for="docente" class="clr-control-label">Seleccione el docente asignar:</label>
-                <select clrSelect [(ngModel)]="form.docenteId" selected="form.docenteId" name="docenteId" required>
+                <select clrSelect  [(ngModel)]="form.docenteId"  name="docenteId" required>
                     <option *ngFor="let docente of docentes" [value]="docente.id">
-                    {{docente.userName}}
+                      {{docente.userName}}
                     </option>
                 </select>
-
+                <!-- <clr-control-error>El campo es requerido!</clr-control-error> -->
+              </clr-select-container>
             </div>
             <br><br>
             <div id="registro-buttons">

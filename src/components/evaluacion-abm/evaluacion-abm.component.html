@@ -11,7 +11,7 @@
                 </div>
                 <br>
                 <label for="ponderacion" class="clr-control-label">Ponderacion:</label>
-                <input clrInput type="number"class="form-control clr-input"  name="ponderacion" [(ngModel)]="form.ponderacion"  [min]="10" [max]="totalPonderaciones" required #ponderacion="ngModel"/>
+                <input clrInput type="number"class="form-control clr-input"  name="ponderacion" [(ngModel)]="form.ponderacion"  [min]="0" [max]="totalPonderaciones" required #ponderacion="ngModel"/>
                 <p *ngIf="ponderacion.errors?.min">error message</p>
                 <div class="alert alert-danger" role="alert" *ngIf="ponderacion.errors && f.submitted">
                   La ponderacion es requerida
